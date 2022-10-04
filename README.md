@@ -10,13 +10,16 @@ ademas de tener que esquivar asteroides que vuelan sin rumbo en el infinito. El 
 escudos para defenderse y atacar. El unico objetivo es superar todos los niveles y traer la paz al espacio exterior.
 ****
 
+
+
 * __Motor:__ Godot v3.3.4
 * __Lenguaje:__ GDScript
 * __Plataforma/s:__ Solo PC
 * __Genero:__ Shoot 'em up (Matamarcianos)
 
 
-#### Lore
+
+### Lore
 
 ****
 Es el año 2154, un capitán del Tercer Grupo de Interceptores de la NCT (Nueva Confederación de Terra) llamado Mc. Carran fue enviado 
