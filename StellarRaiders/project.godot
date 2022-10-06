@@ -46,11 +46,20 @@ _global_script_class_icons={
 
 config/name="StellarRaiders"
 run/main_scene="res://Juego/Niveles/NivelTesting.tscn"
-config/icon="res://icon.png"
+config/icon="res://icono_juego.png"
 
 [autoload]
 
 Events="*res://Juego/Autoloads/Events.gd"
+
+[display]
+
+window/size/resizable=false
+window/size/always_on_top=true
+window/size/test_width=1280
+window/size/test_height=720
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [input]
 
@@ -88,6 +97,15 @@ disparar_laser_beam={
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":3,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="Mundo"
+2d_physics/layer_2="Jugador"
+2d_physics/layer_3="Enemigos"
+2d_physics/layer_4="Meteoritos"
+2d_physics/layer_5="Proyectiles_Jugador"
+2d_physics/layer_6="Proyectiles_Enemigos"
 
 [physics]
 

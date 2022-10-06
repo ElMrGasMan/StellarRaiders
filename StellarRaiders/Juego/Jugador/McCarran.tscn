@@ -7,6 +7,10 @@
 [ext_resource path="res://Juego/Proyectiles/BeamLaser/LaserBeam2D.tscn" type="PackedScene" id=5]
 
 [node name="McCarran" type="RigidBody2D"]
+z_index = 90
+z_as_relative = false
+collision_layer = 2
+collision_mask = 44
 mass = 2.0
 physics_material_override = ExtResource( 2 )
 gravity_scale = 0.0
