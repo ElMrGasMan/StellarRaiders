@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "Proyectil",
 "language": "GDScript",
 "path": "res://Juego/Proyectiles/PlayerLaser.gd"
+}, {
+"base": "RayCast2D",
+"class": "RayoLaser",
+"language": "GDScript",
+"path": "res://Juego/Proyectiles/BeamLaser/LaserBeam2D.gd"
 } ]
 _global_script_class_icons={
 "Jugador": "",
 "Nivel": "",
 "NormalWeapon": "",
-"Proyectil": ""
+"Proyectil": "",
+"RayoLaser": ""
 }
 
 [application]
@@ -75,6 +81,11 @@ girar_sentido_antihorario={
 disparar_click_izquierdo={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+disparar_laser_beam={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":3,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 

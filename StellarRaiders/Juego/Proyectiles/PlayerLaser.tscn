@@ -8,9 +8,11 @@ radius = 5.27927
 height = 35.5509
 
 [node name="PlayerLaser" type="Area2D"]
+modulate = Color( 5.07, 16.34, 10.32, 1 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1.02, 1 )
 rotation = 1.5708
 scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 1 )

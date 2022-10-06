@@ -9,10 +9,19 @@ var empuje: Vector2 = Vector2.ZERO
 var direc_rotacion: int = 0
 
 onready var normal_weapon: NormalWeapon = $NormalWeapon
+onready var laser_beam: RayoLaser = $LaserBeam2D
 
 
 func _ready() -> void:
 	pass 
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("disparar_laser_beam"):
+		laser_beam.set_is_casting(true)
+	
+	if event.is_action_released("disparar_laser_beam"):
+		laser_beam.set_is_casting(false)
 
 
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
