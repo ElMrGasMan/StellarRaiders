@@ -8,9 +8,11 @@ export var vel_rotacion: int = 280
 var empuje: Vector2 = Vector2.ZERO
 var direc_rotacion: int = 0
 
+onready var normal_weapon: NormalWeapon = $NormalWeapon
+
 
 func _ready() -> void:
-	pass # Replace with function body.
+	pass 
 
 
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
@@ -40,4 +42,10 @@ func input_jugador() -> void:
 	elif Input.is_action_pressed("girar_sentido_antihorario"):
 		direc_rotacion -= 1
 	
-	pass
+	"Shooting"
+	
+	if Input.is_action_pressed("disparar_click_izquierdo"):
+		normal_weapon.set_is_firing(true)
+	
+	elif Input.is_action_just_released("disparar_click_izquierdo"):
+		normal_weapon.set_is_firing(false)

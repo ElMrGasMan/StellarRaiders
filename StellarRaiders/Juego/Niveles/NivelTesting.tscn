@@ -1,21 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Juego/Jugador/McCarran.tscn" type="PackedScene" id=1]
-
-[sub_resource type="PhysicsMaterial" id=2]
-friction = 0.0
-bounce = 0.7
-
-[sub_resource type="PhysicsMaterial" id=1]
-friction = 0.0
-bounce = 0.6
+[ext_resource path="res://Juego/Niveles/Nivel.gd" type="Script" id=3]
 
 [node name="NivelTesting" type="Node2D"]
-position = Vector2( 660.199, 294.822 )
+script = ExtResource( 3 )
 
 [node name="McCarran" parent="." instance=ExtResource( 1 )]
-physics_material_override = SubResource( 2 )
-
-[node name="McCarran2" parent="." instance=ExtResource( 1 )]
-position = Vector2( -57.9564, 173.869 )
-physics_material_override = SubResource( 1 )
+position = Vector2( 451.573, 244.687 )

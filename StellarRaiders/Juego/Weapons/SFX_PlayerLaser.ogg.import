@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/SFX_PlayerLaser.ogg-9ec88556936d84342627556453301605.oggstr"
+
+[deps]
+
+source_file="res://Juego/Weapons/SFX_PlayerLaser.ogg"
+dest_files=[ "res://.import/SFX_PlayerLaser.ogg-9ec88556936d84342627556453301605.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

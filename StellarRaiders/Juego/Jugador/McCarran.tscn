@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://TemporalAssets/kenney_spaceshooterextension/PNG/Sprites/Ships/spaceShips_005.png" type="Texture" id=1]
 [ext_resource path="res://Juego/Jugador/MaterialesFisicosJugador.tres" type="PhysicsMaterial" id=2]
 [ext_resource path="res://Juego/Jugador/McCarran.gd" type="Script" id=3]
+[ext_resource path="res://Juego/Weapons/NormalWeapon.tscn" type="PackedScene" id=4]
 
 [node name="McCarran" type="RigidBody2D"]
 mass = 2.0
@@ -11,9 +12,6 @@ gravity_scale = 0.0
 linear_damp = 2.5
 angular_damp = 2.8
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
 vel_movimiento = 50
 vel_rotacion = 320
 
@@ -24,3 +22,15 @@ texture = ExtResource( 1 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 rotation = -1.5708
 polygon = PoolVector2Array( -39.1118, 14.7937, -56.9701, -1.87401, -37.9213, -29.2567, 39.0677, -29.6535, 58.1165, -4.25511, 39.8614, 12.4126, 31.5275, 31.8583, 24.3842, 14.3969, 0.176361, 30.6677, -19.2693, 15.5874, -28.3969, 35.0331 )
+
+[node name="NormalWeapon" parent="." instance=ExtResource( 4 )]
+fire_rate = 0.4
+proyectile_velocity = 2000
+
+[node name="LeftMuzzle" parent="NormalWeapon" index="0"]
+position = Vector2( 45, -30 )
+
+[node name="RightMuzzle" parent="NormalWeapon" index="1"]
+position = Vector2( 45, 30 )
+
+[editable path="NormalWeapon"]
