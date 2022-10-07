@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Juego/Jugador/Engine/SFX_Engine.gd" type="Script" id=1]
+[ext_resource path="res://Juego/Jugador/Engine/Engine_player.ogg" type="AudioStream" id=2]
+
+[node name="SFX_Engine" type="AudioStreamPlayer2D"]
+stream = ExtResource( 2 )
+volume_db = -5.0
+bus = "SFX"
+script = ExtResource( 1 )
+
+[node name="Tween" type="Tween" parent="."]

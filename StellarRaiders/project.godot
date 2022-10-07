@@ -9,10 +9,20 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Line2D",
+"class": "Estela",
+"language": "GDScript",
+"path": "res://Juego/Efectos/Estelas/Trail2D.gd"
+}, {
 "base": "RigidBody2D",
 "class": "Jugador",
 "language": "GDScript",
 "path": "res://Juego/Jugador/McCarran.gd"
+}, {
+"base": "AudioStreamPlayer2D",
+"class": "Motor",
+"language": "GDScript",
+"path": "res://Juego/Jugador/Engine/SFX_Engine.gd"
 }, {
 "base": "Node2D",
 "class": "Nivel",
@@ -35,7 +45,9 @@ _global_script_classes=[ {
 "path": "res://Juego/Proyectiles/BeamLaser/LaserBeam2D.gd"
 } ]
 _global_script_class_icons={
+"Estela": "",
 "Jugador": "",
+"Motor": "",
 "Nivel": "",
 "NormalWeapon": "",
 "Proyectil": "",

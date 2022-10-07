@@ -11,23 +11,25 @@ onready var timer_rateoffire: Timer = $RateOfFire
 onready var shooting_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 onready var cooldown_down: bool = true
 onready var is_firing: bool = false setget set_is_firing
+onready var can_fire: bool = false setget set_can_fire
 
 var shooting_points: Array = []
 
 
 func set_is_firing(shooting: bool) -> void:
-	
 	is_firing = shooting
 
 
+func set_can_fire(weapon_ready: bool) -> void:
+	can_fire = weapon_ready
+
+
 func _ready() -> void:
-	
 	storage_shooting_points()
 	timer_rateoffire.wait_time = fire_rate
 
 
 func _process(_delta: float) -> void:
-	
 	if is_firing and cooldown_down:
 		shoot()
 
@@ -37,7 +39,6 @@ func _on_RateOfFire_timeout() -> void:
 
 
 func storage_shooting_points() -> void:
-	
 	for node in get_children():
 		
 		if node is Position2D:
@@ -45,7 +46,6 @@ func storage_shooting_points() -> void:
 
 
 func shoot() -> void:
-	
 	cooldown_down = false
 	shooting_sound.play()
 	timer_rateoffire.start()
