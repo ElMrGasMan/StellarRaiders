@@ -116,9 +116,11 @@ func player_state_controler(new_state: int) -> void:
 		PLAYER_STATE.DEAD:
 			colisionator.set_deferred("disabled", true)
 			normal_weapon.set_can_fire(false)
+			Events.emit_signal("player_destroyed", global_position, 2)
 			queue_free()
 	
 	actual_state = new_state
 
 
-
+func destroy_player() -> void:
+	player_state_controler(PLAYER_STATE.DEAD)
