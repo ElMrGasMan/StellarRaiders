@@ -1,0 +1,140 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://TemporalAssets/kenney_spaceshooterextension/PNG/Sprites/Ships/spaceShips_005.png" type="Texture" id=1]
+[ext_resource path="res://Juego/Jugador/MaterialesFisicosJugador.tres" type="PhysicsMaterial" id=2]
+[ext_resource path="res://Juego/Jugador/McCarran.gd" type="Script" id=3]
+[ext_resource path="res://Juego/Weapons/NormalWeapon.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Juego/Proyectiles/BeamLaser/LaserBeam2D.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Juego/Efectos/Estelas/Trail2D.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Juego/Jugador/Engine/SFX_Engine.tscn" type="PackedScene" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Default"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -90.0002 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Spawning"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -360.0, -90.0002 ]
+}
+
+[node name="McCarran" type="RigidBody2D"]
+z_index = 90
+z_as_relative = false
+collision_layer = 2
+collision_mask = 44
+mass = 2.0
+physics_material_override = ExtResource( 2 )
+gravity_scale = 0.0
+linear_damp = 2.5
+angular_damp = 2.8
+script = ExtResource( 3 )
+vel_movimiento = 50
+vel_rotacion = 320
+
+[node name="Sprite" type="Sprite" parent="."]
+rotation = -6.28319
+scale = Vector2( 1e-05, 1e-05 )
+texture = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+rotation = -1.5708
+polygon = PoolVector2Array( -39.1118, 14.7937, -56.9701, -1.87401, -37.9213, -29.2567, 39.0677, -29.6535, 58.1165, -4.25511, 39.8614, 12.4126, 31.5275, 31.8583, 24.3842, 14.3969, 0.176361, 30.6677, -19.2693, 15.5874, -28.3969, 35.0331 )
+
+[node name="NormalWeapon" parent="." instance=ExtResource( 4 )]
+fire_rate = 0.4
+proyectile_velocity = 2000
+
+[node name="LeftMuzzle" parent="NormalWeapon" index="0"]
+position = Vector2( 45, -30 )
+
+[node name="RightMuzzle" parent="NormalWeapon" index="1"]
+position = Vector2( 45, 30 )
+
+[node name="LaserBeam2D" parent="." instance=ExtResource( 5 )]
+position = Vector2( 42.1938, 0 )
+
+[node name="TrailStartingPoint" type="Position2D" parent="."]
+position = Vector2( -29.9352, -25.3984 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Trail2D" parent="TrailStartingPoint" instance=ExtResource( 6 )]
+points = PoolVector2Array( 0, 0, 40, 0 )
+width = 35.0
+is_emitting = true
+lifetime = 0.7
+max_points = 120
+target_path = NodePath("..")
+
+[node name="TrailStartingPoint2" type="Position2D" parent="."]
+position = Vector2( -29.9352, 24.9236 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Trail2D" parent="TrailStartingPoint2" instance=ExtResource( 6 )]
+points = PoolVector2Array( 0, 0, 40, 0 )
+width = 35.0
+is_emitting = true
+lifetime = 0.7
+max_points = 120
+target_path = NodePath("..")
+
+[node name="SFX_Engine" parent="." instance=ExtResource( 7 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Spawning"
+anims/Default = SubResource( 1 )
+anims/Spawning = SubResource( 2 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+
+[editable path="NormalWeapon"]

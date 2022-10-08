@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Engine_player.ogg-809977bac45bf5f57a2f3d37ec4879ac.oggstr"
+
+[deps]
+
+source_file="res://Juego/Jugador/Engine/Engine_player.ogg"
+dest_files=[ "res://.import/Engine_player.ogg-809977bac45bf5f57a2f3d37ec4879ac.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
