@@ -11,10 +11,12 @@ export var estela_maxima: int = 120
 var empuje: Vector2 = Vector2.ZERO
 var direc_rotacion: int = 0
 var actual_state: int = PLAYER_STATE.SPAWN
+var hitpoints: float = 20.0
 
 onready var normal_weapon: NormalWeapon = $NormalWeapon
 onready var laser_beam: RayoLaser = $LaserBeam2D
 onready var engine_sound: Motor = $SFX_Engine
+onready var hit_sound: AudioStreamPlayer = $SFX_Hit
 onready var colisionator: CollisionPolygon2D = $CollisionPolygon2D
 onready var estela: Estela = $TrailStartingPoint/Trail2D
 onready var estela2: Estela = $TrailStartingPoint2/Trail2D
@@ -62,11 +64,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 
 
+# warning-ignore:unused_argument
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 	apply_central_impulse(empuje.rotated(rotation))
 	apply_torque_impulse(direc_rotacion * vel_rotacion)
 
 
+# warning-ignore:unused_argument
 func _process(delta: float) -> void:
 	input_jugador()
 
@@ -124,3 +128,11 @@ func player_state_controler(new_state: int) -> void:
 
 func destroy_player() -> void:
 	player_state_controler(PLAYER_STATE.DEAD)
+
+
+func get_damage(damage: float):
+	hitpoints -= damage
+	hit_sound.play()
+	
+	if hitpoints <= 0.0:
+		destroy_player()
