@@ -20,6 +20,7 @@ onready var hit_sound: AudioStreamPlayer = $SFX_Hit
 onready var colisionator: CollisionPolygon2D = $CollisionPolygon2D
 onready var estela: Estela = $TrailStartingPoint/Trail2D
 onready var estela2: Estela = $TrailStartingPoint2/Trail2D
+onready var player_shield: Shield = $Shield
 ##ARREGLAR ESTO CAPAZ SE PUEDEN PONER EN UN ARRAY
 
 func _ready() -> void:
@@ -62,6 +63,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		estela2.set_max_points(2)
 		engine_sound.sound_on()
 	
+	if event.is_action_pressed("activar_escudo") and not player_shield.get_is_activated():
+		player_shield.activate()
 
 
 # warning-ignore:unused_argument
