@@ -9,6 +9,7 @@ height = 35.5509
 
 [node name="PlayerLaser" type="Area2D"]
 modulate = Color( 5.07, 16.34, 10.32, 1 )
+scale = Vector2( 1.1, 1.1 )
 z_index = 20
 z_as_relative = false
 collision_layer = 16

@@ -55,5 +55,3 @@ func status_collisionator(status: bool) -> void:
 
 func get_is_activated() -> bool:
 	return is_activated
-
-

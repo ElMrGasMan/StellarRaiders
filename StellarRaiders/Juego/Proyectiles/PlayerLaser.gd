@@ -7,13 +7,8 @@ var velocidad: Vector2 = Vector2.ZERO
 var damages: float
 
 
-func _ready() -> void:
-	pass
-
-
 func _physics_process(delta: float) -> void:
 	position += velocidad * delta
-	pass
 
 
 func _on_VisibilityNotifier2D_screen_exited() -> void:
