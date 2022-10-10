@@ -17,6 +17,7 @@ func _on_shoot(proyectil:Proyectil) -> void:
 
 
 func _on_player_destroyed(position: Vector2, num_explosions: int) -> void:
+# warning-ignore:unused_variable
 	for i in range(num_explosions):
 		var new_explosion:Node2D = explosion.instance()
 		new_explosion.global_position = position
@@ -25,7 +26,9 @@ func _on_player_destroyed(position: Vector2, num_explosions: int) -> void:
 
 
 func connect_signals() -> void:
+# warning-ignore:return_value_discarded
 	Events.connect("shoot", self, "_on_shoot")
+# warning-ignore:return_value_discarded
 	Events.connect("player_destroyed", self, "_on_player_destroyed")
 
 

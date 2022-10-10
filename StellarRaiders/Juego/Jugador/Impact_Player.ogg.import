@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Impact_Player.ogg-d1a22659d8f772297d27d45cd73984ab.oggstr"
+
+[deps]
+
+source_file="res://Juego/Jugador/Impact_Player.ogg"
+dest_files=[ "res://.import/Impact_Player.ogg-d1a22659d8f772297d27d45cd73984ab.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
