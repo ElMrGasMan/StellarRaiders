@@ -34,6 +34,12 @@ func input_is_active() -> bool:
 	return true
 
 
+func _on_body_entered(body: Node) -> void:
+	if body is Meteor:
+		body.destroy_meteor()
+		destroy_player()
+
+
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "Spawning":
 		player_state_controler(PLAYER_STATE.ALIVE)

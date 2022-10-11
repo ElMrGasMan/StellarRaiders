@@ -1,20 +1,29 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Juego/Jugador/McCarran.tscn" type="PackedScene" id=1]
 [ext_resource path="res://default_env.tres" type="Environment" id=2]
 [ext_resource path="res://Juego/Niveles/Nivel.gd" type="Script" id=3]
-[ext_resource path="res://Juego/Enemies/DummyEnemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Juego/Meteoritos/Meteoritos.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Juego/Efectos/Explosiones/Explosion.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Juego/Meteoritos/SpawnerMeteors.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Juego/Efectos/Explosiones/ExplosionMeteor.tscn" type="PackedScene" id=7]
 
 [node name="NivelTesting" type="Node2D"]
 script = ExtResource( 3 )
 explosion = ExtResource( 5 )
+meteor = ExtResource( 4 )
+explosion_meteor = ExtResource( 7 )
 
 [node name="McCarran" parent="." instance=ExtResource( 1 )]
-position = Vector2( 451.573, 244.687 )
+position = Vector2( 111.25, 91.4524 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 2 )
 
-[node name="DummyEnemy" parent="." instance=ExtResource( 4 )]
-position = Vector2( 592.412, 85.3928 )
+[node name="SpawnerMeteors" parent="." instance=ExtResource( 6 )]
+position = Vector2( -72.4392, 518.314 )
+meteor_direction = Vector2( 1.1, -1 )
+
+[node name="SpawnerMeteors2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 885.901, -120.857 )
+meteor_direction = Vector2( -1, 2 )

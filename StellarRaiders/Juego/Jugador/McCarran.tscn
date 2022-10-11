@@ -74,6 +74,9 @@ collision_mask = 44
 mass = 2.0
 physics_material_override = ExtResource( 2 )
 gravity_scale = 0.0
+contacts_reported = 4
+contact_monitor = true
+can_sleep = false
 linear_damp = 2.5
 angular_damp = 2.8
 script = ExtResource( 3 )
@@ -144,6 +147,7 @@ bus = "SFX"
 
 [node name="Shield" parent="." instance=ExtResource( 9 )]
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
 [editable path="NormalWeapon"]

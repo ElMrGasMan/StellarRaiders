@@ -1,6 +1,7 @@
 extends Node
 
-# warning-ignore:unused_signal
+
 signal shoot(proyectil)
-# warning-ignore:unused_signal
 signal player_destroyed(position, num_explosions)
+signal shoot_meteor(position, direction, size)
+signal destroy_meteor(position)

@@ -19,10 +19,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/Efectos/Estelas/Trail2D.gd"
 }, {
+"base": "Node2D",
+"class": "Explosion_Meteor",
+"language": "GDScript",
+"path": "res://Juego/Efectos/Explosiones/ExplosionMeteor.gd"
+}, {
 "base": "RigidBody2D",
 "class": "Jugador",
 "language": "GDScript",
 "path": "res://Juego/Jugador/McCarran.gd"
+}, {
+"base": "RigidBody2D",
+"class": "Meteor",
+"language": "GDScript",
+"path": "res://Juego/Meteoritos/Meteoritos.gd"
+}, {
+"base": "Position2D",
+"class": "Meteor_Spawner",
+"language": "GDScript",
+"path": "res://Juego/Meteoritos/SpawnerMeteors.gd"
 }, {
 "base": "AudioStreamPlayer2D",
 "class": "Motor",
@@ -57,7 +72,10 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Enemies": "",
 "Estela": "",
+"Explosion_Meteor": "",
 "Jugador": "",
+"Meteor": "",
+"Meteor_Spawner": "",
 "Motor": "",
 "Nivel": "",
 "NormalWeapon": "",
