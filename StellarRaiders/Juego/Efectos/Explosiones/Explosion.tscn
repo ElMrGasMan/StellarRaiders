@@ -258,7 +258,6 @@ texture = ExtResource( 5 )
 
 [node name="FireTrailParticles2D2" type="Particles2D" parent="FireTrails"]
 modulate = Color( 1.2, 1.2, 1.2, 1 )
-emitting = false
 amount = 50
 lifetime = 0.5
 randomness = 0.5
@@ -269,7 +268,6 @@ texture = ExtResource( 5 )
 
 [node name="FireTrailParticles2D3" type="Particles2D" parent="FireTrails"]
 modulate = Color( 1.2, 1.2, 1.2, 1 )
-emitting = false
 amount = 50
 lifetime = 0.5
 randomness = 0.5
@@ -280,7 +278,6 @@ texture = ExtResource( 5 )
 
 [node name="FireTrailParticles2D4" type="Particles2D" parent="FireTrails"]
 modulate = Color( 1.2, 1.2, 1.2, 1 )
-emitting = false
 amount = 50
 lifetime = 0.5
 randomness = 0.5

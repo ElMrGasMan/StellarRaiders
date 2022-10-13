@@ -6,11 +6,6 @@ export var meteor_direction: Vector2 = Vector2(1, 1)
 export var meteor_size_range: Vector2 = Vector2(0.7, 2.6)
 
 
-func _ready() -> void:
-	yield(owner, "ready")
-	emit_meteor_signal()
-
-
 func emit_meteor_signal() -> void:
 	Events.emit_signal("shoot_meteor", global_position, meteor_direction, size_meteor_randomizer())
 

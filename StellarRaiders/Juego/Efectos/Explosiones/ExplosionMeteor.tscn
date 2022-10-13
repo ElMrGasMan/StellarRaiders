@@ -4,7 +4,7 @@
 [ext_resource path="res://TemporalAssets/spaceshooter/PNG/Meteors/meteorGrey_small1.png" type="Texture" id=2]
 [ext_resource path="res://TemporalAssets/spaceshooter/PNG/Meteors/meteorGrey_tiny2.png" type="Texture" id=3]
 [ext_resource path="res://TemporalAssets/spaceshooter/PNG/Meteors/meteorGrey_small2.png" type="Texture" id=4]
-[ext_resource path="res://Juego/Meteoritos/Hit_Meteorito.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Juego/Efectos/Explosiones/ExplosionMeteorito.ogg" type="AudioStream" id=5]
 [ext_resource path="res://Juego/Efectos/Explosiones/ExplosionMeteor.gd" type="Script" id=6]
 
 [sub_resource type="Animation" id=1]
@@ -250,6 +250,20 @@ tracks/19/keys = {
 "update": 1,
 "values": [ true, false ]
 }
+tracks/20/type = "audio"
+tracks/20/path = NodePath("AudioStreamPlayer2D")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"clips": [ {
+"end_offset": 0.54,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+} ],
+"times": PoolRealArray( 0 )
+}
 
 [node name="ExplosionMeteor" type="Node2D"]
 script = ExtResource( 6 )
@@ -264,19 +278,38 @@ volume_db = -6.0
 bus = "SFX"
 
 [node name="meteorGrey_small1" type="Sprite" parent="."]
+visible = false
+position = Vector2( -100.5, 20.5 )
+rotation = -2.79253
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 2 )
 
 [node name="meteorGrey_small2" type="Sprite" parent="."]
+visible = false
+position = Vector2( 32.5, -88 )
+rotation = 1.74533
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 4 )
 
 [node name="meteorGrey_med2" type="Sprite" parent="."]
+visible = false
+position = Vector2( 159.5, -44 )
+rotation = 1.0472
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 1 )
 
 [node name="meteorGrey_tiny2" type="Sprite" parent="."]
+visible = false
+position = Vector2( 16.5, 73.5 )
+rotation = -4.53786
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 3 )
 
 [node name="meteorGrey_small3" type="Sprite" parent="."]
-scale = Vector2( 0.9, 0.9 )
+visible = false
+position = Vector2( -67.5, 63 )
+rotation = -2.0944
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 4 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
