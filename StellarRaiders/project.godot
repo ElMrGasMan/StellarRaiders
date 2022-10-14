@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Camera2D",
+"class": "CamaraJuego",
+"language": "GDScript",
+"path": "res://Juego/Niveles/CamaraJuego.gd"
+}, {
+"base": "CamaraJuego",
+"class": "CamaraJugador",
+"language": "GDScript",
+"path": "res://Juego/Jugador/CamaraJugador.gd"
+}, {
 "base": "Node2D",
 "class": "Enemies",
 "language": "GDScript",
@@ -75,6 +85,8 @@ _global_script_classes=[ {
 "path": "res://Juego/Escudo/Shield.gd"
 } ]
 _global_script_class_icons={
+"CamaraJuego": "",
+"CamaraJugador": "",
 "Enemies": "",
 "Estela": "",
 "Explosion_Meteor": "",
@@ -148,6 +160,16 @@ disparar_laser_beam={
 activar_escudo={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":70,"unicode":0,"echo":false,"script":null)
+ ]
+}
+zoom_camara_acercar={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":4,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+zoom_camara_alejar={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 

@@ -71,6 +71,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("activar_escudo") and not player_shield.get_is_activated():
 		player_shield.activate()
+	
 
 
 # warning-ignore:unused_argument
@@ -139,9 +140,12 @@ func destroy_player() -> void:
 	player_state_controler(PLAYER_STATE.DEAD)
 
 
-func get_damage(damage: float):
+func get_damage(damage: float) -> void:
 	hitpoints -= damage
 	hit_sound.play()
 	
 	if hitpoints <= 0.0:
 		destroy_player()
+
+
+

@@ -14,6 +14,7 @@ var hitpoints: float
 var esta_dentro_sector: bool = true setget set_esta_dentro_sector
 var pos_spawn_original : Vector2
 var vel_spawn_original : Vector2
+var esta_destruido: bool = false
 
 
 func _ready() -> void:
@@ -54,7 +55,8 @@ func get_damage(damage: float) -> void:
 	hitpoints -= damage
 	animations.play("Meteor_Hit")
 	
-	if hitpoints <= 0.0:
+	if hitpoints <= 0.0 and not esta_destruido:
+		esta_destruido = true
 		destroy_meteor()
 
 
