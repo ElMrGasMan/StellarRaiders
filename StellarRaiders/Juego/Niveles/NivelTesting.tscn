@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Juego/Jugador/McCarran.tscn" type="PackedScene" id=1]
 [ext_resource path="res://default_env.tres" type="Environment" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Juego/Meteoritos/SectorMeteorRain.tscn" type="PackedScene" id=8]
 [ext_resource path="res://TemporalAssets/SimpleSpace/PNG/Default/icon_crossLarge.png" type="Texture" id=9]
 [ext_resource path="res://Juego/Niveles/CamaraNivel.gd" type="Script" id=10]
+[ext_resource path="res://Juego/EstacionRecarga/EstacionEspacialRecarga.tscn" type="PackedScene" id=11]
 
 [node name="NivelTesting" type="Node2D"]
 script = ExtResource( 3 )
@@ -41,6 +42,9 @@ script = ExtResource( 10 )
 [node name="icon_crossLarge" type="Sprite" parent="."]
 position = Vector2( 374.031, 395.403 )
 texture = ExtResource( 9 )
+
+[node name="EstacionEspacialRecarga" parent="." instance=ExtResource( 11 )]
+position = Vector2( 555.159, -220.368 )
 
 [connection signal="tween_completed" from="TweenCamaraNivel" to="." method="_on_TweenCamaraNivel_tween_completed"]
 

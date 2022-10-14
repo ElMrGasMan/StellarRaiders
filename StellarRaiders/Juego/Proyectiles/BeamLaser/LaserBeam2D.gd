@@ -17,17 +17,22 @@ export var growth_time := 0.1
 var is_casting := false setget set_is_casting
 var damage: float = 18.0
 
+export var total_energy: float = 20.0
+export var ratio_consumption: float = -1.25
+
 onready var fill := $FillLine2D
 onready var tween := $Tween
 onready var casting_particles := $CastingParticles2D
 onready var collision_particles := $CollisionParticles2D
 onready var beam_particles := $BeamParticles2D
 onready var laser_audio := $AudioStreamPlayer2D
-
 onready var line_width: float = fill.width
+
+var energia_maxima: float
 
 
 func _ready() -> void:
+	energia_maxima = total_energy
 	set_physics_process(false)
 	fill.points[1] = Vector2.ZERO
 
@@ -58,6 +63,12 @@ func set_is_casting(cast: bool) -> void:
 # Controls the emission of particles and extends the Line2D to `cast_to` or the ray's 
 # collision point, whichever is closest.
 func cast_beam(delta: float) -> void:
+	if total_energy <= 0.0:
+		set_is_casting(false)
+		return
+	
+	energia_control(ratio_consumption * delta)
+	
 	var cast_point := cast_to
 
 	force_raycast_update()
@@ -88,3 +99,10 @@ func disappear() -> void:
 		tween.stop_all()
 	tween.interpolate_property(fill, "width", fill.width, 0, growth_time)
 	tween.start()
+
+
+func energia_control(valor: float) -> void:
+	total_energy += valor
+	
+	if total_energy > energia_maxima:
+		total_energy = energia_maxima
