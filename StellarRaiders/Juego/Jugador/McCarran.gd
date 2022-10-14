@@ -34,6 +34,12 @@ func input_is_active() -> bool:
 	return true
 
 
+func _on_body_entered(body: Node) -> void:
+	if body is Meteor:
+		body.destroy_meteor()
+		destroy_player()
+
+
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "Spawning":
 		player_state_controler(PLAYER_STATE.ALIVE)
@@ -65,6 +71,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("activar_escudo") and not player_shield.get_is_activated():
 		player_shield.activate()
+	
 
 
 # warning-ignore:unused_argument
@@ -133,9 +140,12 @@ func destroy_player() -> void:
 	player_state_controler(PLAYER_STATE.DEAD)
 
 
-func get_damage(damage: float):
+func get_damage(damage: float) -> void:
 	hitpoints -= damage
 	hit_sound.play()
 	
 	if hitpoints <= 0.0:
 		destroy_player()
+
+
+
