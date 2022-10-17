@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/Enemies/DummyEnemy.gd"
 }, {
+"base": "Node2D",
+"class": "EstacionEspacial",
+"language": "GDScript",
+"path": "res://Juego/EstacionRecarga/EstacionEspacialRecarga.gd"
+}, {
 "base": "Line2D",
 "class": "Estela",
 "language": "GDScript",
@@ -88,6 +93,7 @@ _global_script_class_icons={
 "CamaraJuego": "",
 "CamaraJugador": "",
 "Enemies": "",
+"EstacionEspacial": "",
 "Estela": "",
 "Explosion_Meteor": "",
 "Jugador": "",
@@ -172,6 +178,16 @@ zoom_camara_alejar={
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
+recarga_escudo={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":71,"unicode":0,"echo":false,"script":null)
+ ]
+}
+recarga_laserbeam={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -181,6 +197,7 @@ zoom_camara_alejar={
 2d_physics/layer_4="Meteoritos"
 2d_physics/layer_5="Proyectiles_Jugador"
 2d_physics/layer_6="Proyectiles_Enemigos"
+2d_physics/layer_7="Estaciones_Espaciales"
 
 [physics]
 

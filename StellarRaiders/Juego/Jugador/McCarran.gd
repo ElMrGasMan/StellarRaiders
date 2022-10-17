@@ -14,13 +14,13 @@ var actual_state: int = PLAYER_STATE.SPAWN
 var hitpoints: float = 20.0
 
 onready var normal_weapon: NormalWeapon = $NormalWeapon
-onready var laser_beam: RayoLaser = $LaserBeam2D
+onready var laser_beam: RayoLaser = $LaserBeam2D setget, get_laser_beam
 onready var engine_sound: Motor = $SFX_Engine
 onready var hit_sound: AudioStreamPlayer = $SFX_Hit
 onready var colisionator: CollisionPolygon2D = $CollisionPolygon2D
 onready var estela: Estela = $TrailStartingPoint/Trail2D
 onready var estela2: Estela = $TrailStartingPoint2/Trail2D
-onready var player_shield: Shield = $Shield
+onready var player_shield: Shield = $Shield setget, get_escudo
 ##ARREGLAR ESTO CAPAZ SE PUEDEN PONER EN UN ARRAY
 
 func _ready() -> void:
@@ -71,7 +71,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("activar_escudo") and not player_shield.get_is_activated():
 		player_shield.activate()
-	
+
+
+func get_laser_beam() -> RayoLaser:
+	return laser_beam
+
+
+func get_escudo() -> Shield:
+	return player_shield
 
 
 # warning-ignore:unused_argument

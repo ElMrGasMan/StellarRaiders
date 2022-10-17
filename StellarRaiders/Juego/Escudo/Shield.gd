@@ -6,23 +6,31 @@ onready var animations: AnimationPlayer = $AnimationPlayer
 onready var collisionator: CollisionShape2D = $CollisionShape2D
 
 export var total_energy: float = 10.0
-export var ratio_consumption: float = 1.25
+export var ratio_consumption: float = -1.25
 
 var is_activated: bool = false setget, get_is_activated
+var energia_maxima: float
 
 
 func _ready() -> void:
+	energia_maxima = total_energy
 	set_process(false)
 	status_collisionator(true)
 
 
 func _process(delta: float) -> void:
-	total_energy -= ratio_consumption * delta
-	print(total_energy)
-	
-	if total_energy <= 0.0:
-		deactivate()
+	energia_control(ratio_consumption * delta)
 
+
+func energia_control(valor: float) -> void:
+	total_energy += valor
+	
+	if total_energy > energia_maxima:
+		total_energy = energia_maxima
+	
+	elif total_energy <= 0.0:
+		deactivate()
+	print(total_energy)
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "Activating" and is_activated:
