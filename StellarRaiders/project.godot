@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Explosion_Meteor",
 "language": "GDScript",
-"path": "res://Juego/Efectos/Explosiones/ExplosionMeteor.gd"
+"path": "res://Juego/Efectos/Explosiones/ExplosionMeteorito/ExplosionMeteor.gd"
 }, {
 "base": "RigidBody2D",
 "class": "Jugador",

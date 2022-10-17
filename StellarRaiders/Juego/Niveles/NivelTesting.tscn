@@ -6,7 +6,7 @@
 [ext_resource path="res://Juego/Meteoritos/Meteoritos.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Juego/Efectos/Explosiones/Explosion.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Juego/ZonaPeligro/ZonaDePeligro.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Juego/Efectos/Explosiones/ExplosionMeteor.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Juego/Efectos/Explosiones/ExplosionMeteorito/ExplosionMeteor.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Juego/Meteoritos/SectorMeteorRain.tscn" type="PackedScene" id=8]
 [ext_resource path="res://TemporalAssets/SimpleSpace/PNG/Default/icon_crossLarge.png" type="Texture" id=9]
 [ext_resource path="res://Juego/Niveles/CamaraNivel.gd" type="Script" id=10]
@@ -18,17 +18,19 @@ meteor = ExtResource( 4 )
 explosion_meteor = ExtResource( 7 )
 lluvia_de_meteoritos = ExtResource( 8 )
 
-[node name="McCarran" parent="." instance=ExtResource( 1 )]
-position = Vector2( 111.25, 91.4524 )
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 2 )
-
 [node name="ZonasDePeligro" type="Node" parent="."]
 
 [node name="ZonaDePeligro" parent="ZonasDePeligro" instance=ExtResource( 6 )]
 position = Vector2( 374.627, 393.676 )
 num_peligros = 3
+
+[node name="AlmacenEstaciones" type="Node" parent="."]
+
+[node name="McCarran" parent="." instance=ExtResource( 1 )]
+position = Vector2( 111.25, 91.4524 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 2 )
 
 [node name="CamaraNivel" type="Camera2D" parent="."]
 zoom = Vector2( 2, 2 )
