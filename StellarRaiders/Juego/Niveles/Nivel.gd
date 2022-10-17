@@ -26,8 +26,6 @@ func _ready() -> void:
 func _on_TweenCamaraNivel_tween_completed(object: Object, key: NodePath) -> void:
 	if object.name == "CamaraJugador":
 		object.global_position = $McCarran.global_position
-func _on_shoot(proyectil:Proyectil) -> void:
-	proyectile_storage.add_child(proyectil)
 
 
 func connect_signals() -> void:
@@ -57,11 +55,23 @@ func create_storages() -> void:
 	add_child(contenedor_lluvias_de_meteoritos)
 
 
-func _on_player_destroyed(position: Vector2, num_explosions: int) -> void:
+func _on_shoot(proyectil:Proyectil) -> void:
+	proyectile_storage.add_child(proyectil)
+
+
+func _on_player_destroyed(nave: Jugador, posicion: Vector2, num_explosions: int) -> void:
+	if nave is Jugador:
+		transcision_entre_camaras(
+			posicion,
+			posicion + crear_posicion_random(-150.0, 150),
+			camara_nivel,
+			tiempo_transicion_camara
+			)
+	
 # warning-ignore:unused_variable
 	for i in range(num_explosions):
 		var new_explosion:Node2D = explosion.instance()
-		new_explosion.global_position = position
+		new_explosion.global_position = posicion + crear_posicion_random(140.0, 80.0)
 		add_child(new_explosion)
 		yield(get_tree().create_timer(0.4), "timeout")
 
@@ -118,7 +128,6 @@ func transcision_entre_camaras(desde: Vector2, hasta: Vector2, camara_actual: Ca
 
 func descontar_meteorito() -> void:
 	cant_meteoritos_nivel -= 1
-	print(cant_meteoritos_nivel)
 	
 	if cant_meteoritos_nivel == 0:
 		contenedor_lluvias_de_meteoritos.get_child(0).queue_free()
@@ -127,3 +136,11 @@ func descontar_meteorito() -> void:
 		camara_jugador.zoom = camara_nivel.zoom
 		camara_jugador.suavizar_zoom(zoom_actual.x, zoom_actual.y, 3.0)
 		transcision_entre_camaras(camara_nivel.global_position, camara_jugador.global_position, camara_jugador, tiempo_transicion_camara * 0.05)
+
+
+func crear_posicion_random(rango_x: float, rango_y: float) -> Vector2:
+	randomize()
+	var random_x = rand_range(-rango_x, rango_x)
+	var random_y = rand_range(-rango_y, rango_y)
+	
+	return Vector2(random_x, random_y)
