@@ -24,6 +24,8 @@ can_sleep = false
 linear_damp = 2.5
 angular_damp = 2.8
 script = ExtResource( 10 )
+vel_movimiento = 55
+vel_rotacion = 320
 
 [node name="Sprite" parent="." index="0"]
 rotation = -1.5708
@@ -34,6 +36,7 @@ polygon = PoolVector2Array( -59, 1.99979, -32.9999, -27.5001, 32.5001, -28.9999,
 
 [node name="NormalWeapon" parent="." index="2"]
 proyectile = ExtResource( 11 )
+proyectile_velocity = 2200
 
 [node name="LeftMuzzle" parent="NormalWeapon" index="0"]
 position = Vector2( 36.7547, 28.6862 )

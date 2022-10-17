@@ -6,13 +6,13 @@
 [ext_resource path="res://Juego/Enemies/EnemigoAmbusher.gd" type="Script" id=4]
 [ext_resource path="res://Juego/Proyectiles/EnemyLaser.tscn" type="PackedScene" id=5]
 
-[sub_resource type="PhysicsMaterial" id=5]
+[sub_resource type="PhysicsMaterial" id=6]
 friction = 0.0
 bounce = 0.5
 
-[sub_resource type="Animation" id=1]
-resource_name = "Default"
+[sub_resource type="Animation" id=7]
 length = 0.001
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("SpriteDeSpawn:visible")
 tracks/0/interp = 1
@@ -23,7 +23,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ true ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:visible")
@@ -35,7 +35,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ false ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite:rotation_degrees")
@@ -62,8 +62,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0.9, 0.9 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Spawning"
+[sub_resource type="Animation" id=8]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("SpriteDeSpawn:visible")
@@ -111,7 +110,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.1, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0.9, 0.9 ), Vector2( 0, 0 ), Vector2( 0.9, 0.9 ) ]
+"values": [ Vector2( 0.9, 0.9 ), Vector2( 0.2, 0.2 ), Vector2( 0.9, 0.9 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("SpriteDeSpawn:modulate")
@@ -138,26 +137,28 @@ tracks/5/keys = {
 "values": [ Vector2( 2, 2 ), Vector2( 4, 4 ) ]
 }
 
-[sub_resource type="CircleShape2D" id=3]
-radius = 310.526
+[sub_resource type="CircleShape2D" id=9]
+radius = 407.818
 
-[sub_resource type="CircleShape2D" id=4]
-radius = 298.527
+[sub_resource type="CircleShape2D" id=5]
+radius = 345.968
 
 [node name="EnemigoAmbusher" instance=ExtResource( 3 )]
 z_index = 5
 z_as_relative = false
 collision_layer = 4
-collision_mask = 26
-physics_material_override = SubResource( 5 )
+collision_mask = 30
+physics_material_override = SubResource( 6 )
 contacts_reported = 4
 contact_monitor = true
 can_sleep = false
 script = ExtResource( 4 )
+hitpoints = 10.0
 cant_explosiones = 1
 
 [node name="Sprite" parent="." index="0"]
-rotation = -1.5708
+visible = false
+rotation = -6.28319
 scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 2 )
 
@@ -166,16 +167,15 @@ polygon = PoolVector2Array( -30.3495, -40.0749, 42.671, -38.8841, 40.2897, 6.753
 
 [node name="NormalWeapon" parent="." index="2"]
 proyectile = ExtResource( 5 )
-fire_rate = 1.0
-proyectile_velocity = 1400
+fire_rate = 1.5
+proyectile_velocity = 1100
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
-autoplay = "Spawning"
-anims/Default = SubResource( 1 )
-anims/Spawning = SubResource( 2 )
+autoplay = "Default"
+anims/Default = SubResource( 7 )
+anims/Spawning = SubResource( 8 )
 
 [node name="SpriteDeSpawn" type="Sprite" parent="." index="5"]
-visible = false
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 
@@ -184,13 +184,18 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDisparo" index="0"]
-shape = SubResource( 3 )
+shape = SubResource( 9 )
 
 [node name="AreaPerseguir" type="Area2D" parent="." index="7"]
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPerseguir" index="0"]
-shape = SubResource( 4 )
+modulate = Color( 0.0117647, 0.0588235, 0.054902, 1 )
+shape = SubResource( 5 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="body_entered" from="AreaDisparo" to="." method="_on_AreaDisparo_body_entered"]
+[connection signal="body_exited" from="AreaDisparo" to="." method="_on_AreaDisparo_body_exited"]
+[connection signal="body_entered" from="AreaPerseguir" to="." method="_on_AreaPerseguir_body_entered"]
+[connection signal="body_exited" from="AreaPerseguir" to="." method="_on_AreaPerseguir_body_exited"]

@@ -17,6 +17,10 @@ onready var laser_beam: RayoLaser = $LaserBeam2D setget, get_laser_beam
 onready var engine_sound: Motor = $SFX_Engine
 
 
+func _ready() -> void:
+	DataJuego.set_jugador_actual(self)
+
+
 func get_laser_beam() -> RayoLaser:
 	return laser_beam
 

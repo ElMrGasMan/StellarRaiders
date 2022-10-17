@@ -6,26 +6,30 @@ export var explosion: PackedScene = null
 export var meteor: PackedScene = null
 export var explosion_meteor: PackedScene = null
 export var lluvia_de_meteoritos: PackedScene = null
+export var enemigo_ambusher: PackedScene = null
 export var tiempo_transicion_camara: float = 3.0
 
 onready var proyectile_storage: Node
 onready var meteor_storage: Node
 onready var contenedor_lluvias_de_meteoritos: Node
+onready var contenedor_enemigos: Node
 onready var camara_nivel: Camera2D = $CamaraNivel
 onready var camara_jugador: Camera2D = $Jugador/CamaraJugador
 
 var cant_meteoritos_nivel: int = 0
+var jugador: Jugador = null
 
 
 func _ready() -> void:
 	connect_signals()
 	create_storages()
+	jugador = DataJuego.get_jugador_actual()
 
 
 # warning-ignore:unused_argument
 func _on_TweenCamaraNivel_tween_completed(object: Object, key: NodePath) -> void:
 	if object.name == "CamaraJugador":
-		object.global_position = $McCarran.global_position
+		object.global_position = $Jugador.global_position
 
 
 func connect_signals() -> void:
@@ -53,6 +57,10 @@ func create_storages() -> void:
 	contenedor_lluvias_de_meteoritos = Node.new()
 	contenedor_lluvias_de_meteoritos.name = "ContenedorLluviasMeteoritos"
 	add_child(contenedor_lluvias_de_meteoritos)
+	
+	contenedor_enemigos = Node.new()
+	contenedor_enemigos.name = "ContenedorEnemigos"
+	add_child(contenedor_enemigos)
 
 
 func _on_shoot(proyectil:Proyectil) -> void:
@@ -104,12 +112,21 @@ func crear_sector_meteoritos(centro_camara: Vector2, cant_peligros: int) -> void
 	transcision_entre_camaras(camara_jugador.global_position, camara_nivel.global_position, camara_nivel, tiempo_transicion_camara)
 
 
+func crear_sector_enemigos(cant_enemigos: int) -> void:
+# warning-ignore:unused_variable
+	for i in range(cant_enemigos):
+		var new_ambusher: EnemigoAmbusher = enemigo_ambusher.instance()
+		var posicion_spawn: Vector2 = crear_posicion_random(1000.0, 800.0)
+		new_ambusher.global_position = jugador.global_position + posicion_spawn
+		contenedor_enemigos.add_child(new_ambusher)
+
+
 func _on_player_sector_peligroso(centro_camara: Vector2, clase_peligro: String, cant_peligros: int):
 	if clase_peligro == "Meteorite":
 		crear_sector_meteoritos(centro_camara, cant_peligros)
 		
 	elif clase_peligro == "Enemy":
-		pass
+		crear_sector_enemigos(cant_peligros)
 
 
 func transcision_entre_camaras(desde: Vector2, hasta: Vector2, camara_actual: Camera2D, tiempo_transicion: float):
