@@ -12,7 +12,7 @@ onready var proyectile_storage: Node
 onready var meteor_storage: Node
 onready var contenedor_lluvias_de_meteoritos: Node
 onready var camara_nivel: Camera2D = $CamaraNivel
-onready var camara_jugador: Camera2D = $McCarran/CamaraJugador
+onready var camara_jugador: Camera2D = $Jugador/CamaraJugador
 
 var cant_meteoritos_nivel: int = 0
 
