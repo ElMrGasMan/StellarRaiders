@@ -43,6 +43,8 @@ func connect_signals() -> void:
 	Events.connect("shoot_meteor", self, "_on_shoot_meteor")
 # warning-ignore:return_value_discarded
 	Events.connect("destroy_meteor", self, "_on_destroy_meteor")
+# warning-ignore:return_value_discarded
+	Events.connect("base_destruida", self, "_on_base_destruida")
 
 
 func create_storages() -> void:
@@ -76,12 +78,7 @@ func _on_player_destroyed(nave: Jugador, posicion: Vector2, num_explosions: int)
 			tiempo_transicion_camara
 			)
 	
-# warning-ignore:unused_variable
-	for i in range(num_explosions):
-		var new_explosion:Node2D = explosion.instance()
-		new_explosion.global_position = posicion + crear_posicion_random(140.0, 80.0)
-		add_child(new_explosion)
-		yield(get_tree().create_timer(0.4), "timeout")
+	crear_explosiones(posicion, num_explosions, 0.4, Vector2(140.0, 80.0))
 
 
 func _on_destroy_meteor(position_explosion: Vector2) -> void:
@@ -96,6 +93,12 @@ func _on_shoot_meteor(position_spawn: Vector2, direction : Vector2, size: float)
 	var new_meteor: Meteor = meteor.instance()
 	new_meteor.create_meteor(position_spawn, direction, size)
 	meteor_storage.add_child(new_meteor)
+
+
+func _on_base_destruida(posiciones_partes: Array) -> void:
+	for pos in posiciones_partes:
+		crear_explosiones(pos, 1, 0.0, Vector2(60.0, 40.0))
+		yield(get_tree().create_timer(0.3), "timeout")
 
 
 # warning-ignore:unused_argument
@@ -161,3 +164,12 @@ func crear_posicion_random(rango_x: float, rango_y: float) -> Vector2:
 	var random_y = rand_range(-rango_y, rango_y)
 	
 	return Vector2(random_x, random_y)
+
+
+func crear_explosiones(posicion: Vector2, cant_explosiones: int, intervalo_exp: float, rangos_explosiones: Vector2) -> void:
+# warning-ignore:unused_variable
+	for i in range(cant_explosiones):
+		var new_explosion:Node2D = explosion.instance()
+		new_explosion.global_position = posicion + crear_posicion_random(rangos_explosiones.x, rangos_explosiones.y)
+		add_child(new_explosion)
+		yield(get_tree().create_timer(intervalo_exp), "timeout")

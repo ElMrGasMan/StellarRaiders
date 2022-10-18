@@ -5,7 +5,7 @@
 [ext_resource path="res://Juego/Niveles/Nivel.gd" type="Script" id=3]
 [ext_resource path="res://Juego/Meteoritos/Meteoritos.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Juego/Efectos/Explosiones/Explosion.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Juego/ZonaPeligro/ZonaDePeligro.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Juego/EstacionRecarga/EstacionEspacialEnemiga.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Juego/Efectos/Explosiones/ExplosionMeteorito/ExplosionMeteor.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Juego/Meteoritos/SectorMeteorRain.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Juego/Enemies/EnemigoAmbusher.tscn" type="PackedScene" id=9]
@@ -34,21 +34,12 @@ script = ExtResource( 10 )
 
 [node name="ZonasDePeligro" type="Node" parent="."]
 
-[node name="ZonaDePeligro" parent="ZonasDePeligro" instance=ExtResource( 6 )]
-position = Vector2( 374.627, 393.676 )
-num_peligros = 3
-
 [node name="AlmacenEstaciones" type="Node" parent="."]
 
+[node name="EstacionEspacialEnemiga" parent="AlmacenEstaciones" instance=ExtResource( 6 )]
+position = Vector2( 811.491, -214.734 )
+
 [node name="ZonasDePeligroEnemigos" type="Node" parent="."]
-
-[node name="ZonaDePeligro2" parent="ZonasDePeligroEnemigos" instance=ExtResource( 6 )]
-position = Vector2( 969.093, -266.968 )
-clase_peligro = "Enemy"
-num_peligros = 1
-
-[node name="EnemigoAmbusher" parent="." instance=ExtResource( 9 )]
-position = Vector2( 5.54059, -738.593 )
 
 [connection signal="tween_completed" from="TweenCamaraNivel" to="." method="_on_TweenCamaraNivel_tween_completed"]
 

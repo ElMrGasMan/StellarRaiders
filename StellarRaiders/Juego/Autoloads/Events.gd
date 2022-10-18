@@ -11,3 +11,5 @@ signal shoot_meteor(position, direction, size)
 signal destroy_meteor(position)
 # warning-ignore:unused_signal
 signal jugador_en_sector_peligroso(centro_camara, clase_peligro, cant_peligros)
+# warning-ignore:unused_signal
+signal base_destruida(posiciones_partes)
