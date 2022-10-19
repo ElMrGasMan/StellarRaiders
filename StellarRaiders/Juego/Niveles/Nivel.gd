@@ -6,26 +6,30 @@ export var explosion: PackedScene = null
 export var meteor: PackedScene = null
 export var explosion_meteor: PackedScene = null
 export var lluvia_de_meteoritos: PackedScene = null
+export var enemigo_ambusher: PackedScene = null
 export var tiempo_transicion_camara: float = 3.0
 
 onready var proyectile_storage: Node
 onready var meteor_storage: Node
 onready var contenedor_lluvias_de_meteoritos: Node
+onready var contenedor_enemigos: Node
 onready var camara_nivel: Camera2D = $CamaraNivel
-onready var camara_jugador: Camera2D = $McCarran/CamaraJugador
+onready var camara_jugador: Camera2D = $Jugador/CamaraJugador
 
 var cant_meteoritos_nivel: int = 0
+var jugador: Jugador = null
 
 
 func _ready() -> void:
 	connect_signals()
 	create_storages()
+	jugador = DataJuego.get_jugador_actual()
 
 
 # warning-ignore:unused_argument
 func _on_TweenCamaraNivel_tween_completed(object: Object, key: NodePath) -> void:
 	if object.name == "CamaraJugador":
-		object.global_position = $McCarran.global_position
+		object.global_position = $Jugador.global_position
 
 
 func connect_signals() -> void:
@@ -39,6 +43,8 @@ func connect_signals() -> void:
 	Events.connect("shoot_meteor", self, "_on_shoot_meteor")
 # warning-ignore:return_value_discarded
 	Events.connect("destroy_meteor", self, "_on_destroy_meteor")
+# warning-ignore:return_value_discarded
+	Events.connect("base_destruida", self, "_on_base_destruida")
 
 
 func create_storages() -> void:
@@ -53,6 +59,10 @@ func create_storages() -> void:
 	contenedor_lluvias_de_meteoritos = Node.new()
 	contenedor_lluvias_de_meteoritos.name = "ContenedorLluviasMeteoritos"
 	add_child(contenedor_lluvias_de_meteoritos)
+	
+	contenedor_enemigos = Node.new()
+	contenedor_enemigos.name = "ContenedorEnemigos"
+	add_child(contenedor_enemigos)
 
 
 func _on_shoot(proyectil:Proyectil) -> void:
@@ -68,12 +78,7 @@ func _on_player_destroyed(nave: Jugador, posicion: Vector2, num_explosions: int)
 			tiempo_transicion_camara
 			)
 	
-# warning-ignore:unused_variable
-	for i in range(num_explosions):
-		var new_explosion:Node2D = explosion.instance()
-		new_explosion.global_position = posicion + crear_posicion_random(140.0, 80.0)
-		add_child(new_explosion)
-		yield(get_tree().create_timer(0.4), "timeout")
+	crear_explosiones(posicion, num_explosions, 0.4, Vector2(140.0, 80.0))
 
 
 func _on_destroy_meteor(position_explosion: Vector2) -> void:
@@ -90,6 +95,12 @@ func _on_shoot_meteor(position_spawn: Vector2, direction : Vector2, size: float)
 	meteor_storage.add_child(new_meteor)
 
 
+func _on_base_destruida(posiciones_partes: Array) -> void:
+	for pos in posiciones_partes:
+		crear_explosiones(pos, 1, 0.0, Vector2(60.0, 40.0))
+		yield(get_tree().create_timer(0.3), "timeout")
+
+
 # warning-ignore:unused_argument
 func crear_sector_meteoritos(centro_camara: Vector2, cant_peligros: int) -> void:
 	cant_meteoritos_nivel = cant_peligros
@@ -104,12 +115,21 @@ func crear_sector_meteoritos(centro_camara: Vector2, cant_peligros: int) -> void
 	transcision_entre_camaras(camara_jugador.global_position, camara_nivel.global_position, camara_nivel, tiempo_transicion_camara)
 
 
+func crear_sector_enemigos(cant_enemigos: int) -> void:
+# warning-ignore:unused_variable
+	for i in range(cant_enemigos):
+		var new_ambusher: EnemigoAmbusher = enemigo_ambusher.instance()
+		var posicion_spawn: Vector2 = crear_posicion_random(1000.0, 800.0)
+		new_ambusher.global_position = jugador.global_position + posicion_spawn
+		contenedor_enemigos.add_child(new_ambusher)
+
+
 func _on_player_sector_peligroso(centro_camara: Vector2, clase_peligro: String, cant_peligros: int):
 	if clase_peligro == "Meteorite":
 		crear_sector_meteoritos(centro_camara, cant_peligros)
 		
 	elif clase_peligro == "Enemy":
-		pass
+		crear_sector_enemigos(cant_peligros)
 
 
 func transcision_entre_camaras(desde: Vector2, hasta: Vector2, camara_actual: Camera2D, tiempo_transicion: float):
@@ -144,3 +164,12 @@ func crear_posicion_random(rango_x: float, rango_y: float) -> Vector2:
 	var random_y = rand_range(-rango_y, rango_y)
 	
 	return Vector2(random_x, random_y)
+
+
+func crear_explosiones(posicion: Vector2, cant_explosiones: int, intervalo_exp: float, rangos_explosiones: Vector2) -> void:
+# warning-ignore:unused_variable
+	for i in range(cant_explosiones):
+		var new_explosion:Node2D = explosion.instance()
+		new_explosion.global_position = posicion + crear_posicion_random(rangos_explosiones.x, rangos_explosiones.y)
+		add_child(new_explosion)
+		yield(get_tree().create_timer(intervalo_exp), "timeout")

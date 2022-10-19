@@ -35,3 +35,4 @@ func crear_proyectil(pos: Vector2, rotacion: float, vel: float, dam_proy: float)
 	rotation = rotacion
 	velocidad = Vector2(vel, 0).rotated(rotacion)
 	damages = dam_proy
+

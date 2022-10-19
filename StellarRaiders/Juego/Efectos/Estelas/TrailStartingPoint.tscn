@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Juego/Efectos/Estelas/Trail2D.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Juego/Efectos/Estelas/Trail2D.gd" type="Script" id=2]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0 ), 0.0, 1.0, 0, 1, Vector2( 1, 1 ), 1.0, 0.0, 1, 0 ]
+
+[sub_resource type="Gradient" id=2]
+colors = PoolColorArray( 0.294118, 0.356863, 0.670588, 0, 0.678431, 0.768627, 0.788235, 1 )
+
+[node name="TrailStartingPoint" type="Position2D"]
+position = Vector2( -29.9352, -25.3984 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Trail2D" type="Line2D" parent="." instance=ExtResource( 1 )]
+points = PoolVector2Array( 0, 0, 40, 0 )
+width = 35.0
+width_curve = SubResource( 1 )
+default_color = Color( 1, 1, 1, 1 )
+gradient = SubResource( 2 )
+joint_mode = 2
+script = ExtResource( 2 )
+is_emitting = true
+lifetime = 0.7
+max_points = 120
+target_path = NodePath("..")

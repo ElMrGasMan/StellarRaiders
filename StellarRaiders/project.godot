@@ -24,6 +24,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/Enemies/DummyEnemy.gd"
 }, {
+"base": "EnemigoBase",
+"class": "EnemigoAmbusher",
+"language": "GDScript",
+"path": "res://Juego/Enemies/EnemigoAmbusher.gd"
+}, {
+"base": "NaveBase",
+"class": "EnemigoBase",
+"language": "GDScript",
+"path": "res://Juego/Enemies/EnemigoBase.gd"
+}, {
+"base": "Node2D",
+"class": "EstacionEnemiga",
+"language": "GDScript",
+"path": "res://Juego/EstacionRecarga/EstacionEspacialEnemiga.gd"
+}, {
 "base": "Node2D",
 "class": "EstacionEspacial",
 "language": "GDScript",
@@ -39,10 +54,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/Efectos/Explosiones/ExplosionMeteorito/ExplosionMeteor.gd"
 }, {
-"base": "RigidBody2D",
+"base": "NaveBase",
 "class": "Jugador",
 "language": "GDScript",
-"path": "res://Juego/Jugador/McCarran.gd"
+"path": "res://Juego/Jugador/Jugador.gd"
 }, {
 "base": "RigidBody2D",
 "class": "Meteor",
@@ -63,6 +78,11 @@ _global_script_classes=[ {
 "class": "Motor",
 "language": "GDScript",
 "path": "res://Juego/Jugador/Engine/SFX_Engine.gd"
+}, {
+"base": "RigidBody2D",
+"class": "NaveBase",
+"language": "GDScript",
+"path": "res://Juego/Buques/NaveBase.gd"
 }, {
 "base": "Node2D",
 "class": "Nivel",
@@ -93,6 +113,9 @@ _global_script_class_icons={
 "CamaraJuego": "",
 "CamaraJugador": "",
 "Enemies": "",
+"EnemigoAmbusher": "",
+"EnemigoBase": "",
+"EstacionEnemiga": "",
 "EstacionEspacial": "",
 "Estela": "",
 "Explosion_Meteor": "",
@@ -101,6 +124,7 @@ _global_script_class_icons={
 "MeteorRain": "",
 "Meteor_Spawner": "",
 "Motor": "",
+"NaveBase": "",
 "Nivel": "",
 "NormalWeapon": "",
 "Proyectil": "",
@@ -117,6 +141,7 @@ config/icon="res://icono_juego.png"
 [autoload]
 
 Events="*res://Juego/Autoloads/Events.gd"
+DataJuego="*res://Juego/Autoloads/DataJuego.gd"
 
 [display]
 
@@ -198,6 +223,7 @@ recarga_laserbeam={
 2d_physics/layer_5="Proyectiles_Jugador"
 2d_physics/layer_6="Proyectiles_Enemigos"
 2d_physics/layer_7="Estaciones_Espaciales"
+2d_physics/layer_8="Estaciones_Espaciales_Enemigas"
 
 [physics]
 

@@ -33,13 +33,10 @@ func _on_AreaColisionJugador_body_entered(body: Node) -> void:
 func _on_AreaRecarga_body_entered(body: Node) -> void:
 	if body is Jugador:
 		nave_jugador = body
-	
-	jugador_en_zona_recarga = true
-	body.set_gravity_scale(0.1)
+		jugador_en_zona_recarga = true
 
 
 func _on_AreaRecarga_body_exited(body: Node) -> void:
-	body.set_gravity_scale(0.0)
 	jugador_en_zona_recarga = false
 
 
