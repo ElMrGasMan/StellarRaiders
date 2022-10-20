@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Puerta-LActivado.ogg-ce71f10d3b46d14bd48294209b7864be.oggstr"
+
+[deps]
+
+source_file="res://Juego/EstacionRecarga/Puerta-LActivado.ogg"
+dest_files=[ "res://.import/Puerta-LActivado.ogg-ce71f10d3b46d14bd48294209b7864be.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

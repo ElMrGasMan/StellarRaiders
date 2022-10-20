@@ -6,11 +6,11 @@
 [ext_resource path="res://Juego/Enemies/EnemigoAmbusher.gd" type="Script" id=4]
 [ext_resource path="res://Juego/Proyectiles/EnemyLaser.tscn" type="PackedScene" id=5]
 
-[sub_resource type="PhysicsMaterial" id=6]
+[sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
 bounce = 0.5
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=2]
 length = 0.001
 loop = true
 tracks/0/type = "value"
@@ -62,7 +62,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0.9, 0.9 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=3]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("SpriteDeSpawn:visible")
@@ -137,7 +137,7 @@ tracks/5/keys = {
 "values": [ Vector2( 2, 2 ), Vector2( 4, 4 ) ]
 }
 
-[sub_resource type="CircleShape2D" id=9]
+[sub_resource type="CircleShape2D" id=4]
 radius = 407.818
 
 [sub_resource type="CircleShape2D" id=5]
@@ -148,7 +148,7 @@ z_index = 5
 z_as_relative = false
 collision_layer = 4
 collision_mask = 30
-physics_material_override = SubResource( 6 )
+physics_material_override = SubResource( 1 )
 contacts_reported = 4
 contact_monitor = true
 can_sleep = false
@@ -172,8 +172,8 @@ proyectile_velocity = 1100
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 autoplay = "Default"
-anims/Default = SubResource( 7 )
-anims/Spawning = SubResource( 8 )
+anims/Default = SubResource( 2 )
+anims/Spawning = SubResource( 3 )
 
 [node name="SpriteDeSpawn" type="Sprite" parent="." index="5"]
 scale = Vector2( 2, 2 )
@@ -184,7 +184,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDisparo" index="0"]
-shape = SubResource( 9 )
+shape = SubResource( 4 )
 
 [node name="AreaPerseguir" type="Area2D" parent="." index="7"]
 collision_layer = 0

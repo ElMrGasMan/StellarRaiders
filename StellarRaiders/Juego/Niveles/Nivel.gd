@@ -7,6 +7,7 @@ export var meteor: PackedScene = null
 export var explosion_meteor: PackedScene = null
 export var lluvia_de_meteoritos: PackedScene = null
 export var enemigo_ambusher: PackedScene = null
+export var puerta_l: PackedScene = null
 export var tiempo_transicion_camara: float = 3.0
 
 onready var proyectile_storage: Node
@@ -17,6 +18,7 @@ onready var camara_nivel: Camera2D = $CamaraNivel
 onready var camara_jugador: Camera2D = $Jugador/CamaraJugador
 
 var cant_meteoritos_nivel: int = 0
+var cant_estaciones_enemigas: int = 0
 var jugador: Jugador = null
 
 
@@ -24,6 +26,7 @@ func _ready() -> void:
 	connect_signals()
 	create_storages()
 	jugador = DataJuego.get_jugador_actual()
+	cant_estaciones_enemigas = cant_bases_enemigas()
 
 
 # warning-ignore:unused_argument
@@ -45,6 +48,8 @@ func connect_signals() -> void:
 	Events.connect("destroy_meteor", self, "_on_destroy_meteor")
 # warning-ignore:return_value_discarded
 	Events.connect("base_destruida", self, "_on_base_destruida")
+# warning-ignore:return_value_discarded
+	Events.connect("spawn_enemigo_orbital", self,  "_on_spawn_orbital")
 
 
 func create_storages() -> void:
@@ -67,6 +72,10 @@ func create_storages() -> void:
 
 func _on_shoot(proyectil:Proyectil) -> void:
 	proyectile_storage.add_child(proyectil)
+
+
+func _on_spawn_orbital(guardia:EnemigoOrbital) -> void:
+	contenedor_enemigos.add_child(guardia)
 
 
 func _on_player_destroyed(nave: Jugador, posicion: Vector2, num_explosions: int) -> void:
@@ -95,10 +104,15 @@ func _on_shoot_meteor(position_spawn: Vector2, direction : Vector2, size: float)
 	meteor_storage.add_child(new_meteor)
 
 
-func _on_base_destruida(posiciones_partes: Array) -> void:
+func _on_base_destruida(posiciones_partes: Array, _ex) -> void:
+	cant_estaciones_enemigas -= 1
+	
 	for pos in posiciones_partes:
 		crear_explosiones(pos, 1, 0.0, Vector2(60.0, 40.0))
 		yield(get_tree().create_timer(0.3), "timeout")
+	
+	if cant_estaciones_enemigas == 0:
+		crear_puerta_l()
 
 
 # warning-ignore:unused_argument
@@ -173,3 +187,13 @@ func crear_explosiones(posicion: Vector2, cant_explosiones: int, intervalo_exp: 
 		new_explosion.global_position = posicion + crear_posicion_random(rangos_explosiones.x, rangos_explosiones.y)
 		add_child(new_explosion)
 		yield(get_tree().create_timer(intervalo_exp), "timeout")
+
+
+func cant_bases_enemigas() -> int:
+	return $AlmacenEstacionesEnemigas.get_child_count()
+
+
+func crear_puerta_l() -> void:
+	var new_puerta_l: PuertaL = puerta_l.instance() 
+	new_puerta_l.global_position = jugador.global_position + crear_posicion_random(1500.0, 1000.0)
+	add_child(new_puerta_l)

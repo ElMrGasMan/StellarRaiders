@@ -102,3 +102,10 @@ func input_is_active() -> bool:
 		return false
 	
 	return true
+
+
+func desactivar_controles() -> void:
+	player_state_controler(PLAYER_STATE.SPAWN)
+	empuje = Vector2.ZERO
+	engine_sound.sound_off()
+	laser_beam.set_is_casting(false)
