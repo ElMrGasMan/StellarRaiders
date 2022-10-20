@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Juego/Buques/NaveBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Juego/Enemies/EnemigoOrbital.png" type="Texture" id=2]
+[ext_resource path="res://Juego/Enemies/EnemigoOrbitalEst.gd" type="Script" id=3]
+[ext_resource path="res://Juego/Proyectiles/EnemyLaser.tscn" type="PackedScene" id=4]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+bounce = 0.5
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.6, 0.6 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Spawning"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.659754, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0.8, 0.8 ) ]
+}
+
+[node name="EnemigoOrbitalEst" instance=ExtResource( 1 )]
+z_index = 5
+z_as_relative = false
+collision_layer = 4
+collision_mask = 30
+mode = 3
+physics_material_override = SubResource( 1 )
+contacts_reported = 4
+contact_monitor = true
+can_sleep = false
+script = ExtResource( 3 )
+hitpoints = 6.0
+cant_explosiones = 1
+
+[node name="Sprite" parent="." index="0"]
+rotation = -1.5708
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" parent="." index="1"]
+polygon = PoolVector2Array( -48.907, -10.9214, 0.30249, -37.9071, 50.7024, -10.5242, 23.7164, 41.4631, -27.4773, 39.4786 )
+
+[node name="NormalWeapon" parent="." index="2"]
+proyectile = ExtResource( 4 )
+fire_rate = 2.0
+proyectile_velocity = 1100
+proyectile_damage = 1
+
+[node name="LeftMuzzle" parent="NormalWeapon" index="0"]
+position = Vector2( 24, 6 )
+
+[node name="RightMuzzle" parent="NormalWeapon" index="1"]
+position = Vector2( 24, -6.5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+autoplay = "Spawning"
+anims/Default = SubResource( 2 )
+anims/Spawning = SubResource( 3 )
+
+[node name="RayCastObstaculo" type="RayCast2D" parent="." index="5"]
+enabled = true
+cast_to = Vector2( 1000, 0 )
+collision_mask = 128
+collide_with_areas = true
+collide_with_bodies = false
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+
+[editable path="NormalWeapon"]

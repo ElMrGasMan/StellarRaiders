@@ -12,4 +12,6 @@ signal destroy_meteor(position)
 # warning-ignore:unused_signal
 signal jugador_en_sector_peligroso(centro_camara, clase_peligro, cant_peligros)
 # warning-ignore:unused_signal
-signal base_destruida(posiciones_partes)
+signal base_destruida(posiciones_partes, base)
+# warning-ignore:unused_signal
+signal spawn_enemigo_orbital(enemigo)

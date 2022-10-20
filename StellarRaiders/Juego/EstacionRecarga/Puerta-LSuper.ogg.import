@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Puerta-LSuper.ogg-b176a7c59bf34b3cfc33d242c4db7422.oggstr"
+
+[deps]
+
+source_file="res://Juego/EstacionRecarga/Puerta-LSuper.ogg"
+dest_files=[ "res://.import/Puerta-LSuper.ogg-b176a7c59bf34b3cfc33d242c4db7422.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
