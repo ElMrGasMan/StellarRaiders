@@ -30,7 +30,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if is_firing and cooldown_down:
+	if is_firing and cooldown_down and can_fire:
 		shoot()
 
 

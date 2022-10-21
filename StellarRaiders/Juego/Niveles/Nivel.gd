@@ -23,6 +23,7 @@ var jugador: Jugador = null
 
 
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	connect_signals()
 	create_storages()
 	jugador = DataJuego.get_jugador_actual()
@@ -195,5 +196,14 @@ func cant_bases_enemigas() -> int:
 
 func crear_puerta_l() -> void:
 	var new_puerta_l: PuertaL = puerta_l.instance() 
-	new_puerta_l.global_position = jugador.global_position + crear_posicion_random(1500.0, 1000.0)
+	var pos_aleatoria: Vector2 = crear_posicion_random(400.0, 200.0)
+	var margen_max: Vector2 = Vector2(800.0, 800.0)
+	
+	if pos_aleatoria.x < 0:
+		margen_max *= -1
+	
+	if pos_aleatoria.y < 0:
+		margen_max *= -1
+	
+	new_puerta_l.global_position = jugador.global_position + (margen_max + pos_aleatoria)
 	add_child(new_puerta_l)

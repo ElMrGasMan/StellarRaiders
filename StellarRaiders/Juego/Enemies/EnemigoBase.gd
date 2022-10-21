@@ -4,6 +4,8 @@ extends NaveBase
 
 var jugador_objetivo: Jugador = null
 var dir_jugador: Vector2 
+var frame_control: int = 0
+
 
 func _ready() -> void:
 	jugador_objetivo = DataJuego.get_jugador_actual()
@@ -13,7 +15,10 @@ func _ready() -> void:
 
 # warning-ignore:unused_argument
 func _physics_process(delta: float) -> void:
-	mirar_al_jugador()
+	frame_control += 1
+	
+	if frame_control % 3 == 0:
+		mirar_al_jugador()
 
 
 func _on_body_entered(body: Node) -> void:

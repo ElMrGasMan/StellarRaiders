@@ -99,6 +99,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/Weapons/NormalWeapon.gd"
 }, {
+"base": "Path2D",
+"class": "PathGuardias",
+"language": "GDScript",
+"path": "res://Juego/EstacionRecarga/PathGuardianes.gd"
+}, {
 "base": "Area2D",
 "class": "Proyectil",
 "language": "GDScript",
@@ -138,6 +143,7 @@ _global_script_class_icons={
 "NaveBase": "",
 "Nivel": "",
 "NormalWeapon": "",
+"PathGuardias": "",
 "Proyectil": "",
 "PuertaL": "",
 "RayoLaser": "",

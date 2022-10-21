@@ -5,22 +5,24 @@ extends Node2D
 export var hitpoints: float = 55.0
 export var guardias_orbitales: PackedScene = null
 export var cant_guardianes: int = 5
-export var intervalo_spawn_guardianes: float = 0.5
+export var intervalo_spawn_guardianes: float = 1.0
+export(Array, PackedScene) var rutas_guardias
 
 onready var animaciones: AnimationPlayer = $AnimationPlayer
 onready var sfx_hit: AudioStreamPlayer2D = $AudioStreamPlayer2D
 onready var sprites: Node2D = $NodoSprites
-onready var ruta_guardianes: Path2D = $PathGuardianes
 onready var spawners_timer: Timer = $TimerSpawnGuardianes
 
 var esta_destruido: bool = false
 var posicion_spawn: Vector2 = Vector2.ZERO
 var array_sprites: Array
+var ruta_random_seleccionada: Path2D
 
 
 func _ready() -> void:
 	spawners_timer.wait_time = intervalo_spawn_guardianes
 	animaciones.play(elegir_animacion_aleatoria())
+	seleccionar_ruta_aleatoria()
 
 
 func _on_AreaColision_body_entered(body: Node) -> void:
@@ -50,6 +52,13 @@ func _on_TimerSpawnGuardianes_timeout() -> void:
 	spawn_guardias()
 
 
+func seleccionar_ruta_aleatoria() -> void:
+	randomize()
+	var indice_ruta: int = randi() % rutas_guardias.size() - 1
+	ruta_random_seleccionada = rutas_guardias[indice_ruta].instance()
+	add_child(ruta_random_seleccionada)
+
+
 func elegir_animacion_aleatoria() -> String:
 	randomize()
 	var num_anim: int = animaciones.get_animation_list().size() - 1
@@ -77,10 +86,10 @@ func get_damage(damage: float):
 
 func spawn_guardias() -> void:
 	cant_guardianes -= 1
-	ruta_guardianes.global_position = global_position
+	ruta_random_seleccionada.global_position = global_position
 	
 	var new_guardia: EnemigoOrbital = guardias_orbitales.instance()
-	new_guardia.crear_nave(global_position + posicion_spawn, self, ruta_guardianes)
+	new_guardia.crear_nave(global_position + posicion_spawn, self, ruta_random_seleccionada)
 	Events.emit_signal("spawn_enemigo_orbital", new_guardia)
 
 
@@ -95,24 +104,24 @@ func cuadrantes_spawn() -> Vector2:
 	
 	if abs(angulo_jugador) <= 45.0:
 		#El jugador viene por la derecha
-		ruta_guardianes.rotation_degrees = 180.0
+		ruta_random_seleccionada.rotation_degrees = 180.0
 		return $PosicionesSpawnOrbitales/PosicionEste.position
 	
 	elif abs(angulo_jugador) > 135.0 and abs(angulo_jugador) <= 180.0:
 		#El jugador viene por la izquierda
-		ruta_guardianes.rotation_degrees = 0.0
+		ruta_random_seleccionada.rotation_degrees = 0.0
 		return $PosicionesSpawnOrbitales/PosicionOeste.position
 	
 	elif abs(angulo_jugador) > 45.0 and abs(angulo_jugador) <= 135.0:
 		#El jugador viene por el Norte o el Sur
 		if sign(angulo_jugador):
 			#El jugador viene por el Sur
-			ruta_guardianes.rotation_degrees = 270.0
+			ruta_random_seleccionada.rotation_degrees = 270.0
 			return $PosicionesSpawnOrbitales/PosicionSur.position
 		
 		else:
 			#El jugador viene por el Norte
-			ruta_guardianes.rotation_degrees = 90.0
+			ruta_random_seleccionada.rotation_degrees = 90.0
 			return $PosicionesSpawnOrbitales/PosicionNorte.position
 	
 	#Si todo lo demas falla que spawneen en el Este nomas
