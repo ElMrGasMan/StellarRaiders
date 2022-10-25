@@ -18,11 +18,17 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	energia_control()
 	
-	if event.is_action_pressed("recarga_escudo"):
+	if event.is_action("recarga_escudo"):
 		nave_jugador.get_escudo().energia_control(energia_dada_ratio)
 	
-	elif event.is_action_pressed("recarga_laserbeam"):
+	elif event.is_action("recarga_laserbeam"):
 		nave_jugador.get_laser_beam().energia_control(energia_dada_ratio)
+	
+	if event.is_action_released("recarga_laserbeam"):
+		Events.emit_signal("ocultar_energia_laser")
+	
+	elif event.is_action_released("recarga_escudo"):
+		Events.emit_signal("ocultar_energia_escudo")
 
 
 func _on_AreaColisionJugador_body_entered(body: Node) -> void:
@@ -34,10 +40,13 @@ func _on_AreaRecarga_body_entered(body: Node) -> void:
 	if body is Jugador:
 		nave_jugador = body
 		jugador_en_zona_recarga = true
+		Events.emit_signal("entrar_zona_recarga", true)
 
 
+# warning-ignore:unused_argument
 func _on_AreaRecarga_body_exited(body: Node) -> void:
 	jugador_en_zona_recarga = false
+	Events.emit_signal("entrar_zona_recarga", false)
 
 
 func puede_recargar(event: InputEvent) -> bool:

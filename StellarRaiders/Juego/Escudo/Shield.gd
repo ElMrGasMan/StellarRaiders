@@ -25,12 +25,15 @@ func _process(delta: float) -> void:
 func energia_control(valor: float) -> void:
 	total_energy += valor
 	
+	Events.emit_signal("actualizar_energia_escudo", energia_maxima, total_energy)
+	
 	if total_energy > energia_maxima:
 		total_energy = energia_maxima
 	
 	elif total_energy <= 0.0:
+		Events.emit_signal("ocultar_energia_escudo")
 		deactivate()
-	print(total_energy)
+
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "Activating" and is_activated:

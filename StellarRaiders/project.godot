@@ -19,6 +19,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/Jugador/CamaraJugador.gd"
 }, {
+"base": "NinePatchRect",
+"class": "ContenedorInfo",
+"language": "GDScript",
+"path": "res://Juego/UI/ContenedorInfo.gd"
+}, {
+"base": "ContenedorInfo",
+"class": "ContenedorInfoEnergia",
+"language": "GDScript",
+"path": "res://Juego/UI/ContenedorInfoEnergia.gd"
+}, {
 "base": "Node2D",
 "class": "Enemies",
 "language": "GDScript",
@@ -58,6 +68,11 @@ _global_script_classes=[ {
 "class": "Explosion_Meteor",
 "language": "GDScript",
 "path": "res://Juego/Efectos/Explosiones/ExplosionMeteorito/ExplosionMeteor.gd"
+}, {
+"base": "CanvasLayer",
+"class": "Hud",
+"language": "GDScript",
+"path": "res://Juego/UI/HUD.gd"
 }, {
 "base": "NaveBase",
 "class": "Jugador",
@@ -127,6 +142,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "CamaraJuego": "",
 "CamaraJugador": "",
+"ContenedorInfo": "",
+"ContenedorInfoEnergia": "",
 "Enemies": "",
 "EnemigoAmbusher": "",
 "EnemigoBase": "",
@@ -135,6 +152,7 @@ _global_script_class_icons={
 "EstacionEspacial": "",
 "Estela": "",
 "Explosion_Meteor": "",
+"Hud": "",
 "Jugador": "",
 "Meteor": "",
 "MeteorRain": "",

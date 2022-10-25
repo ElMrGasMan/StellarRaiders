@@ -51,6 +51,7 @@ func set_is_casting(cast: bool) -> void:
 		fill.points[1] = cast_to
 		appear()
 	else:
+		Events.emit_signal("ocultar_energia_laser")
 		laser_audio.stop()
 		collision_particles.emitting = false
 		disappear()
@@ -106,3 +107,5 @@ func energia_control(valor: float) -> void:
 	
 	if total_energy > energia_maxima:
 		total_energy = energia_maxima
+	
+	Events.emit_signal("actualizar_energia_laser", energia_maxima, total_energy)

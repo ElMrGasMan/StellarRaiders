@@ -37,9 +37,11 @@ func input_jugador() -> void:
 	
 	if Input.is_action_pressed("mover_adelante"):
 		empuje = Vector2(vel_movimiento, 0)
+		engine_sound.sound_on()
 	
 	elif Input.is_action_pressed("mover_atras"):
 		empuje = Vector2(-vel_movimiento, 0)
+		engine_sound.sound_on()
 	
 	direc_rotacion = 0
 	
@@ -86,12 +88,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("mover_adelante"):
 		estela.set_max_points(estela_maxima)
 		estela2.set_max_points(estela_maxima)
-		engine_sound.sound_on()
 	
 	elif event.is_action_pressed("mover_atras"):
 		estela.set_max_points(2)
 		estela2.set_max_points(2)
-		engine_sound.sound_on()
 	
 	if event.is_action_pressed("activar_escudo") and not player_shield.get_is_activated():
 		player_shield.activate()

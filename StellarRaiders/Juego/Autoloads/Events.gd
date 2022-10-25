@@ -15,3 +15,21 @@ signal jugador_en_sector_peligroso(centro_camara, clase_peligro, cant_peligros)
 signal base_destruida(posiciones_partes, base)
 # warning-ignore:unused_signal
 signal spawn_enemigo_orbital(enemigo)
+# warning-ignore:unused_signal
+signal comenzar_nivel()
+# warning-ignore:unused_signal
+signal terminar_nivel() 
+# warning-ignore:unused_signal
+signal entrar_zona_recarga(entrada)
+# warning-ignore:unused_signal
+signal cambio_numero_met(cant)
+# warning-ignore:unused_signal
+signal actualizar_tiempo(tiempo_restante)
+# warning-ignore:unused_signal
+signal actualizar_energia_laser(energia_maxima, energia_actual)
+# warning-ignore:unused_signal
+signal ocultar_energia_laser()
+# warning-ignore:unused_signal
+signal actualizar_energia_escudo(energia_maxima, energia_actual)
+# warning-ignore:unused_signal
+signal ocultar_energia_escudo()

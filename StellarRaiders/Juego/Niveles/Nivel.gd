@@ -9,6 +9,7 @@ export var lluvia_de_meteoritos: PackedScene = null
 export var enemigo_ambusher: PackedScene = null
 export var puerta_l: PackedScene = null
 export var tiempo_transicion_camara: float = 3.0
+export var tiempo_limite: int = 200
 
 onready var proyectile_storage: Node
 onready var meteor_storage: Node
@@ -16,11 +17,12 @@ onready var contenedor_lluvias_de_meteoritos: Node
 onready var contenedor_enemigos: Node
 onready var camara_nivel: Camera2D = $CamaraNivel
 onready var camara_jugador: Camera2D = $Jugador/CamaraJugador
+onready var timer_tiempo: Timer = $TimerActualizadorTiempo
 
 var cant_meteoritos_nivel: int = 0
 var cant_estaciones_enemigas: int = 0
 var jugador: Jugador = null
-
+var lugar_exp: Vector2 
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -28,12 +30,31 @@ func _ready() -> void:
 	create_storages()
 	jugador = DataJuego.get_jugador_actual()
 	cant_estaciones_enemigas = cant_bases_enemigas()
+	Events.emit_signal("comenzar_nivel")
+	Events.emit_signal("actualizar_tiempo", tiempo_limite)
+	timer_tiempo.start()
 
 
 # warning-ignore:unused_argument
 func _on_TweenCamaraNivel_tween_completed(object: Object, key: NodePath) -> void:
 	if object.name == "CamaraJugador":
 		object.global_position = $Jugador.global_position
+
+
+func _on_TimerReinicio_timeout() -> void:
+	Events.emit_signal("terminar_nivel")
+	yield(get_tree().create_timer(1.2), "timeout")
+# warning-ignore:return_value_discarded
+	get_tree().reload_current_scene()
+
+
+func _on_TimerActualizadorTiempo_timeout() -> void:
+	tiempo_limite -= 1
+	Events.emit_signal("actualizar_tiempo", tiempo_limite)
+	
+	if tiempo_limite <= 0:
+		timer_tiempo.stop()
+		tiempo_agotado()
 
 
 func connect_signals() -> void:
@@ -87,6 +108,7 @@ func _on_player_destroyed(nave: Jugador, posicion: Vector2, num_explosions: int)
 			camara_nivel,
 			tiempo_transicion_camara
 			)
+		$TimerReinicio.start()
 	
 	crear_explosiones(posicion, num_explosions, 0.4, Vector2(140.0, 80.0))
 
@@ -142,6 +164,7 @@ func crear_sector_enemigos(cant_enemigos: int) -> void:
 func _on_player_sector_peligroso(centro_camara: Vector2, clase_peligro: String, cant_peligros: int):
 	if clase_peligro == "Meteorite":
 		crear_sector_meteoritos(centro_camara, cant_peligros)
+		Events.emit_signal("cambio_numero_met", cant_meteoritos_nivel)
 		
 	elif clase_peligro == "Enemy":
 		crear_sector_enemigos(cant_peligros)
@@ -163,6 +186,7 @@ func transcision_entre_camaras(desde: Vector2, hasta: Vector2, camara_actual: Ca
 
 func descontar_meteorito() -> void:
 	cant_meteoritos_nivel -= 1
+	Events.emit_signal("cambio_numero_met", cant_meteoritos_nivel)
 	
 	if cant_meteoritos_nivel == 0:
 		contenedor_lluvias_de_meteoritos.get_child(0).queue_free()
@@ -207,3 +231,9 @@ func crear_puerta_l() -> void:
 	
 	new_puerta_l.global_position = jugador.global_position + (margen_max + pos_aleatoria)
 	add_child(new_puerta_l)
+
+
+func tiempo_agotado() -> void:
+	lugar_exp = jugador.global_position 
+	crear_explosiones(lugar_exp, 10, 0.2, Vector2(400.0, 300.0))
+	jugador.destroy_player()
