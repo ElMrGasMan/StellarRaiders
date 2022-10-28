@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Juego/Buques/NaveBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Enemies/EnemigoOrbital.png" type="Texture" id=2]
@@ -39,6 +39,24 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0.8, 0.8 ) ]
 }
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.65098, 0, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.360784, 0.360784, 0.360784, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
 
 [node name="EnemigoOrbitalEst" instance=ExtResource( 1 )]
 z_index = 5
@@ -85,6 +103,15 @@ cast_to = Vector2( 1000, 0 )
 collision_mask = 128
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="BarraHitPoints" parent="." index="6"]
+margin_left = -54.6216
+margin_top = 38.6492
+margin_right = 14.7019
+margin_bottom = 48.6492
+rect_scale = Vector2( 1.1, 1.3 )
+custom_styles/fg = SubResource( 4 )
+custom_styles/bg = SubResource( 5 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 

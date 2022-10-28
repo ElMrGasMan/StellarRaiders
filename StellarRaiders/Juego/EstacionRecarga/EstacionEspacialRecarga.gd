@@ -7,9 +7,15 @@ export var energia_dada_ratio: float = 0.5
 
 onready var sfx_carga: AudioStreamPlayer = $SFX_Recarga
 onready var sfx_vacia: AudioStreamPlayer2D = $SFX_EstacionVacia
+onready var barra_energia: ProgressBar = $BarraEnergiaRestante
 
 var nave_jugador: Jugador = null
 var jugador_en_zona_recarga: bool = false
+
+
+func _ready() -> void:
+	barra_energia.max_value = energia_almacenada
+	settear_energia_barra(energia_almacenada)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -66,3 +72,9 @@ func energia_control() -> void:
 	
 	if energia_almacenada <= 0.0:
 		sfx_vacia.play()
+	
+	settear_energia_barra(energia_almacenada)
+
+
+func settear_energia_barra(energia_restante: float) -> void:
+	barra_energia.value = energia_restante

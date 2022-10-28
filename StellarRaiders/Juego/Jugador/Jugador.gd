@@ -78,7 +78,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("disparar_laser_beam"):
 		laser_beam.set_is_casting(true)
 	
-	if event.is_action_released("disparar_laser_beam"):
+	elif event.is_action_released("disparar_laser_beam"):
 		laser_beam.set_is_casting(false)
 	
 	

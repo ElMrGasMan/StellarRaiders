@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Juego/Musica/MusicaStellarRaiders.gd" type="Script" id=1]
+[ext_resource path="res://Juego/Musica/POL-mutant-jackrabbit-short.wav" type="AudioStream" id=2]
+[ext_resource path="res://TemporalAssets/spaceshooter/Bonus/sfx_twoTone.ogg" type="AudioStream" id=3]
+
+[node name="MusicaStellarRaiders" type="Node"]
+script = ExtResource( 1 )
+tiempo_transicion = 4.0
+
+[node name="MusicaAmbiental" type="AudioStreamPlayer" parent="."]
+bus = "Musica"
+
+[node name="MusicaCombate" type="AudioStreamPlayer" parent="."]
+bus = "Musica"
+
+[node name="MusicaMenuPrincipal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -10.0
+bus = "Musica"
+
+[node name="SonidoBotonesMenu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "Botones"
+
+[node name="TweenPrenderMusica" type="Tween" parent="."]
+
+[node name="TweenApagarMusica" type="Tween" parent="."]
+
+[connection signal="tween_completed" from="TweenApagarMusica" to="." method="_on_TweenApagarMusica_tween_completed"]

@@ -8,6 +8,8 @@ export var explosion_meteor: PackedScene = null
 export var lluvia_de_meteoritos: PackedScene = null
 export var enemigo_ambusher: PackedScene = null
 export var puerta_l: PackedScene = null
+export var musica_ambiente: AudioStream = null
+export var musica_combat: AudioStream = null
 export var tiempo_transicion_camara: float = 3.0
 export var tiempo_limite: int = 200
 
@@ -18,20 +20,23 @@ onready var contenedor_enemigos: Node
 onready var camara_nivel: Camera2D = $CamaraNivel
 onready var camara_jugador: Camera2D = $Jugador/CamaraJugador
 onready var timer_tiempo: Timer = $TimerActualizadorTiempo
+onready var musica_juego: Node = $MusicaStellarRaiders
 
 var cant_meteoritos_nivel: int = 0
 var cant_estaciones_enemigas: int = 0
 var jugador: Jugador = null
 var lugar_exp: Vector2 
 
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	musica_juego.set_musica(musica_ambiente, musica_combat)
+	musica_juego.ejecutar_musica(musica_juego.get_mus_amb())
 	connect_signals()
 	create_storages()
 	jugador = DataJuego.get_jugador_actual()
 	cant_estaciones_enemigas = cant_bases_enemigas()
-	Events.emit_signal("comenzar_nivel")
-	Events.emit_signal("actualizar_tiempo", tiempo_limite)
+	emit_signals()
 	timer_tiempo.start()
 
 
@@ -72,6 +77,11 @@ func connect_signals() -> void:
 	Events.connect("base_destruida", self, "_on_base_destruida")
 # warning-ignore:return_value_discarded
 	Events.connect("spawn_enemigo_orbital", self,  "_on_spawn_orbital")
+
+
+func emit_signals() -> void:
+	Events.emit_signal("comenzar_nivel")
+	Events.emit_signal("actualizar_tiempo", tiempo_limite)
 
 
 func create_storages() -> void:
@@ -140,6 +150,7 @@ func _on_base_destruida(posiciones_partes: Array, _ex) -> void:
 
 # warning-ignore:unused_argument
 func crear_sector_meteoritos(centro_camara: Vector2, cant_peligros: int) -> void:
+	musica_juego.transicion_entre_musicas()
 	cant_meteoritos_nivel = cant_peligros
 	
 	var new_sector_lluvia: MeteorRain = lluvia_de_meteoritos.instance()
@@ -189,6 +200,7 @@ func descontar_meteorito() -> void:
 	Events.emit_signal("cambio_numero_met", cant_meteoritos_nivel)
 	
 	if cant_meteoritos_nivel == 0:
+		musica_juego.transicion_entre_musicas()
 		contenedor_lluvias_de_meteoritos.get_child(0).queue_free()
 		camara_jugador.set_puede_hacer_zoom(true)
 		var zoom_actual = camara_jugador.zoom

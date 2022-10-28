@@ -38,3 +38,6 @@ func mirar_al_jugador() -> void:
 func _on_jugador_destruido(nave: NaveBase, _posicion, _explosiones) -> void:
 	if nave is Jugador:
 		jugador_objetivo = null
+	
+	if nave.is_in_group("minimapa"):
+		Events.emit_signal("objeto_minimapa_destruido", nave)

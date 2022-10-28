@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Juego/Niveles/Fondo/StarField.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Juego/Niveles/Fondo/StarFieldBackground.gd" type="Script" id=2]
+
+[node name="StarFieldBackground" type="ParallaxBackground"]
+scroll_ignore_camera_zoom = true
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.0941176, 0, 0.145098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxLayerLejos" type="ParallaxLayer" parent="."]
+modulate = Color( 1, 1, 1, 0.588235 )
+motion_scale = Vector2( 0.01, 0.01 )
+motion_mirroring = Vector2( 1920, 1080 )
+
+[node name="StarField" parent="ParallaxLayerLejos" instance=ExtResource( 1 )]
+
+[node name="ParallaxLayerCerca" type="ParallaxLayer" parent="."]
+modulate = Color( 1, 1, 1, 0.705882 )
+motion_scale = Vector2( 0.03, 0.03 )
+motion_mirroring = Vector2( 1920, 1080 )
+
+[node name="StarField" parent="ParallaxLayerCerca" instance=ExtResource( 1 )]
+
+[node name="ParallaxLayerMuyCerca" type="ParallaxLayer" parent="."]
+modulate = Color( 1, 1, 1, 0.784314 )
+motion_scale = Vector2( 0.06, 0.06 )
+motion_mirroring = Vector2( 1920, 1080 )
+
+[node name="StarField" parent="ParallaxLayerMuyCerca" instance=ExtResource( 1 )]

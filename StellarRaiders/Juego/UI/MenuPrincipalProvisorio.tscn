@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Juego/UI/FuenteHUD.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Juego/Musica/MusicaStellarRaiders.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Juego/UI/MenuPrincipalProvisorio.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+font_data = ExtResource( 1 )
+
+[node name="MenuPrincipalProvisorio" type="Node"]
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.129412, 0.00784314, 0.168627, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -75.0
+margin_right = 200.0
+margin_bottom = 75.0
+custom_fonts/font = SubResource( 1 )
+text = "JUGAR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicaStellarRaiders" parent="." instance=ExtResource( 2 )]
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

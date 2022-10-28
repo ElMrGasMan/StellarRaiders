@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Juego/EstacionRecarga/AreaAtraccion.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/EstacionRecarga/EstacionEspacialParte5.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Juego/Enemies/EnemigoOrbitalEst.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Juego/EstacionRecarga/PathGuardianes.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Juego/EstacionRecarga/PathGuardianes2.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Juego/UI/BarraHitPoints.tscn" type="PackedScene" id=16]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 17.6229
@@ -58,64 +59,28 @@ tracks/1/keys = {
 resource_name = "2Giro-360"
 length = 6.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("AreaAtraccion/SpriteRecarga:modulate")
+tracks/0/path = NodePath(".:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 0.34, 1, 0.17, 0 ) ]
+"values": [ 0.0, -360.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("NodoSprites:rotation_degrees")
+tracks/1/path = NodePath("AreaAtraccion/SpriteRecarga:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 6 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0, -360.0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("AreaColision:rotation_degrees")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, -360.0 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("VisibilityNotifier2D:rotation_degrees")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, -360.0 ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("PosicionesSpawnOrbitales:rotation_degrees")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, -360.0 ]
+"values": [ Color( 0.34, 1, 0.17, 0 ) ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -162,7 +127,27 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[node name="EstacionEspacialEnemiga" type="Node2D"]
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.309804, 0.00392157, 0.309804, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0, 0.0196078, 0.501961, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+
+[node name="EstacionEspacialEnemiga" type="Node2D" groups=[
+"minimapa",
+]]
 scale = Vector2( 2, 2 )
 z_index = 5
 z_as_relative = false
@@ -268,6 +253,16 @@ position = Vector2( -264, -47.0213 )
 
 [node name="TimerSpawnGuardianes" type="Timer" parent="."]
 wait_time = 1.5
+
+[node name="BarraHitPoints" parent="." instance=ExtResource( 16 )]
+margin_left = -105.0
+margin_top = -292.0
+margin_right = 35.0
+margin_bottom = -277.0
+rect_rotation = 0.0
+custom_styles/fg = SubResource( 8 )
+custom_styles/bg = SubResource( 9 )
+siempre_visible = true
 
 [connection signal="body_entered" from="AreaColision" to="." method="_on_AreaColision_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

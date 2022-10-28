@@ -12,6 +12,7 @@ onready var animaciones: AnimationPlayer = $AnimationPlayer
 onready var sfx_hit: AudioStreamPlayer2D = $AudioStreamPlayer2D
 onready var sprites: Node2D = $NodoSprites
 onready var spawners_timer: Timer = $TimerSpawnGuardianes
+onready var barra_hitpoints: ProgressBar = $BarraHitPoints
 
 var esta_destruido: bool = false
 var posicion_spawn: Vector2 = Vector2.ZERO
@@ -20,6 +21,7 @@ var ruta_random_seleccionada: Path2D
 
 
 func _ready() -> void:
+	barra_hitpoints.settear_valores(hitpoints)
 	spawners_timer.wait_time = intervalo_spawn_guardianes
 	animaciones.play(elegir_animacion_aleatoria())
 	seleccionar_ruta_aleatoria()
@@ -79,8 +81,11 @@ func get_damage(damage: float):
 		esta_destruido = true
 		animaciones.play("4Destruccion")
 		Events.emit_signal("base_destruida", array_sprites, self)
+		Events.emit_signal("objeto_minimapa_destruido", self)
+		queue_free()
 		
 	
+	barra_hitpoints.controlar_hitpoints_barra_notween(hitpoints)
 	sfx_hit.play()
 
 

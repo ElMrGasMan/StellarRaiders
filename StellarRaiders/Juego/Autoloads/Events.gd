@@ -33,3 +33,7 @@ signal ocultar_energia_laser()
 signal actualizar_energia_escudo(energia_maxima, energia_actual)
 # warning-ignore:unused_signal
 signal ocultar_energia_escudo()
+# warning-ignore:unused_signal
+signal objeto_minimapa_creado()
+# warning-ignore:unused_signal
+signal objeto_minimapa_destruido(obj)

@@ -7,9 +7,10 @@
 [ext_resource path="res://Juego/EstacionRecarga/Puerta-LActivado.ogg" type="AudioStream" id=5]
 [ext_resource path="res://Juego/EstacionRecarga/Puerta-LSuper.ogg" type="AudioStream" id=6]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=1]
 resource_name = "Activado"
 length = 4.0
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites:rotation_degrees")
 tracks/0/interp = 1
@@ -37,7 +38,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "Default"
 length = 0.001
 tracks/0/type = "value"
@@ -89,8 +90,7 @@ tracks/3/keys = {
 "values": [ 360.0 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Spawning"
+[sub_resource type="Animation" id=3]
 length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/spaceBuilding_024:position")
@@ -153,7 +153,7 @@ tracks/4/keys = {
 "values": [ Color( 0.0820313, 0.019146, 0.019146, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "SuperActivado"
 length = 1.5
 loop = true
@@ -196,35 +196,39 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=5]
 radius = 517.193
 
-[node name="Puerta-L" type="Node2D"]
+[node name="Puerta-L" type="Node2D" groups=[
+"minimapa",
+]]
 script = ExtResource( 4 )
 
 [node name="Sprites" type="Node2D" parent="."]
+rotation = 6.28319
 scale = Vector2( 3, 3 )
 
 [node name="spaceBuilding_024" type="Sprite" parent="Sprites"]
-position = Vector2( 0, 80 )
+position = Vector2( 0, 33 )
 texture = ExtResource( 3 )
 
 [node name="spaceBuilding_023" type="Sprite" parent="Sprites"]
-position = Vector2( 0, -80 )
+position = Vector2( 0, -33 )
 rotation = 3.14159
 texture = ExtResource( 1 )
 
 [node name="spaceBuilding_008" type="Sprite" parent="Sprites"]
 modulate = Color( 0.0820313, 0.019146, 0.019146, 1 )
+rotation = 6.28319
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Spawning"
-anims/Activado = SubResource( 4 )
-anims/Default = SubResource( 3 )
-anims/Spawning = SubResource( 2 )
-anims/SuperActivado = SubResource( 5 )
+anims/Activado = SubResource( 1 )
+anims/Default = SubResource( 2 )
+anims/Spawning = SubResource( 3 )
+anims/SuperActivado = SubResource( 4 )
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -233,11 +237,11 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorJugador"]
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 disabled = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 6 )
+stream = ExtResource( 5 )
 volume_db = -5.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

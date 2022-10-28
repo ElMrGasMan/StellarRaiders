@@ -6,6 +6,11 @@ onready var animaciones: AnimationPlayer = $AnimationPlayer
 onready var detector_jugador_colisionador: CollisionShape2D = $DetectorJugador/CollisionShape2D
 onready var tween: Tween = $Tween
 
+
+func _ready() -> void:
+	Events.emit_signal("objeto_minimapa_creado")
+
+
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "Spawning":
 		animaciones.play("Activado")

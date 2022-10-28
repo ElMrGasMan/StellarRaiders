@@ -12,6 +12,11 @@ onready var animaciones: AnimationPlayer = $AnimationPlayer
 var ai_state_actual: int = STATE_AI.IDLE
 var vel_motor_actual: float = 0.0
 
+
+func _ready() -> void:
+	Events.emit_signal("objeto_minimapa_creado")
+
+
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 	linear_velocity += dir_jugador.normalized() * vel_motor_actual * state.get_step()
 	

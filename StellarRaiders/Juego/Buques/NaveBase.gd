@@ -7,17 +7,17 @@ enum PLAYER_STATE {SPAWN, ALIVE, INVINCIBLE, DEAD}
 export var hitpoints: float = 20.0
 export var cant_explosiones: int = 2
 
-
 var actual_state: int = PLAYER_STATE.SPAWN
-
 
 onready var normal_weapon: NormalWeapon = $NormalWeapon
 onready var hit_sound: AudioStreamPlayer = $SFX_Hit
 onready var colisionator: CollisionPolygon2D = $CollisionPolygon2D
+onready var barra_hitpoints: ProgressBar = $BarraHitPoints
 
 
 func _ready() -> void:
-	 player_state_controler(actual_state)
+	barra_hitpoints.settear_valores(hitpoints)
+	player_state_controler(actual_state)
 
 
 func _on_body_entered(body: Node) -> void:
@@ -63,3 +63,5 @@ func get_damage(damage: float) -> void:
 	
 	if hitpoints <= 0.0:
 		destroy_player()
+	
+	barra_hitpoints.controlar_hitpoints_barra(hitpoints, true)

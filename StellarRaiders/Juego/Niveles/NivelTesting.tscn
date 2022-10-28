@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Juego/Jugador/Jugador.tscn" type="PackedScene" id=1]
 [ext_resource path="res://default_env.tres" type="Environment" id=2]
@@ -11,7 +11,10 @@
 [ext_resource path="res://Juego/Enemies/EnemigoAmbusher.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Juego/Niveles/CamaraNivel.gd" type="Script" id=10]
 [ext_resource path="res://Juego/UI/HUD.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Juego/ZonaPeligro/ZonaDePeligro.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Juego/Musica/MusicaStellarRaiders.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Juego/Musica/POL-galactic-trek-short.wav" type="AudioStream" id=16]
+[ext_resource path="res://Juego/Musica/POL-power-battle-short.wav" type="AudioStream" id=17]
+[ext_resource path="res://Juego/Niveles/Fondo/StarFieldBackground.tscn" type="PackedScene" id=18]
 
 [node name="NivelTesting" type="Node2D"]
 script = ExtResource( 3 )
@@ -21,6 +24,8 @@ explosion_meteor = ExtResource( 7 )
 lluvia_de_meteoritos = ExtResource( 8 )
 enemigo_ambusher = ExtResource( 9 )
 puerta_l = ExtResource( 6 )
+musica_ambiente = ExtResource( 16 )
+musica_combat = ExtResource( 17 )
 
 [node name="HUD" parent="." instance=ExtResource( 11 )]
 
@@ -44,15 +49,16 @@ wait_time = 2.0
 
 [node name="ZonasDePeligro" type="Node" parent="."]
 
-[node name="ZonaDePeligro" parent="ZonasDePeligro" instance=ExtResource( 12 )]
-position = Vector2( 1346.18, -385.303 )
-num_peligros = 6
+[node name="ZonasDePeligroEnemigos" type="Node" parent="."]
 
 [node name="AlmacenEstaciones" type="Node" parent="."]
 
-[node name="ZonasDePeligroEnemigos" type="Node" parent="."]
-
 [node name="AlmacenEstacionesEnemigas" type="Node" parent="."]
+
+[node name="MusicaStellarRaiders" parent="." instance=ExtResource( 15 )]
+
+[node name="StarFieldBackground" parent="." instance=ExtResource( 18 )]
+color_nivel = Color( 0.0901961, 0, 0.152941, 1 )
 
 [connection signal="tween_completed" from="TweenCamaraNivel" to="." method="_on_TweenCamaraNivel_tween_completed"]
 [connection signal="timeout" from="TimerReinicio" to="." method="_on_TimerReinicio_timeout"]
@@ -60,3 +66,4 @@ num_peligros = 6
 
 [editable path="Jugador"]
 [editable path="Jugador/NormalWeapon"]
+[editable path="MusicaStellarRaiders"]
