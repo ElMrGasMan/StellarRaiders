@@ -21,7 +21,7 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node) -> void:
-	if body is Meteor:
+	if body is Meteoro:
 		body.destroy_meteor()
 		destroy_player()
 

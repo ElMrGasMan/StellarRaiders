@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Juego/Niveles/NivelBASE.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Juego/EstacionRecarga/EstacionEspacialEnemiga.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Juego/EstacionRecarga/EstacionEspacialRecarga.tscn" type="PackedScene" id=3]
+
+[node name="Nivel1" instance=ExtResource( 1 )]
+nivel_siguiente = "res://Juego/Niveles/Nivel2.tscn"
+
+[node name="EstacionEspacialRecarga" parent="AlmacenEstaciones" index="0" instance=ExtResource( 3 )]
+position = Vector2( -656.195, -769.332 )
+
+[node name="EstacionEspacialEnemiga" parent="AlmacenEstacionesEnemigas" index="0" instance=ExtResource( 2 )]
+position = Vector2( 1775.97, -497.81 )
+
+[editable path="Jugador"]
+[editable path="Jugador/NormalWeapon"]
+[editable path="MusicaStellarRaiders"]

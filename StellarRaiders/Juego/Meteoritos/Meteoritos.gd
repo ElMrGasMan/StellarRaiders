@@ -1,4 +1,4 @@
-class_name Meteor
+class_name Meteoro
 extends RigidBody2D
 
 

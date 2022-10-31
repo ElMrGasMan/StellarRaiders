@@ -1,0 +1,69 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://default_env.tres" type="Environment" id=1]
+[ext_resource path="res://Juego/EstacionRecarga/Puerta-L.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Juego/Efectos/Explosiones/ExplosionMeteorito/ExplosionMeteor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Juego/Meteoritos/Meteoritos.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Juego/Efectos/Explosiones/Explosion.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Juego/Meteoritos/SectorMeteorRain.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Juego/Enemies/EnemigoAmbusher.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Juego/Niveles/CamaraNivel.gd" type="Script" id=8]
+[ext_resource path="res://Juego/Niveles/Nivel.gd" type="Script" id=9]
+[ext_resource path="res://Juego/Musica/POL-galactic-trek-short.wav" type="AudioStream" id=10]
+[ext_resource path="res://Juego/Musica/POL-power-battle-short.wav" type="AudioStream" id=11]
+[ext_resource path="res://Juego/UI/HUD.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Juego/Musica/MusicaStellarRaiders.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Juego/Jugador/Jugador.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Juego/Niveles/Fondo/StarFieldBackground.tscn" type="PackedScene" id=15]
+
+[node name="NivelBASE" type="Node2D"]
+script = ExtResource( 9 )
+explosion = ExtResource( 5 )
+meteor = ExtResource( 4 )
+explosion_meteoro = ExtResource( 3 )
+lluvia_de_meteoritos = ExtResource( 6 )
+enemigo_ambusher = ExtResource( 7 )
+puerta_l = ExtResource( 2 )
+musica_ambiente = ExtResource( 10 )
+musica_combat = ExtResource( 11 )
+
+[node name="HUD" parent="." instance=ExtResource( 12 )]
+
+[node name="Jugador" parent="." instance=ExtResource( 14 )]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 1 )
+
+[node name="CamaraNivel" type="Camera2D" parent="."]
+zoom = Vector2( 2, 2 )
+script = ExtResource( 8 )
+
+[node name="TweenZoom" type="Tween" parent="CamaraNivel"]
+
+[node name="TweenCamaraNivel" type="Tween" parent="."]
+
+[node name="TimerReinicio" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="TimerActualizadorTiempo" type="Timer" parent="."]
+
+[node name="ZonasDePeligro" type="Node" parent="."]
+
+[node name="ZonasDePeligroEnemigos" type="Node" parent="."]
+
+[node name="AlmacenEstaciones" type="Node" parent="."]
+
+[node name="AlmacenEstacionesEnemigas" type="Node" parent="."]
+
+[node name="MusicaStellarRaiders" parent="." instance=ExtResource( 13 )]
+
+[node name="StarFieldBackground" parent="." instance=ExtResource( 15 )]
+color_nivel = Color( 0.113725, 0, 0.196078, 1 )
+
+[connection signal="tween_completed" from="TweenCamaraNivel" to="." method="_on_TweenCamaraNivel_tween_completed"]
+[connection signal="timeout" from="TimerReinicio" to="." method="_on_TimerReinicio_timeout"]
+[connection signal="timeout" from="TimerActualizadorTiempo" to="." method="_on_TimerActualizadorTiempo_timeout"]
+
+[editable path="Jugador"]
+[editable path="Jugador/NormalWeapon"]
+[editable path="MusicaStellarRaiders"]

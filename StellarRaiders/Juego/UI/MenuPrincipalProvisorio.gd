@@ -12,4 +12,4 @@ func _ready() -> void:
 func _on_Button_pressed() -> void:
 	musica.ejecutar_sfx_botones()
 # warning-ignore:return_value_discarded
-	get_tree().change_scene("res://Juego/Niveles/NivelTesting.tscn")
+	get_tree().change_scene("res://Juego/Niveles/Nivel1.tscn")

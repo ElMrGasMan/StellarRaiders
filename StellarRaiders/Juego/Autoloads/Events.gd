@@ -37,3 +37,5 @@ signal ocultar_energia_escudo()
 signal objeto_minimapa_creado()
 # warning-ignore:unused_signal
 signal objeto_minimapa_destruido(obj)
+# warning-ignore:unused_signal
+signal nivel_completado()

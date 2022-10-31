@@ -1,4 +1,4 @@
-class_name Explosion_Meteor
+class_name Explosion_Meteoro
 extends Node2D
 
 

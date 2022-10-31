@@ -241,5 +241,10 @@ stream = ExtResource( 4 )
 volume_db = -15.0
 bus = "SFX"
 
+[node name="TimerRegeneracion" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="TimerRegeneracion" to="." method="_on_TimerRegeneracion_timeout"]

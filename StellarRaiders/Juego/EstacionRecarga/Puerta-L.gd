@@ -25,7 +25,7 @@ func _on_DetectorJugador_body_entered(body: Node) -> void:
 
 
 func _on_Tween_tween_all_completed() -> void:
-	print("Muy bien master, pasaste de nivel, ahora te queda mas tortura por sobrellevar")
+	Events.emit_signal("nivel_completado")
 
 
 func atraer_jugador(body: Node) -> void:

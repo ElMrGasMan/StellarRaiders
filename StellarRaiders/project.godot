@@ -34,11 +34,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/UI/ContenedorInfoEnergia.gd"
 }, {
-"base": "Node2D",
-"class": "Enemies",
-"language": "GDScript",
-"path": "res://Juego/Enemies/DummyEnemy.gd"
-}, {
 "base": "EnemigoBase",
 "class": "EnemigoAmbusher",
 "language": "GDScript",
@@ -53,6 +48,11 @@ _global_script_classes=[ {
 "class": "EnemigoOrbital",
 "language": "GDScript",
 "path": "res://Juego/Enemies/EnemigoOrbitalEst.gd"
+}, {
+"base": "Area2D",
+"class": "Escudo",
+"language": "GDScript",
+"path": "res://Juego/Escudo/Shield.gd"
 }, {
 "base": "Node2D",
 "class": "EstacionEnemiga",
@@ -70,7 +70,7 @@ _global_script_classes=[ {
 "path": "res://Juego/Efectos/Estelas/Trail2D.gd"
 }, {
 "base": "Node2D",
-"class": "Explosion_Meteor",
+"class": "Explosion_Meteoro",
 "language": "GDScript",
 "path": "res://Juego/Efectos/Explosiones/ExplosionMeteorito/ExplosionMeteor.gd"
 }, {
@@ -89,11 +89,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/UI/MenuPrincipalProvisorio.gd"
 }, {
-"base": "RigidBody2D",
-"class": "Meteor",
-"language": "GDScript",
-"path": "res://Juego/Meteoritos/Meteoritos.gd"
-}, {
 "base": "Node2D",
 "class": "MeteorRain",
 "language": "GDScript",
@@ -103,6 +98,11 @@ _global_script_classes=[ {
 "class": "Meteor_Spawner",
 "language": "GDScript",
 "path": "res://Juego/Meteoritos/SpawnerMeteors.gd"
+}, {
+"base": "RigidBody2D",
+"class": "Meteoro",
+"language": "GDScript",
+"path": "res://Juego/Meteoritos/Meteoritos.gd"
 }, {
 "base": "MarginContainer",
 "class": "Minimapa",
@@ -153,11 +153,6 @@ _global_script_classes=[ {
 "class": "RayoLaser",
 "language": "GDScript",
 "path": "res://Juego/Proyectiles/BeamLaser/LaserBeam2D.gd"
-}, {
-"base": "Area2D",
-"class": "Shield",
-"language": "GDScript",
-"path": "res://Juego/Escudo/Shield.gd"
 } ]
 _global_script_class_icons={
 "BarraSalud": "",
@@ -165,20 +160,20 @@ _global_script_class_icons={
 "CamaraJugador": "",
 "ContenedorInfo": "",
 "ContenedorInfoEnergia": "",
-"Enemies": "",
 "EnemigoAmbusher": "",
 "EnemigoBase": "",
 "EnemigoOrbital": "",
+"Escudo": "",
 "EstacionEnemiga": "",
 "EstacionEspacial": "",
 "Estela": "",
-"Explosion_Meteor": "",
+"Explosion_Meteoro": "",
 "Hud": "",
 "Jugador": "",
 "MenuPrincipal": "",
-"Meteor": "",
 "MeteorRain": "",
 "Meteor_Spawner": "",
+"Meteoro": "",
 "Minimapa": "",
 "Motor": "",
 "MusicaJuego": "",
@@ -188,14 +183,13 @@ _global_script_class_icons={
 "PathGuardias": "",
 "Proyectil": "",
 "PuertaL": "",
-"RayoLaser": "",
-"Shield": ""
+"RayoLaser": ""
 }
 
 [application]
 
 config/name="StellarRaiders"
-run/main_scene="res://Juego/Niveles/NivelTesting.tscn"
+run/main_scene="res://Juego/UI/MenuPrincipalProvisorio.tscn"
 config/icon="res://icono_juego.png"
 
 [autoload]
