@@ -4,7 +4,7 @@
 [ext_resource path="res://Juego/Enemies/Ambusher.png" type="Texture" id=2]
 [ext_resource path="res://Juego/Buques/NaveBase.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Juego/Enemies/EnemigoAmbusher.gd" type="Script" id=4]
-[ext_resource path="res://Juego/Proyectiles/EnemyLaser.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Juego/Proyectiles/EnemigoLaserAntiEscudos.tscn" type="PackedScene" id=5]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -215,7 +215,7 @@ collision_mask = 2
 modulate = Color( 0.0117647, 0.0588235, 0.054902, 1 )
 shape = SubResource( 5 )
 
-[node name="BarraHitPoints" parent="." index="8"]
+[node name="BarraHitPoints" parent="." index="9"]
 margin_left = -60.7555
 margin_top = 52.7262
 margin_right = 9.24446

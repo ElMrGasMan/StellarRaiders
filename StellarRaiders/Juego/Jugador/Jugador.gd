@@ -58,6 +58,12 @@ func input_jugador() -> void:
 	
 	elif Input.is_action_just_released("disparar_click_izquierdo"):
 		normal_weapon.set_is_firing(false)
+	
+	if Input.is_action_pressed("disparar_click_derecho"):
+		arma_anti_escudos.set_is_firing(true)
+	
+	elif Input.is_action_just_released("disparar_click_derecho"):
+		arma_anti_escudos.set_is_firing(false)
 
 
 # warning-ignore:unused_argument

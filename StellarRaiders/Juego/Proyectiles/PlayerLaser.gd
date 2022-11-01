@@ -1,10 +1,9 @@
 class_name Proyectil
-
 extends Area2D
 
 
 var velocidad: Vector2 = Vector2.ZERO
-var damages: float
+var damages: float = 1.0
 
 
 func _physics_process(delta: float) -> void:
@@ -35,4 +34,3 @@ func crear_proyectil(pos: Vector2, rotacion: float, vel: float, dam_proy: float)
 	rotation = rotacion
 	velocidad = Vector2(vel, 0).rotated(rotacion)
 	damages = dam_proy
-
