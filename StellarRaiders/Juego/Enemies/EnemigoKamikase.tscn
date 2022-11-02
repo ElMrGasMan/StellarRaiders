@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Juego/Buques/NaveBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Juego/Enemies/EnemigoKamikase.png" type="Texture" id=2]
+[ext_resource path="res://Juego/Enemies/EnemigoKamikase.gd" type="Script" id=3]
+
+[sub_resource type="PhysicsMaterial" id=1]
+bounce = 0.4
+
+[node name="EnemigoKamikase" groups=[
+"minimapa",
+] instance=ExtResource( 1 )]
+z_index = 5
+z_as_relative = false
+collision_layer = 4
+collision_mask = 30
+physics_material_override = SubResource( 1 )
+contacts_reported = 4
+contact_monitor = true
+can_sleep = false
+linear_damp = 0.8
+script = ExtResource( 3 )
+hitpoints = 5.0
+cant_explosiones = 1
+vel_motor_maxima = 1400.0
+
+[node name="Sprite" parent="." index="0"]
+rotation = -1.5708
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" parent="." index="1"]
+position = Vector2( -0.280613, 0 )
+polygon = PoolVector2Array( -39.5405, -33.2661, 39.8737, -33.5464, 21.9141, 25.1021, 0.587282, 38.5716, -22.7038, 25.6632 )
+
+[node name="BarraHitPoints" parent="." index="5"]
+margin_left = -52.857
+margin_top = 52.857
+margin_right = 17.143
+margin_bottom = 62.857
+
+[node name="RayCastJugador" type="RayCast2D" parent="." index="6"]
+enabled = true
+cast_to = Vector2( 1000, 0 )
+collision_mask = 2

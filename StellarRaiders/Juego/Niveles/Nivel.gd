@@ -2,9 +2,10 @@ class_name Nivel
 extends Node2D
 
 
+export(String, FILE, "*.tscn") var nivel_siguiente = ""
 export var explosion: PackedScene = null
 export var meteor: PackedScene = null
-export var explosion_meteor: PackedScene = null
+export var explosion_meteoro: PackedScene = null
 export var lluvia_de_meteoritos: PackedScene = null
 export var enemigo_ambusher: PackedScene = null
 export var puerta_l: PackedScene = null
@@ -41,6 +42,7 @@ func _ready() -> void:
 
 
 # warning-ignore:unused_argument
+# warning-ignore:unused_argument
 func _on_TweenCamaraNivel_tween_completed(object: Object, key: NodePath) -> void:
 	if object.name == "CamaraJugador":
 		object.global_position = $Jugador.global_position
@@ -56,7 +58,7 @@ func _on_TimerReinicio_timeout() -> void:
 func _on_TimerActualizadorTiempo_timeout() -> void:
 	tiempo_limite -= 1
 	Events.emit_signal("actualizar_tiempo", tiempo_limite)
-	
+		
 	if tiempo_limite <= 0:
 		timer_tiempo.stop()
 		tiempo_agotado()
@@ -77,6 +79,12 @@ func connect_signals() -> void:
 	Events.connect("base_destruida", self, "_on_base_destruida")
 # warning-ignore:return_value_discarded
 	Events.connect("spawn_enemigo_orbital", self,  "_on_spawn_orbital")
+# warning-ignore:return_value_discarded
+	Events.connect("nivel_completado", self, "_on_nivel_completado")
+# warning-ignore:return_value_discarded
+	Events.connect("misil_lanzado", self, "_on_shoot_misil")
+# warning-ignore:return_value_discarded
+	Events.connect("lanza_misiles_destruido", self, "_on_lanza_misiles_destruido")
 
 
 func emit_signals() -> void:
@@ -102,11 +110,22 @@ func create_storages() -> void:
 	add_child(contenedor_enemigos)
 
 
-func _on_shoot(proyectil:Proyectil) -> void:
+func _on_shoot(proyectil: Proyectil) -> void:
 	proyectile_storage.add_child(proyectil)
 
 
-func _on_spawn_orbital(guardia:EnemigoOrbital) -> void:
+func _on_shoot_misil(misil: Misil) -> void:
+	proyectile_storage.add_child(misil)
+
+
+func _on_nivel_completado() -> void:
+	Events.emit_signal("terminar_nivel")
+	yield(get_tree().create_timer(1.0), "timeout")
+# warning-ignore:return_value_discarded
+	get_tree().change_scene(nivel_siguiente)
+
+
+func _on_spawn_orbital(guardia: EnemigoOrbital) -> void:
 	contenedor_enemigos.add_child(guardia)
 
 
@@ -124,7 +143,7 @@ func _on_player_destroyed(nave: Jugador, posicion: Vector2, num_explosions: int)
 
 
 func _on_destroy_meteor(position_explosion: Vector2) -> void:
-	var new_explosion:Node2D = explosion_meteor.instance()
+	var new_explosion:Node2D = explosion_meteoro.instance()
 	new_explosion.global_position = position_explosion
 	add_child(new_explosion)
 	
@@ -132,7 +151,7 @@ func _on_destroy_meteor(position_explosion: Vector2) -> void:
 
 
 func _on_shoot_meteor(position_spawn: Vector2, direction : Vector2, size: float) -> void:
-	var new_meteor: Meteor = meteor.instance()
+	var new_meteor: Meteoro = meteor.instance()
 	new_meteor.create_meteor(position_spawn, direction, size)
 	meteor_storage.add_child(new_meteor)
 
@@ -146,6 +165,13 @@ func _on_base_destruida(posiciones_partes: Array, _ex) -> void:
 	
 	if cant_estaciones_enemigas == 0:
 		crear_puerta_l()
+
+
+func _on_lanza_misiles_destruido(_lanzador, explosiones: int, posicion: Vector2) -> void:
+# warning-ignore:unused_variable
+	for i in range(explosiones):
+		crear_explosiones(posicion, 1, 0.0, Vector2(60.0, 40.0))
+		yield(get_tree().create_timer(0.3), "timeout")
 
 
 # warning-ignore:unused_argument

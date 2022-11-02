@@ -13,6 +13,7 @@ onready var normal_weapon: NormalWeapon = $NormalWeapon
 onready var hit_sound: AudioStreamPlayer = $SFX_Hit
 onready var colisionator: CollisionPolygon2D = $CollisionPolygon2D
 onready var barra_hitpoints: ProgressBar = $BarraHitPoints
+onready var arma_anti_escudos: WeaponAntiEscudos = $WeaponAntiEscudos
 
 
 func _ready() -> void:
@@ -21,7 +22,7 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node) -> void:
-	if body is Meteor:
+	if body is Meteoro:
 		body.destroy_meteor()
 		destroy_player()
 
@@ -36,10 +37,12 @@ func player_state_controler(new_state: int) -> void:
 		PLAYER_STATE.SPAWN:
 			colisionator.set_deferred("disabled", true)
 			normal_weapon.set_can_fire(false)
+			arma_anti_escudos.set_can_fire(false)
 		
 		PLAYER_STATE.ALIVE:
 			colisionator.set_deferred("disabled", false)
 			normal_weapon.set_can_fire(true)
+			arma_anti_escudos.set_can_fire(true)
 		
 		PLAYER_STATE.INVINCIBLE:
 			colisionator.set_deferred("disabled", true)
@@ -47,6 +50,7 @@ func player_state_controler(new_state: int) -> void:
 		PLAYER_STATE.DEAD:
 			colisionator.set_deferred("disabled", true)
 			normal_weapon.set_can_fire(false)
+			arma_anti_escudos.set_can_fire(false)
 			Events.emit_signal("player_destroyed", self, global_position, cant_explosiones)
 			queue_free()
 	

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Sfx_hit_lanzamisiles.ogg-1033931e6fb15fd4e56fd01938ad98e8.oggstr"
+
+[deps]
+
+source_file="res://Juego/Enemies/Sfx_hit_lanzamisiles.ogg"
+dest_files=[ "res://.import/Sfx_hit_lanzamisiles.ogg-1033931e6fb15fd4e56fd01938ad98e8.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

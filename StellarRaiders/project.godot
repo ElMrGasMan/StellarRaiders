@@ -34,11 +34,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/UI/ContenedorInfoEnergia.gd"
 }, {
-"base": "Node2D",
-"class": "Enemies",
-"language": "GDScript",
-"path": "res://Juego/Enemies/DummyEnemy.gd"
-}, {
 "base": "EnemigoBase",
 "class": "EnemigoAmbusher",
 "language": "GDScript",
@@ -50,9 +45,29 @@ _global_script_classes=[ {
 "path": "res://Juego/Enemies/EnemigoBase.gd"
 }, {
 "base": "EnemigoBase",
+"class": "EnemigoKamikase",
+"language": "GDScript",
+"path": "res://Juego/Enemies/EnemigoKamikase.gd"
+}, {
+"base": "EnemigoBase",
 "class": "EnemigoOrbital",
 "language": "GDScript",
 "path": "res://Juego/Enemies/EnemigoOrbitalEst.gd"
+}, {
+"base": "EnemigoBase",
+"class": "EnemigoSniper",
+"language": "GDScript",
+"path": "res://Juego/Enemies/EnemigoSniper.gd"
+}, {
+"base": "EnemigoBase",
+"class": "EnemigoTank",
+"language": "GDScript",
+"path": "res://Juego/Enemies/EnemigoTank.gd"
+}, {
+"base": "Area2D",
+"class": "Escudo",
+"language": "GDScript",
+"path": "res://Juego/Escudo/Shield.gd"
 }, {
 "base": "Node2D",
 "class": "EstacionEnemiga",
@@ -70,7 +85,7 @@ _global_script_classes=[ {
 "path": "res://Juego/Efectos/Estelas/Trail2D.gd"
 }, {
 "base": "Node2D",
-"class": "Explosion_Meteor",
+"class": "Explosion_Meteoro",
 "language": "GDScript",
 "path": "res://Juego/Efectos/Explosiones/ExplosionMeteorito/ExplosionMeteor.gd"
 }, {
@@ -84,15 +99,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/Jugador/Jugador.gd"
 }, {
+"base": "Node2D",
+"class": "LanzaMisiles",
+"language": "GDScript",
+"path": "res://Juego/Enemies/LanzaMisiles.gd"
+}, {
 "base": "Node",
 "class": "MenuPrincipal",
 "language": "GDScript",
 "path": "res://Juego/UI/MenuPrincipalProvisorio.gd"
-}, {
-"base": "RigidBody2D",
-"class": "Meteor",
-"language": "GDScript",
-"path": "res://Juego/Meteoritos/Meteoritos.gd"
 }, {
 "base": "Node2D",
 "class": "MeteorRain",
@@ -104,10 +119,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/Meteoritos/SpawnerMeteors.gd"
 }, {
+"base": "RigidBody2D",
+"class": "Meteoro",
+"language": "GDScript",
+"path": "res://Juego/Meteoritos/Meteoritos.gd"
+}, {
 "base": "MarginContainer",
 "class": "Minimapa",
 "language": "GDScript",
 "path": "res://Juego/UI/MiniMapa/Minimapa.gd"
+}, {
+"base": "EnemigoBase",
+"class": "Misil",
+"language": "GDScript",
+"path": "res://Juego/Enemies/Misil.gd"
 }, {
 "base": "AudioStreamPlayer2D",
 "class": "Motor",
@@ -134,6 +159,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/Weapons/NormalWeapon.gd"
 }, {
+"base": "NormalWeapon",
+"class": "NormalWeapon1Proyectil",
+"language": "GDScript",
+"path": "res://Juego/Weapons/NormalWeapon1Proyectil.gd"
+}, {
 "base": "Path2D",
 "class": "PathGuardias",
 "language": "GDScript",
@@ -143,6 +173,11 @@ _global_script_classes=[ {
 "class": "Proyectil",
 "language": "GDScript",
 "path": "res://Juego/Proyectiles/PlayerLaser.gd"
+}, {
+"base": "Proyectil",
+"class": "ProyectilAntiEscudos",
+"language": "GDScript",
+"path": "res://Juego/Proyectiles/PlayerLaserAntiEscudos.gd"
 }, {
 "base": "Node2D",
 "class": "PuertaL",
@@ -154,10 +189,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/Proyectiles/BeamLaser/LaserBeam2D.gd"
 }, {
-"base": "Area2D",
-"class": "Shield",
+"base": "NormalWeapon",
+"class": "WeaponAntiEscudos",
 "language": "GDScript",
-"path": "res://Juego/Escudo/Shield.gd"
+"path": "res://Juego/Weapons/WeaponAnti-Escudos.gd"
 } ]
 _global_script_class_icons={
 "BarraSalud": "",
@@ -165,37 +200,44 @@ _global_script_class_icons={
 "CamaraJugador": "",
 "ContenedorInfo": "",
 "ContenedorInfoEnergia": "",
-"Enemies": "",
 "EnemigoAmbusher": "",
 "EnemigoBase": "",
+"EnemigoKamikase": "",
 "EnemigoOrbital": "",
+"EnemigoSniper": "",
+"EnemigoTank": "",
+"Escudo": "",
 "EstacionEnemiga": "",
 "EstacionEspacial": "",
 "Estela": "",
-"Explosion_Meteor": "",
+"Explosion_Meteoro": "",
 "Hud": "",
 "Jugador": "",
+"LanzaMisiles": "",
 "MenuPrincipal": "",
-"Meteor": "",
 "MeteorRain": "",
 "Meteor_Spawner": "",
+"Meteoro": "",
 "Minimapa": "",
+"Misil": "",
 "Motor": "",
 "MusicaJuego": "",
 "NaveBase": "",
 "Nivel": "",
 "NormalWeapon": "",
+"NormalWeapon1Proyectil": "",
 "PathGuardias": "",
 "Proyectil": "",
+"ProyectilAntiEscudos": "",
 "PuertaL": "",
 "RayoLaser": "",
-"Shield": ""
+"WeaponAntiEscudos": ""
 }
 
 [application]
 
 config/name="StellarRaiders"
-run/main_scene="res://Juego/Niveles/NivelTesting.tscn"
+run/main_scene="res://Juego/UI/MenuPrincipalProvisorio.tscn"
 config/icon="res://icono_juego.png"
 
 [autoload]
@@ -277,6 +319,11 @@ recarga_laserbeam={
 activar_minimapa={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":77,"unicode":0,"echo":false,"script":null)
+ ]
+}
+disparar_click_derecho={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 

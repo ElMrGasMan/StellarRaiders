@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://TemporalAssets/spaceshooter/PNG/Effects/shield1.png" type="Texture" id=1]
 [ext_resource path="res://TemporalAssets/spaceshooter/PNG/Effects/shield2.png" type="Texture" id=2]
@@ -57,7 +57,35 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-resource_name = "Activating"
+resource_name = "Activated (Sin sonido)"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteActivated:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SpriteActivated:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.95, 0.95 ), Vector2( 1, 1 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
 length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("SpriteActivated:visible")
@@ -132,8 +160,7 @@ tracks/5/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Default"
+[sub_resource type="Animation" id=5]
 length = 0.001
 loop = true
 tracks/0/type = "value"
@@ -233,13 +260,19 @@ texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Activated = SubResource( 2 )
-anims/Activating = SubResource( 3 )
-anims/Default = SubResource( 4 )
+"anims/Activated (Sin sonido)" = SubResource( 3 )
+anims/Activating = SubResource( 4 )
+anims/Default = SubResource( 5 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = -15.0
 bus = "SFX"
 
+[node name="TimerRegeneracion" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="TimerRegeneracion" to="." method="_on_TimerRegeneracion_timeout"]

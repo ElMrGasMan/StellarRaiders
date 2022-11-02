@@ -12,7 +12,7 @@ var direc_rotacion: int = 0
 onready var estela: Estela = $TrailStartingPoint/Trail2D
 onready var estela2: Estela = $TrailStartingPoint2/Trail2D
 ##ARREGLAR ESTO CAPAZ SE PUEDEN PONER EN UN ARRAY
-onready var player_shield: Shield = $Shield setget, get_escudo
+onready var escudo_jugador: Escudo = $Shield setget, get_escudo
 onready var laser_beam: RayoLaser = $LaserBeam2D setget, get_laser_beam
 onready var engine_sound: Motor = $SFX_Engine
 
@@ -25,8 +25,8 @@ func get_laser_beam() -> RayoLaser:
 	return laser_beam
 
 
-func get_escudo() -> Shield:
-	return player_shield
+func get_escudo() -> Escudo:
+	return escudo_jugador
 
 
 func input_jugador() -> void:
@@ -58,6 +58,12 @@ func input_jugador() -> void:
 	
 	elif Input.is_action_just_released("disparar_click_izquierdo"):
 		normal_weapon.set_is_firing(false)
+	
+	if Input.is_action_pressed("disparar_click_derecho"):
+		arma_anti_escudos.set_is_firing(true)
+	
+	elif Input.is_action_just_released("disparar_click_derecho"):
+		arma_anti_escudos.set_is_firing(false)
 
 
 # warning-ignore:unused_argument
@@ -93,8 +99,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		estela.set_max_points(2)
 		estela2.set_max_points(2)
 	
-	if event.is_action_pressed("activar_escudo") and not player_shield.get_is_activated():
-		player_shield.activate()
+	if event.is_action_pressed("activar_escudo") and not escudo_jugador.get_is_activated():
+		escudo_jugador.activate()
+	
+	elif event.is_action_pressed("activar_escudo") and escudo_jugador.get_is_activated():
+		escudo_jugador.deactivate()
 
 
 func input_is_active() -> bool:
