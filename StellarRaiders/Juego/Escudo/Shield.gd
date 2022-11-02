@@ -29,7 +29,10 @@ func _process(delta: float) -> void:
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "Activating" and is_activated:
-		animations.play("Activated")
+		if es_enemigo:
+			animations.play("Activated (Sin sonido)")
+		else:
+			animations.play("Activated")
 		status_collisionator(false)
 
 
@@ -49,7 +52,8 @@ func get_is_activated() -> bool:
 func energia_control(valor: float) -> void:
 	energy_hitpoints += valor
 	
-	Events.emit_signal("actualizar_energia_escudo", energia_maxima, energy_hitpoints)
+	if not es_enemigo:
+		Events.emit_signal("actualizar_energia_escudo", energia_maxima, energy_hitpoints)
 	
 	if energy_hitpoints > energia_maxima:
 		energy_hitpoints = energia_maxima
@@ -57,7 +61,8 @@ func energia_control(valor: float) -> void:
 		set_process(false)
 	
 	elif energy_hitpoints <= 0.0:
-		Events.emit_signal("ocultar_energia_escudo")
+		if not es_enemigo:
+			Events.emit_signal("ocultar_energia_escudo")
 		deactivate()
 
 

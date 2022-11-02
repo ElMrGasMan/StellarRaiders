@@ -39,3 +39,7 @@ signal objeto_minimapa_creado()
 signal objeto_minimapa_destruido(obj)
 # warning-ignore:unused_signal
 signal nivel_completado()
+# warning-ignore:unused_signal
+signal misil_lanzado(misil_enemigo)
+# warning-ignore:unused_signal
+signal lanza_misiles_destruido(lanzador, cant_explosiones, pos)

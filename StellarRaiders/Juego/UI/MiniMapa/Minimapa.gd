@@ -15,6 +15,11 @@ onready var sprite_estacion_recarga: Sprite = $NinePatchRect/ContenedorSprites/Z
 onready var sprite_estacion_enemiga: Sprite = $NinePatchRect/ContenedorSprites/ZonaRenderizado/SpriteEstacionEnem
 onready var sprite_ambusher: Sprite = $NinePatchRect/ContenedorSprites/ZonaRenderizado/SpriteAmbusher
 onready var sprite_puertal: Sprite = $NinePatchRect/ContenedorSprites/ZonaRenderizado/SpritePuertaL
+onready var sprite_kamikase: Sprite = $NinePatchRect/ContenedorSprites/ZonaRenderizado/SpriteKamikase
+onready var sprite_tank: Sprite = $NinePatchRect/ContenedorSprites/ZonaRenderizado/SpriteTank
+onready var sprite_sniper: Sprite = $NinePatchRect/ContenedorSprites/ZonaRenderizado/SpriteSniper
+onready var sprite_lanza_misiles: Sprite = $NinePatchRect/ContenedorSprites/ZonaRenderizado/SpriteLanzaMisiles
+onready var sprite_misil: Sprite = $NinePatchRect/ContenedorSprites/ZonaRenderizado/SpriteMisil
 onready var objetos_para_minimapa: Dictionary = {}
 onready var tween: Tween = $TweenActivacion
 onready var timer_activacion: Timer = $TimerActivacion
@@ -107,6 +112,21 @@ func obtener_objetos_minimapa() -> void:
 			
 			elif objeto is PuertaL:
 				icono = sprite_puertal.duplicate()
+			
+			elif objeto is EnemigoKamikase:
+				icono = sprite_kamikase.duplicate()
+			
+			elif objeto is EnemigoTank:
+				icono = sprite_tank.duplicate()
+			
+			elif objeto is EnemigoSniper:
+				icono = sprite_sniper.duplicate()
+			
+			elif objeto is Misil:
+				icono = sprite_misil.duplicate()
+			
+			elif objeto is LanzaMisiles:
+				icono = sprite_lanza_misiles.duplicate()
 			
 			objetos_para_minimapa[objeto] = icono
 			objetos_para_minimapa[objeto].visible = true

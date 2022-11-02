@@ -57,6 +57,8 @@ wait_time = 2.0
 
 [node name="MusicaStellarRaiders" parent="." instance=ExtResource( 13 )]
 
+[node name="AlmacenEnemigos" type="Node" parent="."]
+
 [node name="StarFieldBackground" parent="." instance=ExtResource( 15 )]
 color_nivel = Color( 0.113725, 0, 0.196078, 1 )
 
@@ -66,4 +68,5 @@ color_nivel = Color( 0.113725, 0, 0.196078, 1 )
 
 [editable path="Jugador"]
 [editable path="Jugador/NormalWeapon"]
+[editable path="Jugador/WeaponAntiEscudos"]
 [editable path="MusicaStellarRaiders"]

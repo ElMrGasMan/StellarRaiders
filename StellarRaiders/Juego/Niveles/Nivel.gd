@@ -81,6 +81,10 @@ func connect_signals() -> void:
 	Events.connect("spawn_enemigo_orbital", self,  "_on_spawn_orbital")
 # warning-ignore:return_value_discarded
 	Events.connect("nivel_completado", self, "_on_nivel_completado")
+# warning-ignore:return_value_discarded
+	Events.connect("misil_lanzado", self, "_on_shoot_misil")
+# warning-ignore:return_value_discarded
+	Events.connect("lanza_misiles_destruido", self, "_on_lanza_misiles_destruido")
 
 
 func emit_signals() -> void:
@@ -106,8 +110,12 @@ func create_storages() -> void:
 	add_child(contenedor_enemigos)
 
 
-func _on_shoot(proyectil:Proyectil) -> void:
+func _on_shoot(proyectil: Proyectil) -> void:
 	proyectile_storage.add_child(proyectil)
+
+
+func _on_shoot_misil(misil: Misil) -> void:
+	proyectile_storage.add_child(misil)
 
 
 func _on_nivel_completado() -> void:
@@ -117,7 +125,7 @@ func _on_nivel_completado() -> void:
 	get_tree().change_scene(nivel_siguiente)
 
 
-func _on_spawn_orbital(guardia:EnemigoOrbital) -> void:
+func _on_spawn_orbital(guardia: EnemigoOrbital) -> void:
 	contenedor_enemigos.add_child(guardia)
 
 
@@ -157,6 +165,13 @@ func _on_base_destruida(posiciones_partes: Array, _ex) -> void:
 	
 	if cant_estaciones_enemigas == 0:
 		crear_puerta_l()
+
+
+func _on_lanza_misiles_destruido(_lanzador, explosiones: int, posicion: Vector2) -> void:
+# warning-ignore:unused_variable
+	for i in range(explosiones):
+		crear_explosiones(posicion, 1, 0.0, Vector2(60.0, 40.0))
+		yield(get_tree().create_timer(0.3), "timeout")
 
 
 # warning-ignore:unused_argument

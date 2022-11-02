@@ -1,20 +1,20 @@
-class_name EnemigoAmbusher
+class_name EnemigoTank
 extends EnemigoBase
 
 
 enum STATE_AI {IDLE, ATAQUE_QUIETO, ATAQUE_PERSECUCION, PERSECUCION}
 
-export var vel_motor_maxima: float = 1000.0 
+export var vel_motor_maxima: float = 100.0 
 
-onready var arma: NormalWeapon = $NormalWeapon
-onready var animaciones: AnimationPlayer = $AnimationPlayer
+onready var escudo_enemigo: Escudo = $Shield
 
-var ai_state_actual: int = STATE_AI.ATAQUE_PERSECUCION
+var ai_state_actual: int = STATE_AI.IDLE
 var vel_motor_actual: float = 0.0
 
 
 func _ready() -> void:
 	Events.emit_signal("objeto_minimapa_creado")
+	escudo_enemigo.activate()
 
 
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
@@ -26,13 +26,14 @@ func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 
 # warning-ignore:unused_argument
 func _on_AreaDisparo_body_entered(body: Node) -> void:
-	if animaciones.current_animation == "Default":
-		animaciones.play("Spawning")
+	player_state_controler(PLAYER_STATE.ALIVE)
+	arma_anti_escudos.set_can_fire(true)
 	controlador_estados_ai(STATE_AI.ATAQUE_PERSECUCION)
 
 
 # warning-ignore:unused_argument
 func _on_AreaDisparo_body_exited(body: Node) -> void:
+	arma_anti_escudos.set_can_fire(false)
 	controlador_estados_ai(STATE_AI.PERSECUCION)
 
 
@@ -49,20 +50,19 @@ func _on_AreaPerseguir_body_exited(body: Node) -> void:
 func controlador_estados_ai(nuevo_estado: int) -> void:
 	match nuevo_estado:
 		STATE_AI.IDLE:
-			animaciones.play("Default")
-			arma.set_is_firing(false)
+			arma_anti_escudos.set_is_firing(false)
 			vel_motor_actual = 0.0
 		
 		STATE_AI.ATAQUE_QUIETO:
-			arma.set_is_firing(true)
+			arma_anti_escudos.set_is_firing(true)
 			vel_motor_actual = 0.0
 			
 		STATE_AI.ATAQUE_PERSECUCION:
-			arma.set_is_firing(true)
+			arma_anti_escudos.set_is_firing(true)
 			vel_motor_actual = vel_motor_maxima
 		
 		STATE_AI.PERSECUCION:
-			arma.set_is_firing(false)
+			arma_anti_escudos.set_is_firing(false)
 			vel_motor_actual = vel_motor_maxima
 		
 		_:
