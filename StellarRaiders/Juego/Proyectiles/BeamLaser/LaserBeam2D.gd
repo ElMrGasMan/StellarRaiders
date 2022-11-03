@@ -10,15 +10,14 @@ export var cast_speed := 7000.0
 export var max_length := 1400.0
 # Base duration of the tween animation in seconds.
 export var growth_time := 0.1
-
+export var total_energy: float = 20.0 setget, get_energia_actual_laser
+export var ratio_consumption: float = -1.25
 # If `true`, the laser is firing.
 # It plays appearing and disappearing animations when it's not animating.
 # See `appear()` and `disappear()` for more information.
 var is_casting := false setget set_is_casting
 var damage: float = 18.0
-
-export var total_energy: float = 20.0
-export var ratio_consumption: float = -1.25
+var energia_maxima: float setget, get_energia_maxima
 
 onready var fill := $FillLine2D
 onready var tween := $Tween
@@ -27,8 +26,6 @@ onready var collision_particles := $CollisionParticles2D
 onready var beam_particles := $BeamParticles2D
 onready var laser_audio := $AudioStreamPlayer2D
 onready var line_width: float = fill.width
-
-var energia_maxima: float
 
 
 func _ready() -> void:
@@ -59,6 +56,14 @@ func set_is_casting(cast: bool) -> void:
 	set_physics_process(is_casting)
 	beam_particles.emitting = is_casting
 	casting_particles.emitting = is_casting
+
+
+func get_energia_maxima() -> float:
+	return energia_maxima
+
+
+func get_energia_actual_laser() -> float:
+	return total_energy
 
 
 # Controls the emission of particles and extends the Line2D to `cast_to` or the ray's 

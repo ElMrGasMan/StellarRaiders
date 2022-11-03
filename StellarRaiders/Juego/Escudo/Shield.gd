@@ -2,17 +2,17 @@ class_name Escudo
 extends Area2D
 
 
-onready var animations: AnimationPlayer = $AnimationPlayer
-onready var collisionator: CollisionShape2D = $CollisionShape2D
-onready var timer_regeneracion: Timer = $TimerRegeneracion
-
-export var energy_hitpoints: float = 10.0
+export var energy_hitpoints: float = 10.0 setget, get_energia_escudo_actual
 export var ratio_regeneracion: float = 0.05
-export var es_enemigo: bool = false
+export var es_enemigo: bool = false 
 
 var is_activated: bool = false setget, get_is_activated
 var regeneracion_activada: bool = false
-var energia_maxima: float
+var energia_maxima: float setget, get_energia_escudo
+
+onready var animations: AnimationPlayer = $AnimationPlayer
+onready var collisionator: CollisionShape2D = $CollisionShape2D
+onready var timer_regeneracion: Timer = $TimerRegeneracion
 
 
 func _ready() -> void:
@@ -47,6 +47,14 @@ func _on_TimerRegeneracion_timeout() -> void:
 
 func get_is_activated() -> bool:
 	return is_activated
+
+
+func get_energia_escudo() -> float:
+	return energia_maxima
+
+
+func get_energia_escudo_actual() -> float:
+	return energy_hitpoints
 
 
 func energia_control(valor: float) -> void:

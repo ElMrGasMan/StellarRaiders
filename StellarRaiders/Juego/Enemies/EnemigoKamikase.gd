@@ -2,15 +2,15 @@ class_name EnemigoKamikase
 extends EnemigoBase
 
 
-onready var ray_cast_jugador: RayCast2D = $RayCastJugador
-
-enum STATE_AI {IDLE, ATAQUE_QUIETO, PERSECUCION}
+enum STATE_AI {QUIETO, PERSECUCION}
 
 export var vel_motor_maxima: float = 1000.0 
 
-var ai_state_actual: int = STATE_AI.ATAQUE_QUIETO
+var ai_state_actual: int = STATE_AI.QUIETO
 var vel_motor_actual: float = 0.0
 var movimiento: Vector2 = Vector2.ZERO
+
+onready var ray_cast_jugador: RayCast2D = $RayCastJugador
 
 
 func _ready() -> void:
@@ -35,10 +35,7 @@ func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 
 func controlador_estados_ai(nuevo_estado: int) -> void:
 	match nuevo_estado:
-		STATE_AI.IDLE:
-			vel_motor_actual = 0.0
-		
-		STATE_AI.ATAQUE_QUIETO:
+		STATE_AI.QUIETO:
 			vel_motor_actual = 0.0
 		
 		STATE_AI.PERSECUCION:

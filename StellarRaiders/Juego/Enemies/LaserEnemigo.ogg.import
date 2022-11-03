@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/LaserEnemigo.ogg-0353e045041175805d37dd51780ad512.oggstr"
+
+[deps]
+
+source_file="res://Juego/Enemies/LaserEnemigo.ogg"
+dest_files=[ "res://.import/LaserEnemigo.ogg-0353e045041175805d37dd51780ad512.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

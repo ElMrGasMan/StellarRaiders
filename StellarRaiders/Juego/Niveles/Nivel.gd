@@ -14,6 +14,11 @@ export var musica_combat: AudioStream = null
 export var tiempo_transicion_camara: float = 3.0
 export var tiempo_limite: int = 200
 
+var cant_meteoritos_nivel: int = 0
+var cant_estaciones_enemigas: int = 0
+var jugador: Jugador = null
+var lugar_exp: Vector2 
+
 onready var proyectile_storage: Node
 onready var meteor_storage: Node
 onready var contenedor_lluvias_de_meteoritos: Node
@@ -22,11 +27,6 @@ onready var camara_nivel: Camera2D = $CamaraNivel
 onready var camara_jugador: Camera2D = $Jugador/CamaraJugador
 onready var timer_tiempo: Timer = $TimerActualizadorTiempo
 onready var musica_juego: Node = $MusicaStellarRaiders
-
-var cant_meteoritos_nivel: int = 0
-var cant_estaciones_enemigas: int = 0
-var jugador: Jugador = null
-var lugar_exp: Vector2 
 
 
 func _ready() -> void:

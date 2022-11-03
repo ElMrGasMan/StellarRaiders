@@ -5,11 +5,11 @@ extends EnemigoBase
 export var rango_ataque_maximo: float = 1000.0
 export var vel_movimiento: float = 250.0
 
-onready var detector_estacion: RayCast2D = $RayCastObstaculo
-
 var estacion_custodiada: Node2D
 var ruta_ia: Path2D
 var path_follow: PathFollow2D
+
+onready var detector_estacion: RayCast2D = $RayCastObstaculo
 
 
 func _ready() -> void:
