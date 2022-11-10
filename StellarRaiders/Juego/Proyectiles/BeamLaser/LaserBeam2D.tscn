@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Juego/Proyectiles/BeamLaser/LaserBeam2D.gd" type="Script" id=1]
 [ext_resource path="res://Juego/Proyectiles/BeamLaser/glowing_circle.png" type="Texture" id=2]
-[ext_resource path="res://TemporalAssets/Sci-Fi Sounds/Audio/spaceEngineLarge_004.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Juego/Proyectiles/BeamLaser/Laser_Beam_SFX.ogg" type="AudioStream" id=3]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.582915, 1 )

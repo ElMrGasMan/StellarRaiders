@@ -1,0 +1,207 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Juego/UI/KenneyPixelTitulo.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Juego/UI/FuenteHUD.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Juego/UI/InterceptorExtra.png" type="Texture" id=3]
+[ext_resource path="res://Juego/Proyectiles/LaserEnemigo.png" type="Texture" id=4]
+[ext_resource path="res://Juego/Proyectiles/LaserNormalWeapon.png" type="Texture" id=5]
+[ext_resource path="res://Juego/Proyectiles/LaserAntiEscudosEnemigo.png" type="Texture" id=6]
+[ext_resource path="res://Juego/Enemies/EnemigoKamikase.png" type="Texture" id=7]
+[ext_resource path="res://Juego/Jugador/NaveJugador.png" type="Texture" id=8]
+[ext_resource path="res://Juego/Enemies/Ambusher.png" type="Texture" id=9]
+[ext_resource path="res://Juego/Enemies/EnemigoTank.png" type="Texture" id=10]
+[ext_resource path="res://Juego/UI/PantallaHistoria.gd" type="Script" id=11]
+[ext_resource path="res://Juego/Musica/MusicaStellarRaiders.tscn" type="PackedScene" id=12]
+
+[sub_resource type="DynamicFont" id=6]
+size = 40
+outline_size = 6
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.352941, 0, 0.568627, 1 )
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color( 0.164706, 0.164706, 0.164706, 1 )
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_bottom_right = 20
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.556863, 0, 0.65098, 1 )
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color( 0.607843, 0.607843, 0.607843, 1 )
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_bottom_right = 20
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.298039, 0, 0.47451, 1 )
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_bottom_right = 20
+corner_detail = 20
+
+[sub_resource type="DynamicFont" id=5]
+size = 40
+font_data = ExtResource( 2 )
+
+[node name="PantallaHistoria" type="Node"]
+script = ExtResource( 11 )
+nivel_siguiente = "res://Juego/Niveles/Nivel1.tscn"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.129412, 0.00784314, 0.168627, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -275.0
+margin_right = 220.0
+margin_bottom = 275.0
+custom_fonts/font = SubResource( 6 )
+text = "Es el año 2154, un capitan del Tercer Grupo 
+de Interceptores de la NCT (Nueva Confederacion 
+de Terra) llamado Mc. Carran fue enviado a una mision 
+especial cerca de Jupiter junto con el resto de su grupo. 
+Sin embargo, al llegar fueron emboscados por piratas 
+espaciales que aparecieron de la nada y decimaron a 
+los Interceptores. 
+El unico interceptor restante es del capitan Mc. Carran 
+que, ignorando las ordenes de sus superiores de 
+retirarse y a modo de venganza por la perdida 
+de sus hombres, tratara de abrirse paso a traves de los 
+piratas y destruir todas sus estaciones espaciales 
+acabando con la amenaza que estos ostentan. 
+¿Podra Mc. Carran vengar a sus soldados y destruir 
+a los piratas y volver como un heroe a Terra? 
+¿O acaso morira en el intento?"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 200.0
+margin_top = 188.0
+margin_right = 487.0
+margin_bottom = 275.0
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
+text = "Comenzar"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprites" type="Node" parent="."]
+
+[node name="NaveJugador" type="Sprite" parent="Sprites"]
+position = Vector2( 887.705, 131.837 )
+rotation = 2.06647
+texture = ExtResource( 8 )
+
+[node name="NaveJugador2" type="Sprite" parent="Sprites"]
+position = Vector2( 817.859, 403.283 )
+rotation = -2.96881
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 7 )
+
+[node name="NaveJugador4" type="Sprite" parent="Sprites"]
+position = Vector2( 760.713, 335.024 )
+rotation = -2.62497
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 7 )
+
+[node name="NaveJugador3" type="Sprite" parent="Sprites"]
+position = Vector2( 927.39, 395.346 )
+rotation = 2.79776
+texture = ExtResource( 10 )
+
+[node name="Ambusher" type="Sprite" parent="Sprites"]
+position = Vector2( 756.474, 63.2402 )
+rotation = -0.689405
+scale = Vector2( 0.85, 0.85 )
+texture = ExtResource( 9 )
+
+[node name="InterceptorExtra" type="Sprite" parent="Sprites"]
+position = Vector2( 860.857, 249.863 )
+rotation = 0.528835
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 3 )
+
+[node name="LaserEnemigo" type="Sprite" parent="Sprites"]
+position = Vector2( 807.397, 107.643 )
+rotation = 2.41205
+texture = ExtResource( 4 )
+
+[node name="LaserEnemigo2" type="Sprite" parent="Sprites"]
+position = Vector2( 792.135, 121.894 )
+rotation = 2.41205
+texture = ExtResource( 4 )
+
+[node name="LaserNormalWeapon" type="Sprite" parent="Sprites"]
+position = Vector2( 835.898, 71.099 )
+rotation = -1.02974
+texture = ExtResource( 5 )
+
+[node name="LaserNormalWeapon2" type="Sprite" parent="Sprites"]
+position = Vector2( 811.204, 119.365 )
+rotation = -0.959931
+texture = ExtResource( 5 )
+
+[node name="LaserNormalWeapon3" type="Sprite" parent="Sprites"]
+position = Vector2( 805.591, 304.571 )
+rotation = -2.68083
+scale = Vector2( 1, 1 )
+texture = ExtResource( 5 )
+
+[node name="LaserNormalWeapon4" type="Sprite" parent="Sprites"]
+position = Vector2( 842.633, 325.898 )
+rotation = -2.68083
+scale = Vector2( 1, 1 )
+texture = ExtResource( 5 )
+
+[node name="LaserAntiEscudosEnemigo" type="Sprite" parent="Sprites"]
+position = Vector2( 892.021, 342.735 )
+rotation = 0.689405
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
+
+[node name="LaserAntiEscudosEnemigo2" type="Sprite" parent="Sprites"]
+position = Vector2( 920.082, 333.755 )
+rotation = 0.820305
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
+
+[node name="MusicaStellarRaiders" parent="." instance=ExtResource( 12 )]
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+
+[editable path="MusicaStellarRaiders"]

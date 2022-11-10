@@ -12,7 +12,7 @@
 
 [node name="Nivel4" instance=ExtResource( 1 )]
 nivel_siguiente = "res://Juego/UI/PantallaFinalJuego.tscn"
-tiempo_limite = 300
+tiempo_limite = 280
 
 [node name="ZonaDePeligroPequeña" parent="ZonasDePeligro" index="0" instance=ExtResource( 9 )]
 position = Vector2( 1511.91, 0 )
@@ -28,6 +28,8 @@ position = Vector2( 7620, -25.3984 )
 
 [node name="EstacionEspacialEnemiga" parent="AlmacenEstacionesEnemigas" index="0" instance=ExtResource( 5 )]
 position = Vector2( 12858.2, 59.6016 )
+hitpoints = 100.0
+cant_guardianes = 9
 
 [node name="LanzaMisiles2" parent="AlmacenEnemigos" index="0" instance=ExtResource( 4 )]
 position = Vector2( 13608.4, 60.4761 )

@@ -3,10 +3,10 @@
 [ext_resource path="res://Juego/Meteoritos/MeteorSprite.png" type="Texture" id=1]
 [ext_resource path="res://Juego/Meteoritos/Meteoritos.gd" type="Script" id=2]
 [ext_resource path="res://Juego/Meteoritos/Hit_Meteorito.ogg" type="AudioStream" id=3]
-[ext_resource path="res://TemporalAssets/spaceshooter/PNG/Meteors/meteorGrey_tiny1.png" type="Texture" id=4]
-[ext_resource path="res://TemporalAssets/spaceshooter/PNG/Meteors/meteorGrey_small1.png" type="Texture" id=5]
-[ext_resource path="res://TemporalAssets/spaceshooter/PNG/Meteors/meteorGrey_tiny2.png" type="Texture" id=6]
-[ext_resource path="res://TemporalAssets/spaceshooter/PNG/Meteors/meteorGrey_small2.png" type="Texture" id=7]
+[ext_resource path="res://Juego/Efectos/Explosiones/ExplosionMeteorito/MeteoritoChico2.png" type="Texture" id=4]
+[ext_resource path="res://Juego/Efectos/Explosiones/ExplosionMeteorito/MeteoritoMuyChico2.png" type="Texture" id=5]
+[ext_resource path="res://Juego/Efectos/Explosiones/ExplosionMeteorito/MeteoritoMuyChico1.png" type="Texture" id=6]
+[ext_resource path="res://Juego/Efectos/Explosiones/ExplosionMeteorito/MeteoritoChico1.png" type="Texture" id=7]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -360,7 +360,7 @@ bus = "SFX"
 [node name="meteorGrey_small1" type="Sprite" parent="."]
 visible = false
 scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 5 )
+texture = ExtResource( 7 )
 
 [node name="meteorGrey_tiny2" type="Sprite" parent="."]
 visible = false
@@ -369,11 +369,11 @@ texture = ExtResource( 6 )
 [node name="meteorGrey_small2" type="Sprite" parent="."]
 visible = false
 scale = Vector2( 0.9, 0.9 )
-texture = ExtResource( 7 )
+texture = ExtResource( 4 )
 
 [node name="meteorGrey_tiny1" type="Sprite" parent="."]
 visible = false
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 
 [node name="meteorGrey_tiny3" type="Sprite" parent="."]
 visible = false

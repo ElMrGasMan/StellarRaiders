@@ -20,6 +20,7 @@ position = Vector2( 5088, 0 )
 position = Vector2( 4337.6, -1884.07 )
 hitpoints = 70.0
 cant_guardianes = 7
+intervalo_spawn_guardianes = 0.8
 
 [node name="EstacionEspacialEnemiga3" parent="AlmacenEstacionesEnemigas" index="1" instance=ExtResource( 2 )]
 position = Vector2( 10481.6, 3459.93 )

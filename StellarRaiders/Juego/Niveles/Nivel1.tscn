@@ -6,7 +6,7 @@
 
 [node name="Nivel1" instance=ExtResource( 1 )]
 nivel_siguiente = "res://Juego/Niveles/Nivel2.tscn"
-tiempo_limite = 100
+tiempo_limite = 80
 
 [node name="ZonaDePeligro" parent="ZonasDePeligroEnemigos" index="0" instance=ExtResource( 3 )]
 position = Vector2( 4048.24, -641.447 )

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Juego/Musica/MusicaStellarRaiders.gd" type="Script" id=1]
 [ext_resource path="res://Juego/Musica/POL-mutant-jackrabbit-short.wav" type="AudioStream" id=2]
-[ext_resource path="res://TemporalAssets/spaceshooter/Bonus/sfx_twoTone.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Juego/UI/SFX_Botones.ogg" type="AudioStream" id=3]
 
 [node name="MusicaStellarRaiders" type="Node"]
 script = ExtResource( 1 )
