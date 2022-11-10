@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://TemporalAssets/kenney_spaceshooterextension/PNG/Sprites/Station/spaceStation_020.png" type="Texture" id=1]
+[ext_resource path="res://Juego/EstacionRecarga/Estacion.png" type="Texture" id=1]
 [ext_resource path="res://Juego/EstacionRecarga/AreaAtraccion.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Juego/EstacionRecarga/EstacionEspacialRecarga.gd" type="Script" id=3]
 [ext_resource path="res://Juego/EstacionRecarga/SFX_Recarga.ogg" type="AudioStream" id=4]
@@ -126,3 +126,5 @@ __meta__ = {
 [connection signal="body_entered" from="AreaColisionJugador" to="." method="_on_AreaColisionJugador_body_entered"]
 [connection signal="body_entered" from="AreaRecarga" to="." method="_on_AreaRecarga_body_entered"]
 [connection signal="body_exited" from="AreaRecarga" to="." method="_on_AreaRecarga_body_exited"]
+
+[editable path="AreaRecarga"]

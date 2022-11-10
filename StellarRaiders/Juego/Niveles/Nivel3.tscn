@@ -9,7 +9,7 @@
 
 [node name="Nivel3" instance=ExtResource( 1 )]
 nivel_siguiente = "res://Juego/Niveles/Nivel4.tscn"
-tiempo_limite = 240
+tiempo_limite = 260
 
 [node name="ZonaDePeligro" parent="ZonasDePeligroEnemigos" index="0" instance=ExtResource( 6 )]
 position = Vector2( -2325.37, -1438.37 )
@@ -36,9 +36,11 @@ position = Vector2( 1030.83, -791.106 )
 
 [node name="EstacionEspacialEnemiga" parent="AlmacenEstacionesEnemigas" index="0" instance=ExtResource( 3 )]
 position = Vector2( 6060.23, 3589 )
+hitpoints = 70.0
 
 [node name="EstacionEspacialEnemiga2" parent="AlmacenEstacionesEnemigas" index="1" instance=ExtResource( 3 )]
 position = Vector2( -5585.69, -4339.1 )
+hitpoints = 70.0
 
 [node name="EnemigoSniper" parent="AlmacenEnemigos" index="0" instance=ExtResource( 4 )]
 position = Vector2( 5393.91, 4578.83 )

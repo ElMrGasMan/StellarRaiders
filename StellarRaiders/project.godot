@@ -164,6 +164,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/Weapons/NormalWeapon1Proyectil.gd"
 }, {
+"base": "Node",
+"class": "PantallaFinalJuego",
+"language": "GDScript",
+"path": "res://Juego/UI/PantallaFinalJuego.gd"
+}, {
+"base": "Node",
+"class": "PantallaHistoria",
+"language": "GDScript",
+"path": "res://Juego/UI/PantallaHistoria.gd"
+}, {
 "base": "Path2D",
 "class": "PathGuardias",
 "language": "GDScript",
@@ -226,6 +236,8 @@ _global_script_class_icons={
 "Nivel": "",
 "NormalWeapon": "",
 "NormalWeapon1Proyectil": "",
+"PantallaFinalJuego": "",
+"PantallaHistoria": "",
 "PathGuardias": "",
 "Proyectil": "",
 "ProyectilAntiEscudos": "",
@@ -236,7 +248,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="StellarRaiders"
+config/name="AgustinCalderonSchipani_StellarRaiders"
 run/main_scene="res://Juego/UI/MenuPrincipalProvisorio.tscn"
 config/icon="res://icono_juego.png"
 

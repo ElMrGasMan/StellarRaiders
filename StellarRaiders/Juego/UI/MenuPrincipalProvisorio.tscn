@@ -3,10 +3,10 @@
 [ext_resource path="res://Juego/UI/FuenteHUD.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Juego/Musica/MusicaStellarRaiders.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Juego/UI/MenuPrincipalProvisorio.gd" type="Script" id=3]
-[ext_resource path="res://TemporalAssets/Fonts/Kenney Pixel.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Juego/UI/KenneyPixelTitulo.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Juego/UI/ButtonSalir.tscn" type="PackedScene" id=5]
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.352941, 0, 0.568627, 1 )
 border_width_left = 6
 border_width_top = 6
@@ -17,7 +17,7 @@ border_blend = true
 corner_radius_top_left = 20
 corner_radius_bottom_right = 20
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.556863, 0, 0.65098, 1 )
 border_width_left = 6
 border_width_top = 6
@@ -28,7 +28,7 @@ border_blend = true
 corner_radius_top_left = 20
 corner_radius_bottom_right = 20
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.298039, 0, 0.47451, 1 )
 border_width_left = 6
 border_width_top = 6
@@ -40,11 +40,11 @@ corner_radius_top_left = 20
 corner_radius_bottom_right = 20
 corner_detail = 20
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=4]
 size = 60
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=5]
 size = 100
 outline_size = 6
 outline_color = Color( 0, 0, 0, 1 )
@@ -52,6 +52,7 @@ font_data = ExtResource( 4 )
 
 [node name="MenuPrincipalProvisorio" type="Node"]
 script = ExtResource( 3 )
+nivel_siguiente = "res://Juego/UI/PantallaHistoria.tscn"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -70,10 +71,10 @@ margin_left = -200.0
 margin_top = -75.0
 margin_right = 200.0
 margin_bottom = 75.0
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 1 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "JUGAR"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -90,7 +91,7 @@ margin_left = -249.5
 margin_top = 31.4645
 margin_right = 249.5
 margin_bottom = 208.464
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 5 )
 text = "Stellar Raiders"
 align = 1
 valign = 1
@@ -100,3 +101,5 @@ __meta__ = {
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="ButtonSalir" to="." method="_on_ButtonSalir_pressed"]
+
+[editable path="MusicaStellarRaiders"]

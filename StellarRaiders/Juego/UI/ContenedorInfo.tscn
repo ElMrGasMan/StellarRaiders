@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://TemporalAssets/UI/PNG/glassPanel_projection.png" type="Texture" id=1]
+[ext_resource path="res://Juego/UI/HUDTexture.png" type="Texture" id=1]
 [ext_resource path="res://Juego/UI/FuenteHUD.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Juego/UI/ContenedorInfo.gd" type="Script" id=3]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "Invisible"
 length = 0.001
 tracks/0/type = "value"
@@ -20,7 +20,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "Invisible_Visible"
 length = 1.2
 tracks/0/type = "value"
@@ -52,7 +52,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "Visible_Invisible"
 length = 1.2
 tracks/0/type = "value"
@@ -68,7 +68,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=5]
 size = 17
 outline_size = 1
 outline_color = Color( 0.0823529, 0, 0, 1 )
@@ -88,10 +88,10 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Invisible = SubResource( 2 )
-anims/Invisible_Visible = SubResource( 4 )
+anims/Invisible = SubResource( 1 )
+anims/Invisible_Visible = SubResource( 2 )
 anims/Visible = SubResource( 3 )
-anims/Visible_Invisible = SubResource( 5 )
+anims/Visible_Invisible = SubResource( 4 )
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
@@ -100,7 +100,7 @@ margin_left = -68.5
 margin_top = 5.34539
 margin_right = 68.5
 margin_bottom = 132.345
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.803922, 0.556863, 1, 1 )
 text = "¡Advertencia!
 Se encuentra
