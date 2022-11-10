@@ -10,7 +10,7 @@ export var cast_speed := 7000.0
 export var max_length := 1400.0
 # Base duration of the tween animation in seconds.
 export var growth_time := 0.1
-export var total_energy: float = 20.0 setget, get_energia_actual_laser
+export var total_energy: float = 10.0 setget, get_energia_actual_laser
 export var ratio_consumption: float = -1.25
 # If `true`, the laser is firing.
 # It plays appearing and disappearing animations when it's not animating.

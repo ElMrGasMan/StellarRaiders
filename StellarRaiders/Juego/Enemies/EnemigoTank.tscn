@@ -26,7 +26,7 @@ radius = 962.049
 z_index = 5
 z_as_relative = false
 collision_layer = 4
-collision_mask = 30
+collision_mask = 26
 physics_material_override = SubResource( 1 )
 contacts_reported = 4
 contact_monitor = true
@@ -45,7 +45,7 @@ polygon = PoolVector2Array( -49.1794, -34.6411, -22.5903, -50.1182, 22.2537, -50
 [node name="WeaponAntiEscudos" parent="." index="3"]
 proyectile = ExtResource( 2 )
 fire_rate = 2.0
-proyectile_velocity = 70
+proyectile_velocity = 700
 proyectile_damage = 1
 
 [node name="AudioStreamPlayer2D" parent="WeaponAntiEscudos" index="2"]

@@ -62,7 +62,7 @@ anims/LanzarMisil = SubResource( 2 )
 
 [node name="AreaColision" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 26
+collision_mask = 18
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaColision"]
@@ -74,7 +74,7 @@ volume_db = 6.0
 bus = "SFX"
 
 [node name="TimerCooldown" type="Timer" parent="."]
-wait_time = 7.0
+wait_time = 9.0
 
 [node name="RayCastDetectarJugador" type="RayCast2D" parent="."]
 enabled = true

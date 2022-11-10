@@ -55,6 +55,7 @@ polygon = PoolVector2Array( -59, 1.99979, -32.9999, -27.5001, 32.5001, -28.9999,
 
 [node name="NormalWeapon" parent="." index="2"]
 proyectile = ExtResource( 11 )
+fire_rate = 0.35
 proyectile_velocity = 2200
 
 [node name="LeftMuzzle" parent="NormalWeapon" index="0"]
@@ -67,6 +68,7 @@ position = Vector2( 36.7547, -28.5 )
 position = Vector2( 42, 0 )
 
 [node name="Shield" parent="." index="4" instance=ExtResource( 1 )]
+energy_hitpoints = 12.0
 
 [node name="TrailStartingPoint" parent="." index="5" instance=ExtResource( 6 )]
 

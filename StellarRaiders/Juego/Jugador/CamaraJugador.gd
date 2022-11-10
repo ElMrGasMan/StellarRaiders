@@ -3,7 +3,7 @@ extends CamaraJuego
 
 
 export var variacion_zoom: float = 0.07
-export var maximo_zoom: float = 3.0
+export var maximo_zoom: float = 2.4
 export var minimo_zoom: float = 1.0
 
 

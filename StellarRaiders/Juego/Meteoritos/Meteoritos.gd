@@ -5,7 +5,7 @@ extends RigidBody2D
 export var linear_vel_base: Vector2 = Vector2(200.0, 200.0)
 export var angular_vel_base: float = 6.0
 export var hitpoints_base: float = 8.0
-export var meteor_speed_range: Vector2 = Vector2(1.2, 1.8)
+export var meteor_speed_range: Vector2 = Vector2(1.4, 2.4)
 
 var hitpoints: float
 var esta_dentro_sector: bool = true setget set_esta_dentro_sector

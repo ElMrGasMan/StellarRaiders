@@ -3,7 +3,7 @@ extends MarginContainer
 
 
 export var zoom_minimapa: float = 4.5
-export var tiempo_activado: float = 7.0
+export var tiempo_activado: float = 10.0
 
 var escala_grilla: Vector2
 var jugador: Jugador = null
@@ -141,6 +141,27 @@ func mod_pos_sprites() -> void:
 		icono_pos.x = clamp(icono_pos.x, 0, zona_renderizado.rect_size.x)
 		icono_pos.y = clamp(icono_pos.y, 0, zona_renderizado.rect_size.y)
 		objeto_icono.position = icono_pos
+		
+		if zona_renderizado.get_rect().has_point(icono_pos - zona_renderizado.rect_position):
+			if objeto is Misil or objeto is EnemigoSniper or objeto is EnemigoTank:
+				objeto_icono.scale = Vector2(0.4, 0.4)
+			
+			elif objeto is EnemigoAmbusher or objeto is EnemigoKamikase or objeto is PuertaL or objeto is EstacionEnemiga:
+				objeto_icono.scale = Vector2(0.3, 0.3)
+			
+			elif objeto is LanzaMisiles:
+				objeto_icono.scale = Vector2(0.2, 0.2)
+		
+		else: 
+			if objeto is EnemigoAmbusher or objeto is EnemigoKamikase or objeto is PuertaL or objeto is EstacionEnemiga:
+				objeto_icono.scale = Vector2(0.2, 0.2)
+			
+			elif objeto is Misil or objeto is EnemigoSniper or objeto is EnemigoTank:
+				objeto_icono.scale = Vector2(0.3, 0.3)
+			
+			elif objeto is LanzaMisiles:
+				objeto_icono.scale = Vector2(0.1, 0.1)
+
 
 
 func eliminar_icono(obj: Node2D) -> void:

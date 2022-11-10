@@ -3,9 +3,9 @@
 [ext_resource path="res://Juego/ZonaPeligro/ZonaDePeligro.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 1160.42, 530.17 )
+extents = Vector2( 688.989, 310.168 )
 
-[node name="ZonaDePeligro" type="Area2D"]
+[node name="ZonaDePeligroPequeña" type="Area2D"]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )

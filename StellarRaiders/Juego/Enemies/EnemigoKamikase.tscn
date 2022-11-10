@@ -25,7 +25,7 @@ linear_damp = 0.8
 script = ExtResource( 3 )
 hitpoints = 5.0
 cant_explosiones = 1
-vel_motor_maxima = 1400.0
+vel_motor_maxima = 1250.0
 
 [node name="Sprite" parent="." index="0"]
 rotation = -1.5708
@@ -50,5 +50,5 @@ custom_styles/bg = ExtResource( 5 )
 
 [node name="RayCastJugador" type="RayCast2D" parent="." index="6"]
 enabled = true
-cast_to = Vector2( 1000, 0 )
+cast_to = Vector2( 1500, 0 )
 collision_mask = 2

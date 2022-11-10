@@ -33,7 +33,7 @@ func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 	linear_velocity.x = clamp(linear_velocity.x, -vel_motor_maxima, vel_motor_maxima)
 	linear_velocity.y = clamp(linear_velocity.y, -vel_motor_maxima, vel_motor_maxima)
 	
-	if dir_jugador.x <= -1200.0:
+	if abs(dir_jugador.x) >= 1200.0 or abs(dir_jugador.y) >= 1200.0:
 		controlador_estados_ai(STATE_AI.ATAQUE_QUIETO)
 		linear_velocity = Vector2.ZERO
 

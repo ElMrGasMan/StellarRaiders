@@ -22,6 +22,7 @@ motion_scale = Vector2( 0.01, 0.01 )
 motion_mirroring = Vector2( 1920, 1080 )
 
 [node name="StarField" parent="ParallaxLayerLejos" instance=ExtResource( 1 )]
+amount = 12
 
 [node name="ParallaxLayerCerca" type="ParallaxLayer" parent="."]
 modulate = Color( 1, 1, 1, 0.705882 )
@@ -29,6 +30,7 @@ motion_scale = Vector2( 0.03, 0.03 )
 motion_mirroring = Vector2( 1920, 1080 )
 
 [node name="StarField" parent="ParallaxLayerCerca" instance=ExtResource( 1 )]
+amount = 10
 
 [node name="ParallaxLayerMuyCerca" type="ParallaxLayer" parent="."]
 modulate = Color( 1, 1, 1, 0.784314 )

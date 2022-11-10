@@ -26,15 +26,17 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not puede_recargar(event):
 		return
 	
-	energia_control()
-	
 	if event.is_action("recarga_escudo"):
-		nave_jugador.get_escudo().energia_control(energia_dada_ratio)
 		energia_escudo_actual = nave_jugador.get_escudo().get_energia_escudo_actual()
+		if not energia_escudo_actual == energia_escudo_maxima:
+			nave_jugador.get_escudo().energia_control(energia_dada_ratio)
+			energia_control()
 	
-	elif event.is_action("recarga_laserbeam"):
-		nave_jugador.get_laser_beam().energia_control(energia_dada_ratio)
+	if event.is_action("recarga_laserbeam"):
 		energia_laser_actual = nave_jugador.get_laser_beam().get_energia_actual_laser()
+		if not energia_laser_actual == energia_laser_maxima:
+			nave_jugador.get_laser_beam().energia_control(energia_dada_ratio)
+			energia_control()
 	
 	if event.is_action_released("recarga_laserbeam"):
 		Events.emit_signal("ocultar_energia_laser")
@@ -73,9 +75,6 @@ func puede_recargar(event: InputEvent) -> bool:
 
 
 func energia_control() -> void:
-	if energia_escudo_actual == energia_escudo_maxima or energia_laser_actual == energia_laser_maxima:
-		return
-	
 	if not sfx_carga.playing:
 		sfx_carga.play()
 	

@@ -65,6 +65,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Vector2( 0.9, 0.9 ) ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("SpriteDeSpawn:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=3]
 length = 0.6
@@ -142,10 +154,10 @@ tracks/5/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 407.818
+radius = 652.214
 
 [sub_resource type="CircleShape2D" id=5]
-radius = 345.968
+radius = 572.929
 
 [node name="EnemigoAmbusher" groups=[
 "minimapa",
@@ -158,6 +170,7 @@ physics_material_override = SubResource( 1 )
 contacts_reported = 4
 contact_monitor = true
 can_sleep = false
+linear_damp = -0.6
 script = ExtResource( 4 )
 hitpoints = 10.0
 cant_explosiones = 1
@@ -174,7 +187,8 @@ polygon = PoolVector2Array( -30.3495, -40.0749, 42.671, -38.8841, 40.2897, 6.753
 [node name="NormalWeapon" parent="." index="2"]
 proyectile = ExtResource( 5 )
 fire_rate = 1.5
-proyectile_velocity = 1100
+proyectile_velocity = 1000
+proyectile_damage = 1
 
 [node name="AudioStreamPlayer2D" parent="NormalWeapon" index="2"]
 stream = ExtResource( 9 )
@@ -185,8 +199,7 @@ anims/Default = SubResource( 2 )
 anims/Spawning = SubResource( 3 )
 
 [node name="SpriteDeSpawn" type="Sprite" parent="." index="5"]
-modulate = Color( 1, 1, 1, 0 )
-scale = Vector2( 4, 4 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 
 [node name="AreaDisparo" type="Area2D" parent="." index="6"]
