@@ -55,6 +55,9 @@ func input_jugador() -> void:
 	
 	elif Input.is_action_just_released("disparar_click_derecho"):
 		arma_anti_escudos.set_is_firing(false)
+	
+	if Input.is_action_pressed("boton_salir"):
+		get_tree().quit()
 
 
 # warning-ignore:unused_argument
