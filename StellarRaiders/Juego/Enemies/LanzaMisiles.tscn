@@ -1,12 +1,15 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Juego/Enemies/LanzaMisiles.gd" type="Script" id=1]
 [ext_resource path="res://Juego/Enemies/SpriteLanzaMisiles.png" type="Texture" id=2]
 [ext_resource path="res://Juego/Enemies/Sfx_hit_lanzamisiles.ogg" type="AudioStream" id=3]
 [ext_resource path="res://Juego/Enemies/Area2D.gd" type="Script" id=4]
 [ext_resource path="res://Juego/Enemies/Misil.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Juego/UI/BarraHitPoints.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Juego/UI/BarraHitpointsEnemigosFg.tres" type="StyleBox" id=7]
+[ext_resource path="res://Juego/UI/BarraHitpointsEnemigosBg.tres" type="StyleBox" id=8]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "Default"
 length = 0.001
 tracks/0/type = "value"
@@ -22,8 +25,7 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "LanzarMisil"
+[sub_resource type="Animation" id=2]
 length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:scale")
@@ -55,12 +57,12 @@ scale = Vector2( 1.8, 1.8 )
 texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Default = SubResource( 2 )
-anims/LanzarMisil = SubResource( 1 )
+anims/Default = SubResource( 1 )
+anims/LanzarMisil = SubResource( 2 )
 
 [node name="AreaColision" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 26
+collision_mask = 18
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaColision"]
@@ -72,12 +74,21 @@ volume_db = 6.0
 bus = "SFX"
 
 [node name="TimerCooldown" type="Timer" parent="."]
-wait_time = 7.0
+wait_time = 9.0
 
 [node name="RayCastDetectarJugador" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 1400, 0 )
 collision_mask = 2
+
+[node name="BarraHitPoints" parent="." instance=ExtResource( 6 )]
+margin_left = -90.0
+margin_top = -115.0
+margin_right = 30.0
+margin_bottom = -100.0
+rect_rotation = 0.0
+custom_styles/fg = ExtResource( 7 )
+custom_styles/bg = ExtResource( 8 )
 
 [connection signal="body_entered" from="AreaColision" to="." method="_on_AreaColision_body_entered"]
 [connection signal="timeout" from="TimerCooldown" to="." method="_on_TimerCooldown_timeout"]

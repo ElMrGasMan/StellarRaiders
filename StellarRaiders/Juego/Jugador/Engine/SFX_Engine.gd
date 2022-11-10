@@ -5,9 +5,9 @@ extends AudioStreamPlayer2D
 export var tiempo_transicion: float = 0.9
 export var volumen_apagado: float = -45
 
-onready var volumen_tween: Tween = $Tween
-
 var volumen_normal: float
+
+onready var volumen_tween: Tween = $Tween
 
 
 func _ready() -> void:

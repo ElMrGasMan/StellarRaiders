@@ -8,16 +8,16 @@ export var cant_guardianes: int = 5
 export var intervalo_spawn_guardianes: float = 1.0
 export(Array, PackedScene) var rutas_guardias
 
+var esta_destruido: bool = false
+var posicion_spawn: Vector2 = Vector2.ZERO
+var array_sprites: Array
+var ruta_random_seleccionada: Path2D
+
 onready var animaciones: AnimationPlayer = $AnimationPlayer
 onready var sfx_hit: AudioStreamPlayer2D = $AudioStreamPlayer2D
 onready var sprites: Node2D = $NodoSprites
 onready var spawners_timer: Timer = $TimerSpawnGuardianes
 onready var barra_hitpoints: ProgressBar = $BarraHitPoints
-
-var esta_destruido: bool = false
-var posicion_spawn: Vector2 = Vector2.ZERO
-var array_sprites: Array
-var ruta_random_seleccionada: Path2D
 
 
 func _ready() -> void:

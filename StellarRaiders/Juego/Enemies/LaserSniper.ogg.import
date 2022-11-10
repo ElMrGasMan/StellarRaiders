@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/LaserSniper.ogg-4883579c99d3fcc95651291efdaaa424.oggstr"
+
+[deps]
+
+source_file="res://Juego/Enemies/LaserSniper.ogg"
+dest_files=[ "res://.import/LaserSniper.ogg-4883579c99d3fcc95651291efdaaa424.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -18,7 +18,6 @@ func _on_Tween_tween_all_completed() -> void:
 
 func controlar_hitpoints_barra(hitpoints: float, puede_mostrar: bool) -> void:
 	value = hitpoints
-	
 	if not tween.is_active() and modulate.a != int(puede_mostrar):
 # warning-ignore:return_value_discarded
 		tween.interpolate_property(

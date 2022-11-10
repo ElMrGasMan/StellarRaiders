@@ -13,6 +13,9 @@ func _ready() -> void:
 	conectar_detectores()
 	$TimerMeteoritos.wait_time = timer_spawn
 
+func _on_detector_body_entered(body: Node) -> void:
+	body.set_esta_dentro_sector(false)
+
 
 func _on_TimerMeteoritos_timeout() -> void:
 	if cant_meteoritos == 0:
@@ -36,10 +39,6 @@ func spawner_random() -> int:
 func conectar_detectores() -> void:
 	for detector in $BordeExteriorDetector.get_children():
 		detector.connect("body_entered", self, "_on_detector_body_entered")
-
-
-func _on_detector_body_entered(body: Node) -> void:
-	body.set_esta_dentro_sector(false)
 
 
 func crear_lluvia(pos: Vector2, num_met: int):

@@ -11,7 +11,6 @@ var direc_rotacion: int = 0
 
 onready var estela: Estela = $TrailStartingPoint/Trail2D
 onready var estela2: Estela = $TrailStartingPoint2/Trail2D
-##ARREGLAR ESTO CAPAZ SE PUEDEN PONER EN UN ARRAY
 onready var escudo_jugador: Escudo = $Shield setget, get_escudo
 onready var laser_beam: RayoLaser = $LaserBeam2D setget, get_laser_beam
 onready var engine_sound: Motor = $SFX_Engine
@@ -19,14 +18,6 @@ onready var engine_sound: Motor = $SFX_Engine
 
 func _ready() -> void:
 	DataJuego.set_jugador_actual(self)
-
-
-func get_laser_beam() -> RayoLaser:
-	return laser_beam
-
-
-func get_escudo() -> Escudo:
-	return escudo_jugador
 
 
 func input_jugador() -> void:
@@ -111,6 +102,14 @@ func input_is_active() -> bool:
 		return false
 	
 	return true
+
+
+func get_laser_beam() -> RayoLaser:
+	return laser_beam
+
+
+func get_escudo() -> Escudo:
+	return escudo_jugador
 
 
 func desactivar_controles() -> void:

@@ -1,15 +1,16 @@
 class_name EnemigoSniper
 extends EnemigoBase
 
+
 enum STATE_AI {IDLE, ATAQUE_QUIETO, ESCAPE}
 
 export var vel_motor_maxima: float = 1000.0 
 
-onready var arma_sniper: NormalWeapon1Proyectil = $NormalWeapon1Proyectil
-onready var ray_cast_sniper: RayCast2D = $RayCastDisparo
-
 var ai_state_actual: int = STATE_AI.ATAQUE_QUIETO
 var vel_motor_actual: float = 0.0
+
+onready var arma_sniper: NormalWeapon1Proyectil = $NormalWeapon1Proyectil
+onready var ray_cast_sniper: RayCast2D = $RayCastDisparo
 
 
 func _ready() -> void:
@@ -32,9 +33,7 @@ func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 	linear_velocity.x = clamp(linear_velocity.x, -vel_motor_maxima, vel_motor_maxima)
 	linear_velocity.y = clamp(linear_velocity.y, -vel_motor_maxima, vel_motor_maxima)
 	
-	print(linear_velocity)
-	
-	if dir_jugador.x <= -1200.0:
+	if abs(dir_jugador.x) >= 1200.0 or abs(dir_jugador.y) >= 1200.0:
 		controlador_estados_ai(STATE_AI.ATAQUE_QUIETO)
 		linear_velocity = Vector2.ZERO
 

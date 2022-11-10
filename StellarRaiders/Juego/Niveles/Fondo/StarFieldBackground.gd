@@ -2,9 +2,9 @@ tool
 extends ParallaxBackground
 
 
-onready var color_fondo: ColorRect = $ColorRect
-
 export var color_nivel: Color = Color.black
+
+onready var color_fondo: ColorRect = $ColorRect
 
 
 func _ready() -> void:

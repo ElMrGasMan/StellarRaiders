@@ -4,11 +4,11 @@ extends NinePatchRect
 
 export var puede_auto_ocultar: bool = false setget set_auto_ocultar
 
+var esta_visible: bool = true setget set_esta_visible
+
 onready var animaciones: AnimationPlayer = $AnimationPlayer
 onready var auto_ocultar_timer: Timer = $TimerDesaparecer 
 onready var texto_dinamico: Label = $Label
-
-var esta_visible: bool = true setget set_esta_visible
 
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:

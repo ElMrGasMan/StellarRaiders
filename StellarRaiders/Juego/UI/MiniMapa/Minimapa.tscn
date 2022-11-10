@@ -113,7 +113,7 @@ texture = ExtResource( 4 )
 [node name="TweenActivacion" type="Tween" parent="."]
 
 [node name="TimerActivacion" type="Timer" parent="."]
-wait_time = 7.0
+wait_time = 10.0
 one_shot = true
 
 [connection signal="timeout" from="TimerActivacion" to="." method="_on_TimerActivacion_timeout"]

@@ -8,6 +8,7 @@ func _ready() -> void:
 # warning-ignore:return_value_discarded
 	Events.connect("player_destroyed", self, "_on_jugador_destruido")
 
+
 func set_jugador_actual(jugador: Jugador) -> void:
 	data_jugador = jugador
 

@@ -5,14 +5,14 @@ extends Node
 export var tiempo_transicion: float = 2.0
 export(float, -30.0, -10.0, 5.0) var volumen_apagado = -40.0
 
+var musica_actual_apagar: float = 0.0
+
 onready var musica_ambiental: AudioStreamPlayer = $MusicaAmbiental setget, get_mus_amb
 onready var musica_combate: AudioStreamPlayer = $MusicaCombate
 onready var lista_musica: Dictionary = {"menu_principal": $MusicaMenuPrincipal} setget, get_lista_musica
 onready var sonido_botones: AudioStreamPlayer = $SonidoBotonesMenu
 onready var tween_prender: Tween = $TweenPrenderMusica
 onready var tween_apagar: Tween = $TweenApagarMusica
-
-var musica_actual_apagar: float = 0.0
 
 
 # warning-ignore:unused_argument

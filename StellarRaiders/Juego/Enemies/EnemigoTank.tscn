@@ -1,20 +1,24 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Juego/Buques/NaveBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Proyectiles/EnemigoLaserAntiEscudos.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Juego/Enemies/EnemigoTank.gd" type="Script" id=3]
 [ext_resource path="res://Juego/Enemies/EnemigoTank.png" type="Texture" id=4]
+[ext_resource path="res://Juego/UI/BarraHitpointsEnemigosFg.tres" type="StyleBox" id=5]
 [ext_resource path="res://Juego/Escudo/Shield.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Juego/UI/BarraHitpointsEnemigosBg.tres" type="StyleBox" id=7]
+[ext_resource path="res://Juego/Enemies/Hit_Enemigos.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Juego/Enemies/LaserEnemigo.ogg" type="AudioStream" id=9]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
 bounce = 0.2
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 482.861
+radius = 795.925
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 552.329
+radius = 962.049
 
 [node name="EnemigoTank" groups=[
 "minimapa",
@@ -22,7 +26,7 @@ radius = 552.329
 z_index = 5
 z_as_relative = false
 collision_layer = 4
-collision_mask = 30
+collision_mask = 26
 physics_material_override = SubResource( 1 )
 contacts_reported = 4
 contact_monitor = true
@@ -41,14 +45,23 @@ polygon = PoolVector2Array( -49.1794, -34.6411, -22.5903, -50.1182, 22.2537, -50
 [node name="WeaponAntiEscudos" parent="." index="3"]
 proyectile = ExtResource( 2 )
 fire_rate = 2.0
-proyectile_velocity = 70
+proyectile_velocity = 700
 proyectile_damage = 1
 
+[node name="AudioStreamPlayer2D" parent="WeaponAntiEscudos" index="2"]
+stream = ExtResource( 9 )
+
+[node name="SFX_Hit" parent="." index="4"]
+stream = ExtResource( 8 )
+volume_db = 6.0
+
 [node name="BarraHitPoints" parent="." index="5"]
-margin_left = -73.0
-margin_top = 60.1433
-margin_right = 7.0
-margin_bottom = 70.1433
+margin_left = -90.0
+margin_top = 60.0
+margin_right = -10.0
+margin_bottom = 70.0
+custom_styles/fg = ExtResource( 5 )
+custom_styles/bg = ExtResource( 7 )
 
 [node name="AreaPerseguir" type="Area2D" parent="." index="6"]
 collision_layer = 0
@@ -79,4 +92,5 @@ visible = true
 [connection signal="body_entered" from="AreaDisparo" to="." method="_on_AreaDisparo_body_entered"]
 [connection signal="body_exited" from="AreaDisparo" to="." method="_on_AreaDisparo_body_exited"]
 
+[editable path="WeaponAntiEscudos"]
 [editable path="Shield"]

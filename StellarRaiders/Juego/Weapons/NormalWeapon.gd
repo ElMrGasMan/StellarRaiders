@@ -7,21 +7,13 @@ export var fire_rate: float = 0.6
 export var proyectile_velocity: int = 110
 export var proyectile_damage: int = 2
 
+var shooting_points: Array = []
+
 onready var timer_rateoffire: Timer = $RateOfFire
 onready var shooting_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 onready var cooldown_down: bool = true
 onready var is_firing: bool = false setget set_is_firing
 onready var can_fire: bool = false setget set_can_fire
-
-var shooting_points: Array = []
-
-
-func set_is_firing(shooting: bool) -> void:
-	is_firing = shooting
-
-
-func set_can_fire(weapon_ready: bool) -> void:
-	can_fire = weapon_ready
 
 
 func _ready() -> void:
@@ -32,6 +24,14 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if is_firing and cooldown_down and can_fire:
 		shoot()
+
+
+func set_is_firing(shooting: bool) -> void:
+	is_firing = shooting
+
+
+func set_can_fire(weapon_ready: bool) -> void:
+	can_fire = weapon_ready
 
 
 func _on_RateOfFire_timeout() -> void:

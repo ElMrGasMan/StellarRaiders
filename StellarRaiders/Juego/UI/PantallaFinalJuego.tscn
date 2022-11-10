@@ -1,0 +1,126 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://TemporalAssets/Fonts/Kenney Pixel.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Juego/UI/Sprite1PantallaFinal.png" type="Texture" id=2]
+[ext_resource path="res://Juego/Jugador/NaveJugador.png" type="Texture" id=3]
+[ext_resource path="res://TemporalAssets/kenney_spaceshooterextension/PNG/Sprites/Astronauts/spaceAstronauts_013.png" type="Texture" id=4]
+[ext_resource path="res://TemporalAssets/kenney_spaceshooterextension/PNG/Sprites/Astronauts/spaceAstronauts_010.png" type="Texture" id=5]
+[ext_resource path="res://TemporalAssets/kenney_spaceshooterextension/PNG/Sprites/Astronauts/spaceAstronauts_016.png" type="Texture" id=6]
+[ext_resource path="res://Juego/UI/ButtonSalir.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Juego/UI/PantallaFinalJuego.gd" type="Script" id=8]
+[ext_resource path="res://Juego/Musica/MusicaStellarRaiders.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Juego/UI/SpriteAstronauta3.png" type="Texture" id=10]
+
+[sub_resource type="DynamicFont" id=6]
+size = 100
+outline_size = 6
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 40
+outline_size = 6
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[node name="PantallaFinalJuego" type="Node"]
+script = ExtResource( 8 )
+
+[node name="MusicaStellarRaiders" parent="." instance=ExtResource( 9 )]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0352941, 0, 0.176471, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -349.5
+margin_top = 37.4177
+margin_right = 349.5
+margin_bottom = 146.418
+custom_fonts/font = SubResource( 6 )
+text = "¡Felicidades Ganaste!"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -512.0
+margin_top = 182.0
+margin_right = 215.0
+margin_bottom = 554.0
+custom_fonts/font = SubResource( 7 )
+text = "Luego de aquella cruenta batalla, 
+el capitan Mc. Carran al fin logro destruir 
+todas las estaciones  espaciales de los piratas,
+ forzando a algunos de los que aun quedaban con 
+vida a retirarse, mientras que otros decidieron rendirse. 
+Mc. Carran ha liberado los anillos de Saturno y vengado 
+a sus hombres. 
+En su regreso a Terra, a pesar de haber ignorado 
+ordenes directas de su superior, fue galardonado
+con la Medalla del Maximo Valor y ascendido de rango. 
+Mc. Carran sera recordado como una leyenda de la 
+Confederacion"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NaveJugador" type="Sprite" parent="."]
+position = Vector2( 828.348, 307.25 )
+rotation = -0.689405
+scale = Vector2( 1.4, 1.4 )
+z_index = 1
+z_as_relative = false
+texture = ExtResource( 3 )
+
+[node name="spaceBuilding_006" type="Sprite" parent="."]
+position = Vector2( 991.619, 451.794 )
+rotation = -0.143117
+scale = Vector2( 3, 3 )
+texture = ExtResource( 2 )
+
+[node name="spaceAstronauts_013" type="Sprite" parent="."]
+position = Vector2( 880.02, 364.267 )
+rotation = 0.68766
+texture = ExtResource( 4 )
+
+[node name="spaceAstronauts_010" type="Sprite" parent="."]
+position = Vector2( 945.932, 414.383 )
+rotation = 3.78736
+texture = ExtResource( 5 )
+
+[node name="spaceAstronauts_016" type="Sprite" parent="."]
+position = Vector2( 933.333, 472.339 )
+rotation = 4.01426
+texture = ExtResource( 6 )
+
+[node name="spaceAstronauts_017" type="Sprite" parent="."]
+position = Vector2( 1000.11, 403.043 )
+rotation = 3.49066
+texture = ExtResource( 6 )
+
+[node name="ButtonSalir" parent="." instance=ExtResource( 7 )]
+margin_left = 249.0
+margin_top = -89.281
+margin_right = 503.0
+margin_bottom = -8.28137
+
+[node name="SpriteAstronauta3" type="Sprite" parent="."]
+position = Vector2( 985.401, 456.926 )
+rotation = -2.4103
+texture = ExtResource( 10 )
+
+[connection signal="pressed" from="ButtonSalir" to="." method="_on_ButtonSalir_pressed"]

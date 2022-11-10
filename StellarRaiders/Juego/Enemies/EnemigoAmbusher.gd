@@ -6,11 +6,11 @@ enum STATE_AI {IDLE, ATAQUE_QUIETO, ATAQUE_PERSECUCION, PERSECUCION}
 
 export var vel_motor_maxima: float = 1000.0 
 
-onready var arma: NormalWeapon = $NormalWeapon
-onready var animaciones: AnimationPlayer = $AnimationPlayer
-
 var ai_state_actual: int = STATE_AI.ATAQUE_PERSECUCION
 var vel_motor_actual: float = 0.0
+
+onready var arma: NormalWeapon = $NormalWeapon
+onready var animaciones: AnimationPlayer = $AnimationPlayer
 
 
 func _ready() -> void:

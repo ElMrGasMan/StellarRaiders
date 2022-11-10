@@ -2,12 +2,6 @@ class_name LanzaMisiles
 extends Node2D
 
 
-onready var hit_sound: AudioStreamPlayer2D = $Sfx_hit
-onready var colisionador: CollisionShape2D = $AreaColision/CollisionShape2D
-onready var animaciones: AnimationPlayer = $AnimationPlayer
-onready var ray_cast_detector: RayCast2D = $RayCastDetectarJugador
-onready var timer_cooldown_misiles: Timer = $TimerCooldown
-
 export var misiles: PackedScene = null
 export var hitpoints: float = 25.0
 export var cant_explosiones: int = 3
@@ -19,9 +13,17 @@ var rotacion_jugador: float
 var posicion_lanzador: Vector2
 var detectado: bool = false
 
+onready var hit_sound: AudioStreamPlayer2D = $Sfx_hit
+onready var colisionador: CollisionShape2D = $AreaColision/CollisionShape2D
+onready var animaciones: AnimationPlayer = $AnimationPlayer
+onready var ray_cast_detector: RayCast2D = $RayCastDetectarJugador
+onready var timer_cooldown_misiles: Timer = $TimerCooldown
+onready var barra_hitpoints: BarraSalud = $BarraHitPoints
+
 
 func _ready() -> void:
 	jugador_objetivo = DataJuego.get_jugador_actual()
+	barra_hitpoints.settear_valores(hitpoints)
 # warning-ignore:return_value_discarded
 	Events.connect("player_destroyed", self, "_on_jugador_destruido")
 	posicion_lanzador = global_position
@@ -71,6 +73,8 @@ func get_damage(damage: float) -> void:
 	
 	if hitpoints <= 0.0:
 		destroy()
+	
+	barra_hitpoints.controlar_hitpoints_barra(hitpoints, true)
 
 
 func destroy() -> void:

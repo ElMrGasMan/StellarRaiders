@@ -77,9 +77,10 @@ font_data = ExtResource( 6 )
 "minimapa",
 ]]
 scale = Vector2( 1.5, 1.5 )
-z_index = 5
+z_index = 100
 z_as_relative = false
 script = ExtResource( 3 )
+energia_almacenada = 20.0
 
 [node name="AreaColisionJugador" type="Area2D" parent="."]
 rotation = 6.28319

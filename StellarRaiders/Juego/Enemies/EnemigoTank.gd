@@ -6,15 +6,16 @@ enum STATE_AI {IDLE, ATAQUE_QUIETO, ATAQUE_PERSECUCION, PERSECUCION}
 
 export var vel_motor_maxima: float = 100.0 
 
-onready var escudo_enemigo: Escudo = $Shield
-
 var ai_state_actual: int = STATE_AI.IDLE
 var vel_motor_actual: float = 0.0
+
+onready var escudo_enemigo: Escudo = $Shield
 
 
 func _ready() -> void:
 	Events.emit_signal("objeto_minimapa_creado")
 	escudo_enemigo.activate()
+	player_state_controler(PLAYER_STATE.ALIVE)
 
 
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
@@ -26,7 +27,6 @@ func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 
 # warning-ignore:unused_argument
 func _on_AreaDisparo_body_entered(body: Node) -> void:
-	player_state_controler(PLAYER_STATE.ALIVE)
 	arma_anti_escudos.set_can_fire(true)
 	controlador_estados_ai(STATE_AI.ATAQUE_PERSECUCION)
 

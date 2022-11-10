@@ -1,9 +1,46 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Juego/Niveles/NivelBASE.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Juego/EstacionRecarga/EstacionEspacialEnemiga.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Juego/Enemies/EnemigoKamikase.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Juego/ZonaPeligro/ZonaDePeligro.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Juego/EstacionRecarga/EstacionEspacialRecarga.tscn" type="PackedScene" id=5]
 
 [node name="Nivel2" instance=ExtResource( 1 )]
+nivel_siguiente = "res://Juego/Niveles/Nivel3.tscn"
+
+[node name="ZonaDePeligro" parent="ZonasDePeligro" index="0" instance=ExtResource( 4 )]
+position = Vector2( 1985.45, -909.818 )
+num_peligros = 10
+
+[node name="EstacionEspacialRecarga" parent="AlmacenEstaciones" index="0" instance=ExtResource( 5 )]
+position = Vector2( 5088, 0 )
+
+[node name="EstacionEspacialEnemiga2" parent="AlmacenEstacionesEnemigas" index="0" instance=ExtResource( 2 )]
+position = Vector2( 4337.6, -1884.07 )
+hitpoints = 70.0
+cant_guardianes = 7
+
+[node name="EstacionEspacialEnemiga3" parent="AlmacenEstacionesEnemigas" index="1" instance=ExtResource( 2 )]
+position = Vector2( 10481.6, 3459.93 )
+hitpoints = 75.0
+
+[node name="EnemigoKamikase" parent="AlmacenEnemigos" index="0" instance=ExtResource( 3 )]
+position = Vector2( 8272.82, 3038.89 )
+
+[node name="EnemigoKamikase2" parent="AlmacenEnemigos" index="1" instance=ExtResource( 3 )]
+position = Vector2( 8079.26, 2367.01 )
+
+[node name="EnemigoKamikase3" parent="AlmacenEnemigos" index="2" instance=ExtResource( 3 )]
+position = Vector2( 9167.24, 2028.98 )
+
+[node name="EnemigoKamikase4" parent="AlmacenEnemigos" index="3" instance=ExtResource( 3 )]
+position = Vector2( 10571.7, 1404.49 )
+
+[node name="EnemigoKamikase6" parent="AlmacenEnemigos" index="4" instance=ExtResource( 3 )]
+position = Vector2( 8711.09, 3729.88 )
 
 [editable path="Jugador"]
 [editable path="Jugador/NormalWeapon"]
+[editable path="Jugador/WeaponAntiEscudos"]
 [editable path="MusicaStellarRaiders"]
