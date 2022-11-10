@@ -1,0 +1,18 @@
+TECLADO:
+
+(W-S O FlechaArriba-FlechaAbajo): Ir para adelante y atras respectivamente.
+(D-A O FlechaDerecha-FlechaIzquierda): Girar en sentido horario y girar en sentido anti-horario respectivamente.
+(F): Disparar Laser Beam
+(G): Activar y Desactivar Escudo
+(R): Recargar Laser Beam
+(T): Recargar Escudo (El escudo se recarga solo si no ha sido completamente destruido)
+(M): Activar MiniMapa
+(Esc): Salir del Juego (Mientras se juega)
+
+
+
+MOUSE:
+
+(ClickIzquierdo): Disparo Principal
+(ClickDerecho): Disparo Secundario (Arma Anti-Escudos, hace daño extra contra escudos)
+(RuedaArriba-RuedaAbajo): Hacer zoom in, hacer zoom out respectivamente
